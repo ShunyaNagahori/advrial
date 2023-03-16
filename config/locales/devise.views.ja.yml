@@ -32,6 +32,7 @@ ja:
       confirmed: メールアドレスが確認できました。
       new:
         resend_confirmation_instructions: アカウント確認メール再送
+        send_me_confirmation_instructions_onemore: アカウント確認メールを再送する
       send_instructions: アカウントの有効化について数分以内にメールでご連絡します。
       send_paranoid_instructions: メールアドレスが登録済みの場合、本人確認用のメールが数分以内に送信されます。
     failure:
@@ -125,7 +126,7 @@ ja:
         sign_in: ログイン
         sign_in_with_provider: "%{provider}でログイン"
         sign_up: アカウント登録
-      minimum_password_length: "（%{count}字以上）"
+      minimum_password_length: "（%{count}文字以上）"
     unlocks:
       new:
         resend_unlock_instructions: アカウントのロック解除方法を再送する

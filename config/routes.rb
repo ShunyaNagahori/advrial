@@ -16,8 +16,6 @@ Rails.application.routes.draw do
     post 'user/password', to: 'users/passwords#create', as: :user_password
     get 'user/password/edit', to: 'users/passwords#edit', as: :edit_user_password
     patch 'user/password', to: 'users/passwords#update', as: :update_user_password
-    get 'user/confirmation', to: 'users/confirmations#new', as: :new_user_confirmation
-    # get 'user/confirmation', to: 'users/confirmations#show', as: :user_confirmation
-    post 'user/confirmation', to: 'users/confirmations#create', as: :user_confirmation
   end
+  devise_for :users, only: [:confirmations]
 end

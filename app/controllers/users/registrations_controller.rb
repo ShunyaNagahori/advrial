@@ -5,23 +5,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  def new
-    super
-    @user = User.new
-  end
+  # def new
+  #   super
+  # end
 
   # POST /resource
-  def create
-    @user = User.new(create_params)
-    if @user.save
-      flash[:notice] = t('devise.registrations.signed_up_but_unconfirmed')
-      redirect_to new_user_session_path
-    else
-      flash[:alert] = t('devise.registrations.not_signup')
-      render action: :new and return
-    end
-    # resource.update(confirmed_at: Time .now.utc) 
-  end
+  # def create
+  #   super
+  # end
 
   # GET /resource/edit
   # def edit
