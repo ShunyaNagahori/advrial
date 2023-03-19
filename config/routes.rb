@@ -19,4 +19,5 @@ Rails.application.routes.draw do
   end
   devise_for :users, only: [:confirmations]
   resources :users, except: [:index, :new], param: :account_name
+  get 'welcome', to: 'users#welcome'
 end

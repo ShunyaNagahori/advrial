@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-  before_action :set_user
+  before_action :authenticate_user!, except: [:welcome]
+  before_action :set_user, except: [:welcome]
+  before_action :corrent_user, only: [:edit, :update, :destroy]
 
   def edit; end
 
@@ -18,9 +20,22 @@ class UsersController < ApplicationController
 
   def show; end
 
+  def destroy
+  end
+
+  def welcome # 認証メール送信後のページ
+  end
+
   private
     def set_user
       @user = User.find_by(account_name: params[:account_name])
+    end
+
+    def corrent_user
+      unless @user == current_user
+      flash[:alert] = "他のユーザーのページにはアクセス出来ません。"
+      redirect_to root_path
+      end
     end
 
     def user_params

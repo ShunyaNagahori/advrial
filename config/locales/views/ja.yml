@@ -4,6 +4,8 @@ ja:
       title: プロフィール編集
       submit: 更新
       back: 戻る
+    welcome:
+      to_login: ログインページはこちら
   errors:
     messages:
       not_saved:

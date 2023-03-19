@@ -4,6 +4,8 @@ en:
       title: Profile Edit
       submit: Submit
       back: Go back
+    welcome:
+      to_login: Click here for the login page!
   errors:
     messages:
       not_saved:
