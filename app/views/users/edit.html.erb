@@ -1,0 +1,62 @@
+<div>
+  <h2><%=t('.title') %></h2>
+</div>
+
+<%= form_with model: @user do |f|%>
+  <%= render "shared/error_messages", resource: @user %>
+
+  <div class="field">
+    <label>
+      <span class="block"><%= t('activerecord.attributes.user.image') %></span>
+    <label>
+    <%= f.file_field :image %>
+    <%= render 'shared/validation_error', f: f, column: :image %>
+  </div>
+
+  <div class="field">
+    <%= f.label :name, class: 'block' %>
+    <%= f.text_field :name %>
+    <%= render 'shared/validation_error', f: f, column: :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :account_name, class: 'block' %>
+    <%= f.text_field :account_name %>
+    <%= render 'shared/validation_error', f: f, column: :account_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email, class: 'block' %>
+    <%= f.email_field :email %>
+    <%= render 'shared/validation_error', f: f, column: :email %>
+  </div>
+
+  <div class="field">
+    <%= f.label :date_of_birth, class: 'block' %>
+    <%= f.date_field :date_of_birth %>
+  </div>
+
+  <div class="field">
+    <%= f.label :url, class: 'block' %>
+    <%= f.url_field :url %>
+    <%= render 'shared/validation_error', f: f, column: :url %>
+  </div>
+
+  <div class="field">
+    <%= f.label :gender, class: 'block' %>
+    <%= f.select :gender, User.genders.keys.map { |key| [t("enums.user.gender.#{key}"), key] } %>
+  </div>
+
+  <div class="field">
+    <%= f.label :introduce, class: 'block' %>
+    <%= f.text_area :introduce %>
+  </div>
+
+  <div class="pt-8 pb-24 space-x-2">
+    <%= f.submit t('.submit'), class: "btn" %>
+    <%= link_to t('.back'), user_path(@user), class: "backBtn" %>
+  </div>
+<% end %>
+
+
+

@@ -1,0 +1,11 @@
+ja:
+  users:
+    edit:
+      title: プロフィール編集
+      submit: 更新
+      back: 戻る
+  errors:
+    messages:
+      not_saved:
+        one: エラーが発生したため %{resource} は保存されませんでした。
+        other: "%{count} 件のエラーが発生したため %{resource} は保存されませんでした。"

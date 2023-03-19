@@ -2,6 +2,13 @@ en:
   activerecord:
     attributes:
       user:
+        name: Name
+        account_name: Account ID
+        date_of_birth: Date Of Birth
+        gender: Gender
+        url: Web
+        introduce: Profile
+        image: Image
         confirmation_sent_at: Confirmation sent at
         confirmation_token: Confirmation token
         confirmed_at: Confirmed at
@@ -29,6 +36,12 @@ en:
       user:
         one: User
         other: Users
+  enums:
+    user:
+      gender:
+        man: Male
+        woman: Female
+        no_answer: No Answer
   devise:
     confirmations:
       confirmed: Your email address has been successfully confirmed.

@@ -1,0 +1,11 @@
+en:
+  users:
+    edit:
+      title: Profile Edit
+      submit: Submit
+      back: Go back
+  errors:
+    messages:
+      not_saved:
+        one: '1 error prohibited this %{resource} from being saved:'
+        other: "%{count} errors prohibited this %{resource} from being saved:"
