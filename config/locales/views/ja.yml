@@ -1,9 +1,16 @@
 ja:
+  time:
+    formats:
+      default: "%Y/%m/%d"
   users:
     edit:
       title: プロフィール編集
       submit: 更新
       back: 戻る
+    show:
+      title: マイページ
+      top: トップへ戻る
+      edit: 編集ページ
     welcome:
       to_login: ログインページはこちら
   errors:

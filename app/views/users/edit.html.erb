@@ -14,15 +14,15 @@
   </div>
 
   <div class="field">
-    <%= f.label :name, class: 'block' %>
-    <%= f.text_field :name %>
-    <%= render 'shared/validation_error', f: f, column: :name %>
-  </div>
-
-  <div class="field">
     <%= f.label :account_name, class: 'block' %>
     <%= f.text_field :account_name %>
     <%= render 'shared/validation_error', f: f, column: :account_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :name, class: 'block' %>
+    <%= f.text_field :name %>
+    <%= render 'shared/validation_error', f: f, column: :name %>
   </div>
 
   <div class="field">
@@ -37,14 +37,14 @@
   </div>
 
   <div class="field">
-    <%= f.label :url, class: 'block' %>
-    <%= f.url_field :url %>
-    <%= render 'shared/validation_error', f: f, column: :url %>
+    <%= f.label :gender, class: 'block' %>
+    <%= f.select :gender, User.genders.keys.map { |key| [t("enums.user.gender.#{key}"), key] } %>
   </div>
 
   <div class="field">
-    <%= f.label :gender, class: 'block' %>
-    <%= f.select :gender, User.genders.keys.map { |key| [t("enums.user.gender.#{key}"), key] } %>
+    <%= f.label :url, class: 'block' %>
+    <%= f.url_field :url %>
+    <%= render 'shared/validation_error', f: f, column: :url %>
   </div>
 
   <div class="field">
