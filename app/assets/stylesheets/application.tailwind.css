@@ -6,11 +6,23 @@
 
 @layer components {
   .btn {
-    @apply py-2 px-4 my-2 bg-green-700 text-white font-bold;
+    @apply py-2 px-4 my-2 bg-green-700 text-white font-bold cursor-pointer;
+  }
+
+  .backBtn {
+    @apply py-2 px-4 my-2 font-bold border border-slate-600 cursor-pointer;
   }
 
   h2 {
     @apply text-3xl font-black;
+  }
+
+  .field {
+    @apply my-2
+  }
+
+  .container {
+    @apply m-auto;
   }
 }
 

@@ -1,0 +1,5 @@
+<% if f.object.errors.where(column).present? %>
+  <span class="text-sm text-red-600">
+    <%= f.object.errors.where(column).last.full_message %>
+  </span>
+<% end %>

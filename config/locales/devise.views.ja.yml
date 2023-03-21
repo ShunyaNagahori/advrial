@@ -2,6 +2,13 @@ ja:
   activerecord:
     attributes:
       user:
+        name: 名前
+        account_name: アカウントID
+        date_of_birth: 生年月日
+        gender: 性別
+        url: Web
+        introduce: 自己紹介
+        image: プロフィール画像
         confirmation_sent_at: パスワード確認送信時刻
         confirmation_token: パスワード確認用トークン
         confirmed_at: パスワード確認時刻
@@ -27,6 +34,12 @@ ja:
         updated_at: 更新日
     models:
       user: ユーザー
+  enums:
+    user:
+      gender:
+        man: 男性
+        woman: 女性
+        no_answer: 回答しない
   devise:
     confirmations:
       confirmed: メールアドレスが確認できました。

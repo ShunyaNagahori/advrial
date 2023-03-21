@@ -18,6 +18,7 @@ gem 'devise-i18n'
 gem 'rails-i18n'
 gem 'dotenv-rails'
 gem 'tailwindcss-rails'
+gem 'enum_help'
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"

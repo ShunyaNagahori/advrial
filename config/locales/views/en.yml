@@ -1,0 +1,20 @@
+en:
+  time:
+    formats:
+      default: "%Y/%m/%d"
+  users:
+    edit:
+      title: Profile Edit
+      submit: Submit
+      back: Go Back
+    show:
+      title: My Page
+      top: Home
+      edit: Edit
+    welcome:
+      to_login: Click here for the login page!
+  errors:
+    messages:
+      not_saved:
+        one: '1 error prohibited this %{resource} from being saved:'
+        other: "%{count} errors prohibited this %{resource} from being saved:"

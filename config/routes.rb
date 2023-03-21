@@ -18,4 +18,6 @@ Rails.application.routes.draw do
     patch 'user/password', to: 'users/passwords#update', as: :update_user_password
   end
   devise_for :users, only: [:confirmations]
+  resources :users, except: [:index, :new], param: :account_name
+  get 'welcome', to: 'users#welcome'
 end

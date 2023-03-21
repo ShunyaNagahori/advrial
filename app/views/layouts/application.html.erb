@@ -15,9 +15,12 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-
-    <%= yield %>
+    <div class="p-4">
+      <p class="notice text-emerald-600"><%= notice %></p>
+      <p class="alert text-rose-600"><%= alert %></p>
+      <div class="container">
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>
