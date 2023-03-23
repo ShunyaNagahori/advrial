@@ -1,4 +1,12 @@
 ja:
+  common:
+    actions:
+      create:
+        submit: 作成する
+        back: 戻る
+      edit:
+        submit: 更新する
+        cancel: キャンセル
   time:
     formats:
       default: "%Y/%m/%d"
@@ -13,8 +21,9 @@ ja:
       edit: 編集ページ
     welcome:
       to_login: ログインページはこちら
-  errors:
-    messages:
-      not_saved:
-        one: エラーが発生したため %{resource} は保存されませんでした。
-        other: "%{count} 件のエラーが発生したため %{resource} は保存されませんでした。"
+  advrials:
+    new:
+      title: アドリアル作成
+      create: 作成する
+    index:
+      title: 過去のアドリアル一覧

@@ -1,4 +1,12 @@
 en:
+  common:
+    actions:
+      create:
+        submit: Create
+        back: Back
+      edit:
+        submit: Update
+        cancel: cancel
   time:
     formats:
       default: "%Y/%m/%d"
@@ -13,8 +21,9 @@ en:
       edit: Edit
     welcome:
       to_login: Click here for the login page!
-  errors:
-    messages:
-      not_saved:
-        one: '1 error prohibited this %{resource} from being saved:'
-        other: "%{count} errors prohibited this %{resource} from being saved:"
+  advrials:
+    new:
+      title: Create Advrial
+      create: Create
+    index:
+      title: List of Past Advrial Events
