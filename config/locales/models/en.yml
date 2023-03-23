@@ -1,13 +1,4 @@
 ja:
-  attributes:
-    models:
-      itinerary:
-        title: Title
-        start_date: Start Date
-        end_date: End Date
-        itinerary_category_id: Itinerary Category
-        main_visual: Main Visual
-        description: Description
   activerecord:
     errors:
       messages:
@@ -15,7 +6,15 @@ ja:
           one: '1 error prohibited this %{resource} from being saved:'
           other: "%{count} errors prohibited this %{resource} from being saved:"
       models:
-        itinerary:
+        advrial:
           attributes:
-            end_date:
+            base:
               comes_after_start_date: Dates prior to the start date cannot be registered.
+    attributes:
+      advrial:
+        title: Title
+        start_date: Start Date
+        end_date: End Date
+        advrial_category: Advrial Category
+        main_visual: Main Visual
+        description: Description

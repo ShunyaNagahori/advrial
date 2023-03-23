@@ -18,6 +18,13 @@ Rails.application.routes.draw do
     patch 'user/password', to: 'users/passwords#update', as: :update_user_password
   end
   devise_for :users, only: [:confirmations]
-  resources :users, except: [:index, :new], param: :account_name
+  resources :users, except: [:index, :new], param: :account_name do
+    # resources :advrials, except: [:edit, :update, :destroy]
+    get "advrials", to: "advrials#index"
+    get "advrials/new", to: "advrials#new"
+    post "advrials", to: "advrials#create"
+  end
+  resources :advrials, only: [:edit, :update, :show, :destroy]
+
   get 'welcome', to: 'users#welcome'
 end

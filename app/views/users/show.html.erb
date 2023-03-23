@@ -4,7 +4,7 @@
 
 <div>
   <dt><%= User.human_attribute_name(:image) %></dt>
-  <dd><%= image_tag(image_url_helper(@user.image), size: '300x300') if @user.attached? %></dd>
+  <dd><%= image_tag(image_url_helper(@user.image), size: '300x300') if @user.image.attached? %></dd>
 </div>
 
 <div>

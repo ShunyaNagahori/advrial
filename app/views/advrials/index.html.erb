@@ -1,0 +1,26 @@
+<div>
+  <h2><%=t('.title') %></h2>
+</div>
+
+<div class="flex">
+  <% @advrials.each do |advrial| %>
+    <%= turbo_frame_tag advrial do %>
+      <div class="border my-2 mx-1 h-96">
+        <div class="p-2">
+          <p class="text-2xl text-bold border-b mb-1">
+            <%= advrial.title %>
+            <i><%= link_to(image_tag('pencil.png', size: '16x16', class: "inline"), edit_advrial_path(advrial)) %></i>
+          </p>
+          <% if advrial.main_visual.attached? %>
+            <%= link_to(image_tag(image_url_helper(advrial.main_visual.variant(resize_to_limit: [300,300])), class: 'h-48'), advrial_path(advrial)) %>
+          <% else %>
+            <%= image_tag('no-image.png', size: '192x192') %>
+          <% end %>
+          <p class="border-b mb-1"><%= l(advrial.start_date) %> 〜 <%= l(advrial.end_date) %>
+          <p class="border-b mb-2"><%= advrial.advrial_category.name_in_locales %></p>
+          <%= simple_format(advrial.description, class: "border border-slate-500 border-dotted py-4 px-1") %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
