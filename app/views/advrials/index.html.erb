@@ -5,19 +5,25 @@
 <div class="flex-wrap flex place-content-center">
   <% @advrials.each do |advrial| %>
     <%= turbo_frame_tag advrial do %>
-      <div class="border my-2 mx-1 h-96">
+      <div class="border my-2 mx-1 h-96 w-auto overflow-y-scroll">
         <div class="p-2">
-          <p class="text-2xl text-bold border-b mb-1">
+          <p class="text-2xl text-bold border-b mb-1 text-center">
             <%= advrial.title %>
             <i><%= link_to(image_tag('pencil.png', size: '16x16', class: "inline"), edit_advrial_path(advrial)) %></i>
           </p>
-          <% if advrial.main_visual.attached? %>
-            <%= link_to(image_tag(image_url_helper(advrial.main_visual.variant(resize_to_fill: [198,198]))), advrial_path(advrial)) %>
-          <% else %>
-            <%= image_tag('no-image.png', size: '192x192') %>
-          <% end %>
-          <p class="border-b mb-1"><%= l(advrial.start_date) %> 〜 <%= l(advrial.end_date) %>
-          <p class="border-b mb-2"><%= advrial.advrial_category.name_in_locales %></p>
+          <div>
+            <% if advrial.main_visual.attached? %>
+              <%= link_to(image_tag(image_url_helper(advrial.main_visual.variant(resize_to_fill: [210,210])), class: "mx-auto"), advrial_path(advrial)) %>
+            <% else %>
+              <%= link_to(image_tag('no-image.png', size: '210x210', class: "mx-auto"), advrial_path(advrial)) %>
+            <% end %>
+          </div>
+          <p class="border-b mb-1 text-center">
+            <%= l(advrial.start_date) %> 〜 <%= l(advrial.end_date) %>
+          </p>
+          <p class="border-b mb-2 text-center">
+            <%= advrial.advrial_category.name_in_locales %>
+          </p>
           <%= simple_format(advrial.description, class: "border border-slate-500 border-dotted py-4 px-1") %>
         </div>
       </div>

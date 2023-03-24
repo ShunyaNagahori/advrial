@@ -5,7 +5,7 @@ ja:
         submit: 作成する
         back: 戻る
       edit:
-        submit: 更新する
+        update: 更新する
         cancel: キャンセル
   time:
     formats:

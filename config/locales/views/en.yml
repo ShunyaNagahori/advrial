@@ -5,7 +5,7 @@ en:
         submit: Create
         back: Back
       edit:
-        submit: Update
+        update: Update
         cancel: cancel
   time:
     formats:
