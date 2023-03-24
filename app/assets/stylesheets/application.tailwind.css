@@ -24,6 +24,20 @@
   .container {
     @apply m-auto;
   }
+
+  input[type="text"],
+  input[type="date"] {
+    @apply rounded-md h-9;
+  }
+
+  select {
+    @apply rounded-md py-0;
+  }
+
+  textarea {
+    @apply rounded-md;
+  }
+  
 }
 
 

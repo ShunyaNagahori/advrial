@@ -6,7 +6,7 @@ require "rails/all"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module Advrial
+module AdvrialApp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
@@ -22,5 +22,6 @@ module Advrial
 
     config.time_zone = 'Asia/Tokyo'
     config.i18n.load_path += Dir[Rails.root.join('config/locales/**/*.{rb,yml}').to_s]
+    config.active_storage.variant_processor = :mini_magick
   end
 end

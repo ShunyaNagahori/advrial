@@ -4,7 +4,7 @@
 
 <div>
   <dt><%= User.human_attribute_name(:image) %></dt>
-  <dd><%= image_tag(image_url_helper(@user.image), size: '300x300') %></dd>
+  <dd><%= image_tag(image_url_helper(@user.image), size: '300x300') if @user.image.attached? %></dd>
 </div>
 
 <div>
@@ -24,7 +24,7 @@
 
 <div>
   <dt><%= User.human_attribute_name(:date_of_birth) %></dt>
-  <dd><%= l(@user.date_of_birth) %></dd>
+  <dd><%= l(@user.date_of_birth) if @user.date_of_birth.present? %></dd>
 </div>
 
 <div>

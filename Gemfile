@@ -19,6 +19,9 @@ gem 'rails-i18n'
 gem 'dotenv-rails'
 gem 'tailwindcss-rails'
 gem 'enum_help'
+gem 'mini_magick'
+gem 'image_processing', '~> 1.2'
+gem 'rmagick'
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"

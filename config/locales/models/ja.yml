@@ -1,0 +1,20 @@
+ja:
+  activerecord:
+    errors:
+      messages:
+        not_saved:
+          one: エラーが発生したため %{resource} は保存されませんでした。
+          other: "%{count} 件のエラーが発生したため %{resource} は保存されませんでした。"
+      models:
+        advrial:
+          attributes:
+            base:
+              comes_after_start_date: 開始日より前の日付は登録できません
+    attributes:
+      advrial:
+        title: タイトル
+        start_date: 開始日
+        end_date: 終了日
+        advrial_category: カテゴリー
+        main_visual: メイン画像
+        description: 旅の説明

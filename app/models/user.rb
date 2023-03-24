@@ -6,6 +6,7 @@ class User < ApplicationRecord
   before_create :set_account_name
 
   has_one_attached :image
+  has_many :advrials
   VALID_ACCOUNT_NAME_REGEX = (/\A[a-zA-Z0-9]+\z/).freeze
 
   enum gender: { no_answer: 0, man: 1, woman: 2 }
