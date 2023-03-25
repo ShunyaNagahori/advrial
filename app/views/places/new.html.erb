@@ -63,7 +63,25 @@
     function initMap() {
       // 位置情報を取得
       navigator.geolocation.getCurrentPosition(function (position) {
-      LatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+      let LatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+      // APIのジオコーダを使い、緯度経度から住所を割り出す（逆ジオコーディング）
+      let geocoder = new google.maps.Geocoder();
+      geocoder.geocode(
+        {
+          latLng: LatLng
+        },
+        function(results, status) {
+          let address = "";
+          if (status == google.maps.GeocoderStatus.OK) {
+            // 取得が成功した場合、住所を取得します。
+            address = results[0].formatted_address.replace(/^日本、/, '');
+          } else {
+            alert('Error:' + status);
+          }
+          // 住所の結果表示をします。
+          document.getElementById('place_address').value = address;
+        });
 
         document.getElementById('place_latitude').value = position.coords.latitude
         document.getElementById('place_longitude').value = position.coords.longitude
@@ -81,8 +99,5 @@
         });
       });
     }
-
-    // 取得した経度緯度から住所を割り出す
-    // function getAddress(){}
   </script>
 <% end %>
