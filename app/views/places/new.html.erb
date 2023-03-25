@@ -24,6 +24,34 @@
     <%= f.text_field :address %>
     <%= render 'shared/validation_error', f: f, column: :address %>
   </div>
+
+  <div id="map" data-turbolinks="false"></div>
+  <style>
+    #map{
+      height: 400px;
+    }
+  </style>
+  <script>
+    let map;
+
+    function initMap() {
+      // 位置情報を取得
+      navigator.geolocation.getCurrentPosition(function (position) {
+      LatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+        // 取得した位置情報を中心に表示
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: LatLng,
+          zoom: 18
+        });
+
+        new google.maps.Marker({
+          position: LatLng,
+          map
+        });
+      });
+    }
+  </script>
 <!--
   <div class="field">
     <%= f.label :date_time, class: 'block' %>
