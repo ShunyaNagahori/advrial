@@ -26,3 +26,6 @@ ja:
       title: アドリアル作成
     index:
       title: 過去のアドリアル一覧
+  places:
+    new:
+      title: 訪れた場所の追加

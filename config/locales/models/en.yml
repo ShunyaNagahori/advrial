@@ -24,3 +24,5 @@ ja:
         date_time: Date Time
         latitude: Latitude
         longitude: Longitude
+        description: Description
+        images: Images

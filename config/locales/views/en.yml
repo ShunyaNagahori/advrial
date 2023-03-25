@@ -27,3 +27,6 @@ en:
       create: Create
     index:
       title: List of Past Advrial Events
+  places:
+    new:
+      title: Add the place you visited

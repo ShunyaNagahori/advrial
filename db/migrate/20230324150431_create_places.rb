@@ -4,9 +4,10 @@ class CreatePlaces < ActiveRecord::Migration[7.0]
       t.string :place_name
       t.datetime :date_time
       t.string :address
-      t.integer :latitude
-      t.integer :longitude
-      t.references :advrial, foreign_key: true, null: false
+      t.float :latitude
+      t.float :longitude
+      t.string :description
+      t.references :advrial, foreign_key: true, type: :string, null: false
       t.timestamps
     end
   end

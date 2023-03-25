@@ -42,14 +42,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_24_150431) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "advrial_categories", force: :cascade do |t|
+  create_table "advrial_categories", id: :string, force: :cascade do |t|
     t.string "name_ja", null: false
     t.string "name_en", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "advrials", force: :cascade do |t|
+  create_table "advrials", id: :string, force: :cascade do |t|
     t.string "title", null: false
     t.date "start_date", null: false
     t.date "end_date", null: false
@@ -57,7 +57,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_24_150431) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "advrial_category_id"
+    t.string "advrial_category_id"
     t.index ["advrial_category_id"], name: "index_advrials_on_advrial_category_id"
     t.index ["user_id"], name: "index_advrials_on_user_id"
   end
@@ -66,9 +66,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_24_150431) do
     t.string "place_name"
     t.datetime "date_time"
     t.string "address"
-    t.integer "latitude"
-    t.integer "longitude"
-    t.bigint "advrial_id", null: false
+    t.float "latitude"
+    t.float "longitude"
+    t.string "description"
+    t.string "advrial_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["advrial_id"], name: "index_places_on_advrial_id"

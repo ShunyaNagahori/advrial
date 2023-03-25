@@ -24,4 +24,6 @@ ja:
         date_time: 時間
         latitude: 緯度
         longitude: 経度
+        description: 説明
+        images: 画像
         
