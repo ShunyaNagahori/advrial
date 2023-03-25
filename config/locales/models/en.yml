@@ -18,3 +18,9 @@ ja:
         advrial_category: Advrial Category
         main_visual: Main Visual
         description: Description
+      place:
+        place_name: Name
+        address: Address
+        date_time: Date Time
+        latitude: Latitude
+        longitude: Longitude

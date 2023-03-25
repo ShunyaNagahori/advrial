@@ -13,9 +13,9 @@
           </p>
           <div>
             <% if advrial.main_visual.attached? %>
-              <%= link_to(image_tag(image_url_helper(advrial.main_visual.variant(resize_to_fill: [210,210])), class: "mx-auto"), advrial_path(advrial)) %>
+              <%= link_to(image_tag(image_url_helper(advrial.main_visual.variant(resize_to_fill: [210,210])), class: "mx-auto"), advrial_path(advrial), 'data-turbo': false) %>
             <% else %>
-              <%= link_to(image_tag('no-image.png', size: '210x210', class: "mx-auto"), advrial_path(advrial)) %>
+              <%= link_to(image_tag('no-image.png', size: '210x210', class: "mx-auto"), advrial_path(advrial), 'data-turbo': false) %>
             <% end %>
           </div>
           <p class="border-b mb-1 text-center">

@@ -37,6 +37,7 @@ class AdvrialsController < ApplicationController
   end
 
   def show
+    @places = @advrial.places
   end
 
   def destroy
