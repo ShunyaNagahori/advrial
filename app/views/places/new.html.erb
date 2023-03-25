@@ -25,33 +25,11 @@
     <%= render 'shared/validation_error', f: f, column: :address %>
   </div>
 
+  <%= f.text_field :latitude, class: "latitude" %>
+  <%= f.text_field :longitude, class: "longitude" %>
+
   <div id="map" data-turbolinks="false"></div>
-  <style>
-    #map{
-      height: 400px;
-    }
-  </style>
-  <script>
-    let map;
 
-    function initMap() {
-      // 位置情報を取得
-      navigator.geolocation.getCurrentPosition(function (position) {
-      LatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-
-        // 取得した位置情報を中心に表示
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: LatLng,
-          zoom: 18
-        });
-
-        new google.maps.Marker({
-          position: LatLng,
-          map
-        });
-      });
-    }
-  </script>
 <!--
   <div class="field">
     <%= f.label :date_time, class: 'block' %>
@@ -69,4 +47,42 @@
     <%= f.submit t('common.actions.create.submit'), class: "btn" %>
     <%= link_to t('common.actions.create.back'), root_path, class: "backBtn" %>
   </div>
+
+  <style>
+    #map{
+      height: 400px;
+      width: 400px;
+    }
+  </style>
+  <script>
+    let map;
+
+    console.log(document.getElementById('place_latitude').value)
+    console.log(document.getElementById('place_longitude').value)
+
+    function initMap() {
+      // 位置情報を取得
+      navigator.geolocation.getCurrentPosition(function (position) {
+      LatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+        document.getElementById('place_latitude').value = position.coords.latitude
+        document.getElementById('place_longitude').value = position.coords.longitude
+      
+        // 取得した位置情報を中心に表示
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: LatLng,
+          zoom: 18
+        });
+
+        // 取得した位置にピンをセット
+        new google.maps.Marker({
+          position: LatLng,
+          map
+        });
+      });
+    }
+
+    // 取得した経度緯度から住所を割り出す
+    // function getAddress(){}
+  </script>
 <% end %>
