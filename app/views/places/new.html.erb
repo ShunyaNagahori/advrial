@@ -57,31 +57,29 @@
   <script>
     let map;
 
-    console.log(document.getElementById('place_latitude').value)
-    console.log(document.getElementById('place_longitude').value)
-
     function initMap() {
       // 位置情報を取得
       navigator.geolocation.getCurrentPosition(function (position) {
-      let LatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        let LatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
-      // APIのジオコーダを使い、緯度経度から住所を割り出す（逆ジオコーディング）
-      let geocoder = new google.maps.Geocoder();
-      geocoder.geocode(
-        {
-          latLng: LatLng
-        },
-        function(results, status) {
-          let address = "";
-          if (status == google.maps.GeocoderStatus.OK) {
-            // 取得が成功した場合、住所を取得します。
-            address = results[0].formatted_address.replace(/^日本、/, '');
-          } else {
-            alert('Error:' + status);
+        // APIのジオコーダを使い、緯度経度から住所を割り出す（逆ジオコーディング）
+        let geocoder = new google.maps.Geocoder();
+        geocoder.geocode(
+          {
+            latLng: LatLng
+          },
+          function(results, status) {
+            let address = "";
+            if (status == google.maps.GeocoderStatus.OK) {
+              // 取得が成功した場合、住所を取得します。
+              address = results[0].formatted_address.replace(/^日本、/, '');
+            } else {
+              alert('Error:' + status);
+            }
+            // 住所の結果表示をします。
+            document.getElementById('place_address').value = address;
           }
-          // 住所の結果表示をします。
-          document.getElementById('place_address').value = address;
-        });
+        );
 
         document.getElementById('place_latitude').value = position.coords.latitude
         document.getElementById('place_longitude').value = position.coords.longitude
@@ -93,9 +91,37 @@
         });
 
         // 取得した位置にピンをセット
-        new google.maps.Marker({
+        marker = new google.maps.Marker({
           position: LatLng,
-          map
+          map,
+          draggable: true
+        });
+
+
+        // ピンを移動させたときに、緯度経度を変更する
+        google.maps.event.addListener(marker, 'dragend', function(ev){
+          document.getElementById('place_latitude').value = ev.latLng.lat();
+          document.getElementById('place_longitude').value = ev.latLng.lng();
+
+          LatLng = new google.maps.LatLng(ev.latLng.lat(), ev.latLng.lng());
+
+          // ピン移動時、再度住所を割り出す
+          geocoder.geocode(
+            {
+              latLng: LatLng
+            },
+            function(results, status) {
+              let address = "";
+              if (status == google.maps.GeocoderStatus.OK) {
+                // 取得が成功した場合、住所を取得します。
+                address = results[0].formatted_address.replace(/^日本、/, '');
+              } else {
+                alert('Error:' + status);
+              }
+              // 住所の結果表示をします。
+              document.getElementById('place_address').value = address;
+            }
+          );
         });
       });
     }
