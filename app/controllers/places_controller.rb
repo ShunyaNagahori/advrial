@@ -11,7 +11,6 @@ class PlacesController < ApplicationController
     if @place.save
       redirect_to root_path
     else
-      flash[:alert] = "登録できません"
       render :new, status: 422
     end
   end
