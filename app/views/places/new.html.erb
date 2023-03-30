@@ -31,13 +31,13 @@
 
   <div id="map"></div>
 
-<!--
+
   <div class="field">
     <%= f.label :date_time, class: 'block' %>
-    <%= f.date_field :date_time %>
+    <%= f.datetime_select :date_time, value: Time.current %>
     <%= render 'shared/validation_error', f: f, column: :date_time %>
   </div>
--->
+
   <div class="field">
     <%= f.label :description, class: 'block' %>
     <%= f.text_area :description %>

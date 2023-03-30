@@ -9,7 +9,21 @@ ja:
         advrial:
           attributes:
             base:
-              comes_after_start_date: 開始日より前の日付は登録できません
+              comes_after_start_date: 開始日より前の日付は登録できません。
+        place:
+          attributes:
+            date_time: 
+              place_date_time_in_advrial: は作成したアドリアルの開始日と終了日の範囲内で設定してください。
+            address:
+              blank: が取得できません。位置情報をオンにしてください。
+            latitude:
+              blank: が取得できません。位置情報をオンにしてください。
+            longitude:
+              blank: が取得できません。位置情報をオンにしてください。
+    models:
+      advrial: アドリアル
+      place: 場所
+      user: ユーザー
     attributes:
       advrial:
         title: タイトル

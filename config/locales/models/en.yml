@@ -10,6 +10,20 @@ ja:
           attributes:
             base:
               comes_after_start_date: Dates prior to the start date cannot be registered.
+        place:
+          attributes:
+            date_time: 
+              place_date_time_in_advrial: must be set within the start and end dates of the created Advrial.
+            address:
+              blank: cannot be acquired. Please turn on location information.
+            latitude:
+              blank: cannot be acquired. Please turn on location information.
+            longitude:
+              blank: cannot be acquired. Please turn on location information.
+    models:
+      advrial: Advrial
+      place: Place
+      user: User
     attributes:
       advrial:
         title: Title
