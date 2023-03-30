@@ -11,32 +11,30 @@
 
 <div class="place-content-center">
   <% @places.each do |place| %>
-    <%#= turbo_frame_tag place do %>
-      <div class="border my-2 mx-1 h-auto w-auto">
-        <div class="p-2">
-          <p class="text-2xl text-bold border-b mb-1 px-4">
-            <%= place.place_name %>
-            <i><%= link_to(image_tag('pencil.png', size: '16x16', class: "inline"), root_path) %></i>
-          </p>
-          <p class="border-b mb-2 px-4">
-            <%= place.address%>
-          </p>
-          <div class="md:flex md:mb-2">
-            <div>
-              <% if place.images.attached? %>
-                <%= link_to(image_tag(image_url_helper(place.images.first.variant(resize_to_limit: [400,400])), class: "px-4 mb-2"), root_path, 'data-turbo': false) %>
-              <% else %>
-                <%= link_to(image_tag('no-image.png', size: '400x400', class: "px-4 mb-2"), root_path, 'data-turbo': false) %>
-              <% end %>
-            </div>
-            <div class="border border-slate-500 border-dotted py-1 px-2 w-full">
-              <%= l(place.date_time, format: :time) %>
-              <%= simple_format(place.description) %>
-            </div>
+    <div class="border my-2 mx-1 h-auto w-auto">
+      <div class="p-2">
+        <p class="text-2xl text-bold border-b mb-1 px-4">
+          <%= place.place_name %>
+          <i><%= link_to(image_tag('pencil.png', size: '16x16', class: "inline"), root_path) %></i>
+        </p>
+        <p class="border-b mb-2 px-4">
+          <%= place.address %>
+        </p>
+        <div class="md:flex md:mb-2">
+          <div>
+            <% if place.images.attached? %>
+              <%= link_to(image_tag(image_url_helper(place.images.first.variant(resize_to_limit: [400,400])), class: "px-4 mb-2"), root_path, 'data-turbo': false) %>
+            <% else %>
+              <%= link_to(image_tag('no-image.png', size: '400x400', class: "px-4 mb-2"), root_path, 'data-turbo': false) %>
+            <% end %>
+          </div>
+          <div class="border border-slate-500 border-dotted py-1 px-2 w-full">
+            <%= l(place.date_time, format: :time) %>
+            <%= simple_format(place.description, class: "overflow-x-scroll") %>
           </div>
         </div>
-        <span class="map"></span>
       </div>
-    <% end %>
-  <%# end %>
+      <span class="map"></span>
+    </div>
+  <% end %>
 </div>

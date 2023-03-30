@@ -1,0 +1,57 @@
+<div>
+  <h2><%=t('.title') %></h2>
+</div>
+
+<%= form_with model: @place, url: url do |f|%>
+  <%= render "shared/error_messages", resource: @place %>
+
+  <div class="field">
+    <label>
+      <span class="block"><%= t('activerecord.attributes.place.images') %></span>
+    <label>
+    <%= f.file_field :images %>
+    <%= render 'shared/validation_error', f: f, column: :images %>
+  </div>
+
+  <div class="field">
+    <%= f.label :place_name, class: 'block' %>
+    <%= f.text_field :place_name %>
+    <%= render 'shared/validation_error', f: f, column: :place_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address, class: 'block' %>
+    <p id="text_address"></p>
+    <%= f.hidden_field :address %>
+    <%= render 'shared/validation_error', f: f, column: :address %>
+  </div>
+
+  <%= f.hidden_field :latitude, class: "latitude" %>
+  <%= f.hidden_field :longitude, class: "longitude" %>
+
+  <div id="map"></div>
+
+
+  <div class="field">
+    <%= f.label :date_time, class: 'block' %>
+    <%= f.datetime_select :date_time, value: Time.current %>
+    <%= render 'shared/validation_error', f: f, column: :date_time %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description, class: 'block' %>
+    <%= f.text_area :description %>
+    <%= render 'shared/validation_error', f: f, column: :description%>
+  </div>
+
+  <div class="pt-8 pb-24 space-x-2">
+    <%= f.submit t('common.actions.create.submit'), class: "btn" %>
+    <%= link_to t('common.actions.create.back'), root_path, class: "backBtn" %>
+  </div>
+
+  <style>
+    #map{
+      height: 400px;
+      width: 400px;
+    }
+  </style>

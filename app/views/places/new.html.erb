@@ -2,6 +2,8 @@
   <h2><%=t('.title') %></h2>
 </div>
 
+<%#= render 'form', url: advrial_places_path(@advrial) %>
+
 <%= form_with model: @place, url: advrial_places_path(@advrial) do |f|%>
   <%= render "shared/error_messages", resource: @place %>
 
