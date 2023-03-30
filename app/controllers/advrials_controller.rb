@@ -16,7 +16,7 @@ class AdvrialsController < ApplicationController
     @advrial_categories = AdvrialCategory.all
     if @advrial.save
       flash[:notice] = '作成しました'
-      redirect_to root_path
+      redirect_to advrial_path(@advrial)
     else
       render :new, status: 422
     end
@@ -37,7 +37,7 @@ class AdvrialsController < ApplicationController
   end
 
   def show
-    @places = @advrial.places
+    @places = @advrial.places.order(date_time: :asc)
   end
 
   def destroy

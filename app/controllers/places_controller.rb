@@ -9,6 +9,7 @@ class PlacesController < ApplicationController
     @place = @advrial.places.new(place_params)
 
     if @place.save
+      flash[:notice] = '作成しました'
       redirect_to root_path
     else
       render :new, status: 422

@@ -10,6 +10,7 @@ en:
   time:
     formats:
       default: "%Y/%m/%d"
+      time: "%m/%d %H:%M"
   users:
     edit:
       title: Profile Edit
