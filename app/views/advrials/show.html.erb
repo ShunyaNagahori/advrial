@@ -7,7 +7,7 @@
   <% end %>
 </div>
 
-<%= link_to '＋ New', advrial_places_new_path(@advrial), class: "btn block text-center" %>
+<%= link_to '＋ New', new_advrial_place_path(@advrial), class: "btn block text-center" %>
 
 <div class="place-content-center">
   <% @places.each do |place| %>
@@ -15,7 +15,7 @@
       <div class="p-2">
         <p class="text-2xl text-bold border-b mb-1 px-4">
           <%= place.place_name %>
-          <i><%= link_to(image_tag('pencil.png', size: '16x16', class: "inline"), root_path) %></i>
+          <i><%= link_to(image_tag('pencil.png', size: '16x16', class: "inline"), edit_advrial_place_path(@advrial, place)) %></i>
         </p>
         <p class="border-b mb-2 px-4">
           <%= place.address %>

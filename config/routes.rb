@@ -24,9 +24,7 @@ Rails.application.routes.draw do
     post 'advrials', to: 'advrials#create'
   end
   resources :advrials, only: [:edit, :update, :show, :destroy] do
-    get 'places', to: 'places#index'
-    get 'places/new', to: 'places#new'
-    post 'places', to: 'places#create'
+    resources :places
   end
 
   get 'welcome', to: 'users#welcome'

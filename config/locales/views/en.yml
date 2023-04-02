@@ -25,9 +25,11 @@ en:
   advrials:
     new:
       title: Create Advrial
-      create: Create
     index:
       title: List of Past Advrial Events
   places:
+    marker_description: Location information may shift slightly. The markers on the map can be moved manually.
     new:
       title: Add the place you visited
+    edit:
+      title: Edit the place you visited

@@ -1,5 +1,6 @@
 class PlacesController < ApplicationController
-  before_action :set_advrial, only: [:new, :create]
+  before_action :set_advrial
+  before_action :set_place, only: [:show, :edit, :update, :destroy]
 
   def new
     @place = @advrial.places.new
@@ -20,6 +21,12 @@ class PlacesController < ApplicationController
   end
 
   def update
+    if @place.update(place_params)
+      flash[:notice] = '編集しました'
+      redirect_to advrial_path(@advrial)
+    else
+      render :edit, status: 422
+    end
   end
 
   def show
@@ -41,6 +48,10 @@ class PlacesController < ApplicationController
 
     def set_advrial
       @advrial = Advrial.find(params[:advrial_id])
+    end
+
+    def set_place
+      @place = Place.find(params[:id])
     end
 
 end

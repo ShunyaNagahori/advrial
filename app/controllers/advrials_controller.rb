@@ -37,7 +37,7 @@ class AdvrialsController < ApplicationController
   end
 
   def show
-    @places = @advrial.places.order(date_time: :asc)
+    @places = @advrial.places.order(date_time: :desc)
   end
 
   def destroy

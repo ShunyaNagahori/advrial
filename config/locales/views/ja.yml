@@ -28,5 +28,8 @@ ja:
     index:
       title: 過去のアドリアル一覧
   places:
+    marker_description: 位置情報が多少ずれる場合があります。地図のマーカーを手動で移動できます。
     new:
       title: 訪れた場所の追加
+    edit:
+      title: 訪れた場所の編集
