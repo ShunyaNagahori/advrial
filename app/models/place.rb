@@ -1,4 +1,5 @@
 class Place < ApplicationRecord
+  before_create :set_id
   belongs_to :advrial
   has_many_attached :images
 
@@ -13,6 +14,12 @@ class Place < ApplicationRecord
   def place_date_time_in_advrial
     if self.date_time > (self.advrial.end_date + 1) || self.date_time < (self.advrial.start_date - 1)
       errors.add(:date_time, :place_date_time_in_advrial)
+    end
+  end
+
+  def set_id
+    while self.id.blank? || Advrial.find_by(id: self.id).present?
+      self.id = SecureRandom.urlsafe_base64
     end
   end
 end
