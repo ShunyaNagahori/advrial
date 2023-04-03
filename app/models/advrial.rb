@@ -3,7 +3,7 @@ class Advrial < ApplicationRecord
   belongs_to :user
   belongs_to :advrial_category
   has_one_attached :main_visual
-  has_many :places
+  has_many :places, dependent: :destroy
 
   validates :title, presence: true
   validates :start_date, presence: true

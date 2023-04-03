@@ -14,9 +14,11 @@ class AdvrialsController < ApplicationController
   def create
     @advrial = current_user.advrials.new(advrial_params)
     @advrial_categories = AdvrialCategory.all
-    if @advrial.save
-      flash[:notice] = '作成しました'
-      redirect_to advrial_path(@advrial)
+    if params[:advrial][:main_visual].present?
+      if @advrial.save
+        flash[:notice] = '作成しました'
+        redirect_to advrial_path(@advrial)
+      end
     else
       render :new, status: 422
     end

@@ -9,7 +9,7 @@
     <label>
       <span class="block"><%= t('activerecord.attributes.advrial.main_visual') %></span>
     <label>
-    <%= f.file_field :main_visual %>
+    <%= f.file_field :main_visual, accept: "image/jpeg,image/gif,image/png" %>
     <%= render 'shared/validation_error', f: f, column: :main_visual %>
   </div>
 

@@ -42,7 +42,7 @@ class PlacesController < ApplicationController
         :latitude,
         :longitude,
         :description,
-        :images
+        images: []
       )
     end
 

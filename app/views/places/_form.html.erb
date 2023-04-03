@@ -5,7 +5,7 @@
     <label>
       <span class="block"><%= t('activerecord.attributes.place.images') %></span>
     <label>
-    <%= f.file_field :images %>
+    <%= f.file_field :images, multiple: true, accept: "image/jpeg,image/gif,image/png" %>
     <%= render 'shared/validation_error', f: f, column: :images %>
   </div>
 
@@ -38,7 +38,7 @@
   <div class="field">
     <%= f.label :description, class: 'block' %>
     <%= f.text_area :description %>
-    <%= render 'shared/validation_error', f: f, column: :description%>
+    <%= render 'shared/validation_error', f: f, column: :description %>
   </div>
 
   <div class="pt-8 pb-24 space-x-2">

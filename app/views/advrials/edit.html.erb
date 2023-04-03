@@ -12,7 +12,7 @@
           <%= f.select :advrial_category_id, @advrial_categories.map{ |advrial_category| [advrial_category.name_in_locales, advrial_category.id] } %>
         </p>
         <div class="py-1 px-4">
-          <%= f.file_field :main_visual %>
+          <%= f.file_field :main_visual, accept: "image/jpeg,image/gif,image/png" %>
         </div>
         <div class="border border-slate-500 border-dotted py-1 px-2 w-full">
           <%= f.text_area :description, class: "px-4 w-full" %>
