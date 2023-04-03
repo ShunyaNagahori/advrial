@@ -28,31 +28,6 @@
         draggable: true
       });
 
-      // // 住所を打ち込んだ際、mapを再度リロードさせる
-      // document.getElementById('address-reload').addEventListener('click', function() {
-      //   geocoder.geocode( { address: inputAddress.value }, function(results, status) {
-      //     if (status === google.maps.GeocoderStatus.OK) {
-      //       LatLng = new google.maps.LatLng(results[0].geometry.location.lat(), results[0].geometry.location.lng());
-      //       inputLat.value = results[0].geometry.location.lat()
-      //       inputLng.value = results[0].geometry.location.lng()
-
-      //       map = new google.maps.Map(document.getElementById('map'), {
-      //         center: LatLng,
-      //         zoom: 18
-      //       });
-
-      //       marker = new google.maps.Marker({
-      //         position: LatLng,
-      //         map,
-      //         draggable: true
-      //       });
-      //     } else {
-      //       alert('Error:' + status);
-      //     }
-      //   })
-      // })
-
-
       // ピンを移動させたときに、緯度経度を変更する
       google.maps.event.addListener(marker, 'dragend', function(ev){
         inputLat.value = ev.latLng.lat();
