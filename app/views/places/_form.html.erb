@@ -1,0 +1,50 @@
+<%= form_with model: @place, url: url do |f|%>
+  <%= render "shared/error_messages", resource: @place %>
+
+  <div class="field">
+    <label>
+      <span class="block"><%= t('activerecord.attributes.place.images') %></span>
+    <label>
+    <%= f.file_field :images, multiple: true, accept: "image/jpeg,image/gif,image/png" %>
+    <%= render 'shared/validation_error', f: f, column: :images %>
+  </div>
+
+  <div class="field">
+    <%= f.label :place_name, class: 'block' %>
+    <%= f.text_field :place_name %>
+    <%= render 'shared/validation_error', f: f, column: :place_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address, class: 'block' %>
+    <p id="text_address"><%= @place.address if action_name == 'edit' %></p>
+    <%= f.hidden_field :address %>
+    <%= render 'shared/validation_error', f: f, column: :address %>
+  </div>
+
+  <%= f.hidden_field :latitude, class: "latitude" %>
+  <%= f.hidden_field :longitude, class: "longitude" %>
+
+  <div id="map" class="w-auto"></div>
+  <p class="text-sm"><%= t('places.marker_description') %></p>
+
+
+  <div class="field">
+    <%= f.label :date_time, class: 'block' %>
+    <%= f.datetime_select :date_time, value: Time.current %>
+    <%= render 'shared/validation_error', f: f, column: :date_time %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description, class: 'block' %>
+    <%= f.text_area :description %>
+    <%= render 'shared/validation_error', f: f, column: :description %>
+  </div>
+
+  <div class="pt-8 pb-24 space-x-2">
+    <%= f.submit text, class: "btn" %>
+    <%= link_to t('common.actions.create.back'), back, class: "backBtn" %>
+  </div>
+<% end %>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['MAP_API_KEY'] %>&callback=initMap" async defer></script>

@@ -15,8 +15,8 @@ class AdvrialsController < ApplicationController
     @advrial = current_user.advrials.new(advrial_params)
     @advrial_categories = AdvrialCategory.all
     if @advrial.save
-      flash[:notice] = '作成しました'
-      redirect_to root_path
+      flash[:notice] = t('common.actions.create.created')
+      redirect_to advrial_path(@advrial)
     else
       render :new, status: 422
     end
@@ -37,6 +37,7 @@ class AdvrialsController < ApplicationController
   end
 
   def show
+    @places = @advrial.places.order(date_time: :desc)
   end
 
   def destroy
@@ -44,7 +45,7 @@ class AdvrialsController < ApplicationController
   
   private
     def set_advrial
-      @advrial = Advrial.find(params[:id])
+      @advrial = current_user.advrials.find(params[:id])
     end
 
     def advrial_params
@@ -54,7 +55,7 @@ class AdvrialsController < ApplicationController
         :end_date,
         :description,
         :advrial_category_id,
-        :main_visual
+        :main_visual,
       )
     end
 end

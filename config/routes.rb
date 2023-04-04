@@ -19,12 +19,13 @@ Rails.application.routes.draw do
   end
   devise_for :users, only: [:confirmations]
   resources :users, except: [:index, :new], param: :account_name do
-    # resources :advrials, except: [:edit, :update, :destroy]
-    get "advrials", to: "advrials#index"
-    get "advrials/new", to: "advrials#new"
-    post "advrials", to: "advrials#create"
+    get 'advrials', to: 'advrials#index'
+    get 'advrials/new', to: 'advrials#new'
+    post 'advrials', to: 'advrials#create'
   end
-  resources :advrials, only: [:edit, :update, :show, :destroy]
+  resources :advrials, only: [:edit, :update, :show, :destroy] do
+    resources :places
+  end
 
   get 'welcome', to: 'users#welcome'
 end

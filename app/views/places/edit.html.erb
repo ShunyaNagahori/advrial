@@ -1,0 +1,60 @@
+<div>
+  <h2><%=t('.title') %></h2>
+</div>
+
+<%= render 'form', url: advrial_place_path(@advrial, @place), text: t('common.actions.edit.update'), back: advrial_path(@advrial)  %>
+
+<script>
+  function initMap() {
+    // 位置情報を取得
+      let geocoder = new google.maps.Geocoder();
+      let map;
+      let inputLat = document.getElementById('place_latitude')
+      let inputLng = document.getElementById('place_longitude')
+      let inputAddress = document.getElementById('place_address')
+      let textAddress = document.getElementById('text_address')
+      let LatLng = new google.maps.LatLng(inputLat.value, inputLng.value);
+    
+      // 取得した位置情報を中心に表示
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: LatLng,
+        zoom: 18
+      });
+
+      // 取得した位置にピンをセット
+      marker = new google.maps.Marker({
+        position: LatLng,
+        map,
+        draggable: true
+      });
+
+      // ピンを移動させたときに、緯度経度を変更する
+      google.maps.event.addListener(marker, 'dragend', function(ev){
+        inputLat.value = ev.latLng.lat();
+        inputLng.value = ev.latLng.lng();
+
+        LatLng = new google.maps.LatLng(ev.latLng.lat(), ev.latLng.lng());
+
+        // ピン移動時、再度住所を割り出す
+        geocoder.geocode(
+          {
+            latLng: LatLng
+          },
+          function(results, status) {
+            let address = "";
+            if (status == google.maps.GeocoderStatus.OK) {
+              // 取得が成功した場合、住所を取得します。
+              address = results[0].formatted_address.replace(/^日本、/, '');
+            } else {
+              alert('Error:' + status);
+            }
+            // 住所の結果表示をします。
+            textAddress.textContent = address;
+            inputAddress.value = address;
+          }
+        );
+      });
+    }
+  // render時などにも機能するように
+  initMap();
+</script>

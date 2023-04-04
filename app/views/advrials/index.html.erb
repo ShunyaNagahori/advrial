@@ -2,29 +2,35 @@
   <h2><%=t('.title') %></h2>
 </div>
 
-<div class="flex-wrap flex place-content-center">
+<%= link_to '＋ New', user_advrials_new_path(current_user), class: "btn block text-center" %>
+
+<div class="place-content-center">
   <% @advrials.each do |advrial| %>
     <%= turbo_frame_tag advrial do %>
-      <div class="border my-2 mx-1 h-96 w-auto overflow-y-scroll">
+      <div class="border my-2 mx-1 h-auto w-auto">
         <div class="p-2">
-          <p class="text-2xl text-bold border-b mb-1 text-center">
+          <p class="text-2xl text-bold border-b mb-1 px-4">
             <%= advrial.title %>
             <i><%= link_to(image_tag('pencil.png', size: '16x16', class: "inline"), edit_advrial_path(advrial)) %></i>
           </p>
-          <div>
-            <% if advrial.main_visual.attached? %>
-              <%= link_to(image_tag(image_url_helper(advrial.main_visual.variant(resize_to_fill: [210,210])), class: "mx-auto"), advrial_path(advrial)) %>
-            <% else %>
-              <%= link_to(image_tag('no-image.png', size: '210x210', class: "mx-auto"), advrial_path(advrial)) %>
-            <% end %>
-          </div>
-          <p class="border-b mb-1 text-center">
+          <p class="border-b mb-2 px-4">
             <%= l(advrial.start_date) %> 〜 <%= l(advrial.end_date) %>
           </p>
-          <p class="border-b mb-2 text-center">
-            <%= advrial.advrial_category.name_in_locales %>
+          <p class="border-b mb-2 px-4">
+              <%= advrial.advrial_category.name_in_locales %>
           </p>
-          <%= simple_format(advrial.description, class: "border border-slate-500 border-dotted py-4 px-1") %>
+          <div class="md:flex md:mb-2">
+            <div>
+              <% if advrial.main_visual.attached? %>
+                <%= link_to(image_tag(image_url_helper(advrial.main_visual.variant(resize_to_limit: [400,400])), class: "px-4 mb-2"), advrial_path(advrial), 'data-turbo': false) %>
+              <% else %>
+                <%= link_to(image_tag('no-image.png', size: '400x400', class: "px-4 mb-2"), advrial_path(advrial), 'data-turbo': false) %>
+              <% end %>
+            </div>
+            <div class="border border-slate-500 border-dotted py-1 px-2 w-full">
+              <%= simple_format(advrial.description, class: "overflow-x-scroll") %>
+            </div>
+          </div>
         </div>
       </div>
     <% end %>

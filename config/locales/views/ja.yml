@@ -4,12 +4,15 @@ ja:
       create:
         submit: 作成する
         back: 戻る
+        created: 作成しました
       edit:
         update: 更新する
         cancel: キャンセル
+        updated: 更新しました
   time:
     formats:
       default: "%Y/%m/%d"
+      time: "%m/%d %H:%M"
   users:
     edit:
       title: プロフィール編集
@@ -25,4 +28,10 @@ ja:
     new:
       title: アドリアル作成
     index:
-      title: 過去のアドリアル一覧
+      title: アドリアル一覧
+  places:
+    marker_description: 位置情報が多少ずれる場合があります。地図のマーカーを手動で移動できます。
+    new:
+      title: 訪れた場所の追加
+    edit:
+      title: 訪れた場所の編集
