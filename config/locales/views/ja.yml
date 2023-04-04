@@ -4,9 +4,11 @@ ja:
       create:
         submit: 作成する
         back: 戻る
+        created: 作成しました
       edit:
         update: 更新する
         cancel: キャンセル
+        updated: 更新しました
   time:
     formats:
       default: "%Y/%m/%d"

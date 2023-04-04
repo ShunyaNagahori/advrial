@@ -10,8 +10,8 @@ class PlacesController < ApplicationController
     @place = @advrial.places.new(place_params)
 
     if @place.save
-      flash[:notice] = '作成しました'
-      redirect_to root_path
+      flash[:notice] = t('common.actions.create.created')
+      redirect_to advrial_path(@advrial)
     else
       render :new, status: 422
     end
@@ -22,7 +22,7 @@ class PlacesController < ApplicationController
 
   def update
     if @place.update(place_params)
-      flash[:notice] = '編集しました'
+      flash[:notice] = t('common.actions.edit.updated')
       redirect_to advrial_path(@advrial)
     else
       render :edit, status: 422

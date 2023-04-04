@@ -2,27 +2,37 @@
   <h2><%= @place.place_name %></h2>
 </div>
 
-<div class="swiper-container m-4 relative">
-    <!-- Additional required wrapper -->
-    <div class="swiper-wrapper flex items-center">
-        <!-- Slides -->
-        <% if @place.images.attached? %>
-          <% @place.images.each do |image| %>
-            <div class="swiper-slide"><%= image_tag(image_url_helper(image.variant(resize_to_limit: [800,800])), class: "m-auto px-4") %></div>
+<div class="border my-2 px-1">
+  <div class="swiper-container m-4 relative">
+      <!-- Additional required wrapper -->
+      <div class="swiper-wrapper flex items-center">
+          <!-- Slides -->
+          <% if @place.images.attached? %>
+            <% @place.images.each do |image| %>
+              <div class="swiper-slide"><%= image_tag(image_url_helper(image.variant(resize_to_limit: [800,800])), class: "m-auto px-4") %></div>
+            <% end %>
+          <% else %>
+            <div class="swiper-slide"><%= image_tag('no-image.png') %></div>
           <% end %>
-        <% else %>
-          <div class="swiper-slide"><%= image_tag('no-image.png') %></div>
-        <% end %>
-    </div>
-    <div class="swiper-pagination absolute"></div>
-    <div class="swiper-button-prev absolute"></div>
-    <div class="swiper-button-next absolute"></div>
-</div>
+      </div>
+      <div class="swiper-pagination absolute"></div>
+      <div class="swiper-button-prev absolute"></div>
+      <div class="swiper-button-next absolute"></div>
+  </div>
 
-<p class="text-center"><%= @place.address %></p>
-<div id="map" class="w-auto"></div>
-<p id="place_latitude" class="hidden"><%= @place.latitude %></p>
-<p id="place_longitude" class="hidden"><%= @place.longitude %></p>
+  <p class="font-semibold py-2 px-1"><%= Place.human_attribute_name(:address) %></p>
+  <div class="mb-2">
+    <div id="map" class="w-auto"></div>
+    <p id="place_latitude" class="hidden"><%= @place.latitude %></p>
+    <p id="place_longitude" class="hidden"><%= @place.longitude %></p>
+    <p class="text-sm"><%= @place.address %></p>
+  </div>
+
+  <p class="font-semibold py-2 px-1"><%= Place.human_attribute_name(:description) %></p>
+  <div class="border border-slate-500 border-dotted py-1 px-2 mb-2">
+    <%= simple_format(@place.description, class: "overflow-x-scroll") %>
+  </div>
+</div>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['MAP_API_KEY'] %>&callback=initMap" async defer></script>
 <script>
