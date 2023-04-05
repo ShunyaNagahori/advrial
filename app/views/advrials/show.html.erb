@@ -8,7 +8,7 @@
 </div>
 
 <%= link_to(t('.create'), new_advrial_place_path(@advrial), class: "btn block text-center") if !@advrial.completed_trip %>
-<%= button_to(t('.completed_trip'), completed_advrial_path(@advrial), class: "backBtn text-center w-full", data: { turbo_confirm: 'こちらのAdvrialに、場所の登録が出来なくなりますが、帰宅しますか？（編集は可能です）' }, method: :post) if !@advrial.completed_trip %>
+<%= button_to(t('.completed_trip'), completed_advrial_path(@advrial), class: "backBtn text-center w-full", data: { turbo_confirm: t('.confirm') }, method: :post) if !@advrial.completed_trip %>
 
 <div class="place-content-center">
   <% @places.each do |place| %>

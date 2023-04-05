@@ -21,7 +21,7 @@
 
   <div class="field">
     <%= f.label :start_date, class: 'block' %>
-    <%= f.date_field :start_date %>
+    <%= f.date_field :start_date, value: Date.current %>
     <%= render 'shared/validation_error', f: f, column: :start_date %>
   </div>
 

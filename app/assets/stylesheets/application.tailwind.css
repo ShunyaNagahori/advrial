@@ -39,7 +39,11 @@
   }
 
   .normalLink {
-    @apply hover:text-yellow-600 hover:border-yellow-600 hover:border-b
+    @apply hover:text-yellow-600 hover:border-yellow-600 hover:border-b;
+  }
+
+  .deleteBtn {
+    @apply border border-red-600 cursor-pointer inline-block w-max px-2 py-1 text-red-600 my-2 hover:bg-rose-100;
   }
   
 }

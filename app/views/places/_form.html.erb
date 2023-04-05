@@ -31,7 +31,7 @@
 
   <div class="field">
     <%= f.label :date_time, class: 'block' %>
-    <%= f.datetime_select :date_time, value: Time.current %>
+    <%= f.datetime_field :date_time, value: @place.date_time.present? ? @place.date_time.strftime('%Y-%m-%dT%T') : Time.current.strftime('%Y-%m-%dT%T') %>
     <%= render 'shared/validation_error', f: f, column: :date_time %>
   </div>
 
@@ -41,14 +41,18 @@
     <%= render 'shared/validation_error', f: f, column: :description %>
   </div>
 
-  <% if descriptionIsTrue %>
+  <% if isNew %>
     <p class="text-sm"><%= t('places.description') %></p>
   <% end %>
 
-  <div class="pt-8 pb-24 space-x-2">
+  <div class="mt-4 space-x-2">
     <%= f.submit text, class: "btn" %>
-    <%= link_to t('common.actions.create.back'), advrial_path(@advrial), class: "backBtn" %>
+    <%= link_to(t('common.actions.create.back'), advrial_path(@advrial), class: "backBtn") %>
   </div>
+<% end %>
+
+<% if !isNew %>
+  <%= button_to(t('common.actions.delete'), advrial_place_path(@advrial, @place),class: "deleteBtn mt-6", data: { turbo_confirm: t('common.actions.delete_confirm') }, method: :delete) %>
 <% end %>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['MAP_API_KEY'] %>&callback=initMap" async defer></script>
