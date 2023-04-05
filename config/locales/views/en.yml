@@ -11,13 +11,20 @@ en:
     formats:
       default: "%Y/%m/%d"
       time: "%m/%d %H:%M"
+  headers:
+    logout: Sign Out
+    my_profile: Profile
+    my_advrials: My Advrials
+  page:
+    index:
+      info: Information
   users:
     edit:
       title: Profile Edit
       submit: Submit
       back: Go Back
     show:
-      title: My Page
+      title: My Profile
       top: Home
       edit: Edit
     welcome:

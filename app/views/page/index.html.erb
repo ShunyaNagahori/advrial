@@ -1,6 +1,4 @@
-<h1>Topページ</h1>
-
-<%= link_to t('.logout'), destroy_user_session_path, data: {turbo_method: :delete } %>
-<%= link_to "マイページ", user_path(current_user) %>
-<%= link_to "編集ページ", edit_user_path(current_user) %>
-<%= link_to 'アドリアル一覧', user_advrials_path(current_user) %>
+<h3 class="text-xl my-1"><%=t('.info') %></h2>
+<div class="border border-slate-500 border-dotted py-1 px-2 w-full">
+  <p>まだお知らせはありません</p>
+</div>

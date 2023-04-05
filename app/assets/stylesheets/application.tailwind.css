@@ -6,15 +6,15 @@
 
 @layer components {
   .btn {
-    @apply py-2 px-4 my-2 bg-green-700 text-white font-bold cursor-pointer;
+    @apply py-2 px-4 my-2 bg-green-700 text-white font-bold cursor-pointer hover:bg-green-600;
   }
 
   .backBtn {
-    @apply py-2 px-4 my-2 font-bold border border-slate-600 cursor-pointer;
+    @apply py-2 px-4 my-2 font-bold border border-slate-600 cursor-pointer hover:bg-slate-100;
   }
 
   h2 {
-    @apply text-3xl font-black;
+    @apply text-3xl font-black my-1;
   }
 
   .field {
@@ -38,7 +38,7 @@
     @apply rounded-md;
   }
 
-  a {
+  .normalLink {
     @apply hover:text-yellow-600 hover:border-yellow-600 hover:border-b
   }
   

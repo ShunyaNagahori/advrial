@@ -1,6 +1,7 @@
 ja:
   common:
     actions:
+      back: 戻る
       create:
         submit: 作成する
         back: 戻る
@@ -13,13 +14,20 @@ ja:
     formats:
       default: "%Y/%m/%d"
       time: "%m/%d %H:%M"
+  headers:
+    logout: ログアウト
+    my_profile: プロフィール
+    my_advrials: アドリアル一覧
+  page:
+    index:
+      info: お知らせ
   users:
     edit:
       title: プロフィール編集
       submit: 更新
       back: 戻る
     show:
-      title: マイページ
+      title: プロフィール
       top: トップへ戻る
       edit: 編集ページ
     welcome:

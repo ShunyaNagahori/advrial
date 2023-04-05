@@ -1,23 +1,23 @@
 <nav class="w-full border-b">
   <div class="flex justify-between mx-auto">
     <div class="flex items-center sm:px-4 px-1">
-      <h1 class="text-xl font-bold px-2">Advrial</h1>
+      <h1 class="text-xl font-bold p-2"><%= user_signed_in? ? link_to('Advrial', root_path) : link_to('Advrial', new_user_session_path) %></h1>
     </div>
     <!-- PC -->
     <% if user_signed_in? %>
       <div class="px-4 px-1 pc-only" data-controller="header">
-        <div class="flex items-center py-2 cursor-pointer" data-action="click->header#dropDownMenu">
+        <div class="flex items-center py-2 cursor-pointer hover:bg-slate-100" data-action="click->header#dropDownMenu">
           <% if current_user.image.attached? %>
-            <%= image_tag(image_url_helper(current_user.image.variant(resize_to_fill: [100,100])), class: "w-12 h-12 rounded-full") %>
+            <%= image_tag(image_url_helper(current_user.image.variant(resize_to_fill: [100,100])), class: "ml-1 w-12 h-12 rounded-full") %>
           <% else %>
-            <%= image_tag('no-user-image.png', size: '100x100', class: "w-12 h-12 rounded-full border p-1") %>
+            <%= image_tag('no-user-image.png', size: '100x100', class: "w-12 h-12 rounded-full border p-1 ml-1") %>
           <% end %>
           <p class="px-1 ml-2"><%= current_user.name.present? ? current_user.name : current_user.email %></p>
         </div>
-        <div class="text-center hidden absolute right-0 p-4 border z-20 bg-white" data-header-target="menu">
-          <div class="border-b"><%= link_to "マイページ", user_path(current_user) %></div>
-          <div class="border-b"><%= link_to 'アドリアル一覧', user_advrials_path(current_user) %></div>
-          <div class="border-b"><%= link_to t('.logout'), destroy_user_session_path, data: {turbo_method: :delete } %></div>
+        <div class="text-center hidden absolute right-0 px-4 border z-20 bg-white w-60" data-header-target="menu">
+          <div class="border-b py-2"><%= link_to t('headers.my_profile'), user_path(current_user), class: "normalLink" %></div>
+          <div class="border-b py-2"><%= link_to t('headers.my_advrials'), user_advrials_path(current_user), class: "normalLink" %></div>
+          <div class="border-b py-2"><%= link_to t('headers.logout'), destroy_user_session_path, data: {turbo_method: :delete }, class: "normalLink" %></div>
         </div>
       </div>
 
@@ -26,8 +26,8 @@
         <div class="flex items-center py-2 cursor-pointer" data-action="click->header#dropDownMenu">
           <%= image_tag('sp-menu.png', size: '100x100', class: "w-9 h-8 px-1") %>
         </div>
-        <div class="text-center hidden absolute right-0 p-4 border w-screen z-20 bg-white" data-header-target="menu">
-          <div class="flex items-center justify-center border-b">
+        <div class="text-center hidden absolute right-0 px-4 border w-screen z-20 bg-white" data-header-target="menu">
+          <div class="flex items-center justify-center border-b py-1">
             <% if current_user.image.attached? %>
               <%= image_tag(image_url_helper(current_user.image.variant(resize_to_fill: [100,100])), class: "w-12 h-12 rounded-full p-1") %>
             <% else %>
@@ -35,9 +35,9 @@
             <% end %>
             <p class="ml-2"><%= current_user.name.present? ? current_user.name : current_user.email %></p>
           </div>
-          <div class="border-b"><%= link_to "マイページ", user_path(current_user) %></div>
-          <div class="border-b"><%= link_to 'アドリアル一覧', user_advrials_path(current_user) %></div>
-          <div class="border-b"><%= link_to t('.logout'), destroy_user_session_path, data: {turbo_method: :delete } %></div>
+          <div class="border-b py-2"><%= link_to t('headers.my_profile'), user_path(current_user), class: "normalLink" %></div>
+          <div class="border-b py-2"><%= link_to t('headers.my_advrials'), user_advrials_path(current_user), class: "normalLink" %></div>
+          <div class="border-b py-2"><%= link_to t('headers.logout'), destroy_user_session_path, data: {turbo_method: :delete }, class: "normalLink" %></div>
         </div>
       </div>
     <% end %>
