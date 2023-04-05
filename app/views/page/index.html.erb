@@ -2,3 +2,13 @@
 <div class="border border-slate-500 border-dotted py-1 px-2 w-full">
   <p>まだお知らせはありません</p>
 </div>
+
+<h3 class="text-xl my-1"><%=t('.info') %></h2>
+<div class="border-4 border-green-600 py-1 px-2 w-full">
+  <%= link_to(user_advrials_new_path(current_user)) do%>
+    <div class="flex items-center">
+      <%= image_tag('go-outside.png', size: '100x100', class: "mx-4") %>
+      <p class="mx-auto font-bold text-2xl text-green-600"><%= t('.go_out') %></p>
+    </div>
+  <% end %>
+</div>
