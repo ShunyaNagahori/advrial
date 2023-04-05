@@ -2,47 +2,49 @@
   <h2><%=t('.title') %></h2>
 </div>
 
-<div>
-  <dt><%= User.human_attribute_name(:image) %></dt>
-  <dd><%= image_tag(image_url_helper(@user.image), size: '300x300') if @user.image.attached? %></dd>
-</div>
+<div class="border p-2">
+  <div class="border-b text-center">
+    <dt class="block font-semibold w-max border-b"><%= User.human_attribute_name(:image) %></dt>
+    <dd class="my-2 inline-block"><%= @user.image.attached? ? image_tag(image_url_helper(@user.image.variant(resize_to_fill: [200, 200])), class: "w-24 h-24 rounded-full") : image_tag('no-user-image.png', size: '100x100', class: "w-24 h-24 rounded-full p-1 border") %></dd>
+  </div>
 
-<div>
-  <dt><%= User.human_attribute_name(:account_name) %></dt>
-  <dd><%= @user.account_name %></dd>
-</div>
+  <div class="border-b">
+    <dt class="block font-semibold w-max border-b"><%= User.human_attribute_name(:account_name) %></dt>
+    <dd class="my-2"><%= @user.account_name %></dd>
+  </div>
 
-<div>
-  <dt><%= User.human_attribute_name(:name) %></dt>
-  <dd><%= @user.name %></dd>
-</div>
+  <div class="border-b">
+    <dt class="block font-semibold w-max border-b"><%= User.human_attribute_name(:name) %></dt>
+    <dd class="my-2"><%= @user.name %></dd>
+  </div>
 
-<div>
-  <dt><%= User.human_attribute_name(:email) %></dt>
-  <dd><%= @user.email %></dd>
-</div>
+  <div class="border-b">
+    <dt class="block font-semibold w-max border-b"><%= User.human_attribute_name(:email) %></dt>
+    <dd class="my-2"><%= @user.email %></dd>
+  </div>
 
-<div>
-  <dt><%= User.human_attribute_name(:date_of_birth) %></dt>
-  <dd><%= l(@user.date_of_birth) if @user.date_of_birth.present? %></dd>
-</div>
+  <div class="border-b">
+    <dt class="block font-semibold w-max border-b"><%= User.human_attribute_name(:date_of_birth) %></dt>
+    <dd class="my-2"><%= l(@user.date_of_birth) if @user.date_of_birth.present? %></dd>
+  </div>
 
-<div>
-  <dt><%= User.human_attribute_name(:gender) %></dt>
-  <dd><%= t("enums.user.gender.#{@user.gender}") %></dd>
-</div>
+  <div class="border-b">
+    <dt class="block font-semibold w-max border-b"><%= User.human_attribute_name(:gender) %></dt>
+    <dd class="my-2"><%= t("enums.user.gender.#{@user.gender}") %></dd>
+  </div>
 
-<div>
-  <dt><%= User.human_attribute_name(:url) %></dt>
-  <dd><%= @user.url %></dd>
-</div>
+  <div class="border-b">
+    <dt class="block font-semibold w-max border-b"><%= User.human_attribute_name(:url) %></dt>
+    <dd class="my-2"><%= @user.url %></dd>
+  </div>
 
-<div>
-  <dt><%= User.human_attribute_name(:introduce) %></dt>
-  <dd><%= @user.introduce %></dd>
-</div>
+  <div class="border-b">
+    <dt class="block font-semibold w-max border-b"><%= User.human_attribute_name(:introduce) %></dt>
+    <dd class="my-2"><%= simple_format(@user.introduce) %></dd>
+  </div>
 
-<div class="pt-8 pb-24 space-x-2">
-  <%= link_to t('.edit'), edit_user_path(@user), class: "btn" %>
-  <%= link_to t('.top'), root_path, class: "backBtn" %>
+  <div class="pt-8 mb-4 space-x-2">
+    <%= link_to t('.edit'), edit_user_path(@user), class: "btn" %>
+    <%= link_to t('.top'), root_path, class: "backBtn" %>
+  </div>
 </div>

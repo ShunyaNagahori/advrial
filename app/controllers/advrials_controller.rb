@@ -1,6 +1,6 @@
 class AdvrialsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_advrial, only: [:edit, :update, :show, :destroy]
+  before_action :set_advrial, only: [:edit, :update, :show, :destroy, :completed]
 
   def index
     @advrials = current_user.advrials
@@ -15,7 +15,7 @@ class AdvrialsController < ApplicationController
     @advrial = current_user.advrials.new(advrial_params)
     @advrial_categories = AdvrialCategory.all
     if @advrial.save
-      flash[:notice] = t('common.actions.create.created')
+      flash[:notice] = t('advrials.show.description')
       redirect_to advrial_path(@advrial)
     else
       render :new, status: 422
@@ -41,6 +41,16 @@ class AdvrialsController < ApplicationController
   end
 
   def destroy
+  end
+
+  def completed
+    if @advrial.update(completed_trip: true)
+      flash[:notice] = "帰宅しました"
+      redirect_to @advrial
+    else
+      flash[:alert] = "編集できません"
+      render :show, status: 422
+    end
   end
   
   private

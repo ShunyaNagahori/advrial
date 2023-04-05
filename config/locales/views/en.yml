@@ -11,13 +11,21 @@ en:
     formats:
       default: "%Y/%m/%d"
       time: "%m/%d %H:%M"
+  headers:
+    logout: Sign Out
+    my_profile: Profile
+    my_advrials: My Advrials
+  page:
+    index:
+      info: Information
+      go_out: Going out now!
   users:
     edit:
       title: Profile Edit
       submit: Submit
       back: Go Back
     show:
-      title: My Page
+      title: My Profile
       top: Home
       edit: Edit
     welcome:
@@ -25,10 +33,18 @@ en:
   advrials:
     new:
       title: Create Advrial
+      description: ※ Editing is possible even after creation.
     index:
       title: List of Advrial Events
+      create: ＋Going out
+    show:
+      create: ＋Add Arrival Location
+      completed_trip: Going Home
+      description: When you arrive at your destination, click the button below to record your arrival!
+      confirm: I will not be able to register my location on this Advrial, do you want to go home? (You can edit it)
   places:
     marker_description: Location information may shift slightly. The markers on the map can be moved manually.
+    description: ※ Editing is possible even after creation.
     new:
       title: Add the place you visited
     edit:

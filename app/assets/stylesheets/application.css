@@ -17,3 +17,13 @@
 #map {
   height: 400px;
 }
+
+@media screen and (max-width: 640px) {
+  /* SP用のスタイル */
+  .pc-only { display: none; }
+}
+
+@media screen and (min-width: 641px) {
+  /* PC用のスタイル */
+  .sp-only { display: none; }
+}

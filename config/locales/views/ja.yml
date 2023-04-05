@@ -1,6 +1,7 @@
 ja:
   common:
     actions:
+      back: 戻る
       create:
         submit: 作成する
         back: 戻る
@@ -13,13 +14,21 @@ ja:
     formats:
       default: "%Y/%m/%d"
       time: "%m/%d %H:%M"
+  headers:
+    logout: ログアウト
+    my_profile: プロフィール
+    my_advrials: アドリアル一覧
+  page:
+    index:
+      info: お知らせ
+      go_out: お出かけする
   users:
     edit:
       title: プロフィール編集
       submit: 更新
       back: 戻る
     show:
-      title: マイページ
+      title: プロフィール
       top: トップへ戻る
       edit: 編集ページ
     welcome:
@@ -27,10 +36,18 @@ ja:
   advrials:
     new:
       title: アドリアル作成
+      description: ※ 作成後も編集が可能です。
     index:
       title: アドリアル一覧
+      create: ＋お出かけする
+    show:
+      create: ＋到着地の追加
+      completed_trip: 帰宅する
+      description: 目的地に到着したら、下のボタンをクリックして、到着を記録してください。
+      confirm: こちらのAdvrialに、場所の登録が出来なくなりますが、帰宅しますか？(編集は可能です)
   places:
     marker_description: 位置情報が多少ずれる場合があります。地図のマーカーを手動で移動できます。
+    description: ※ 作成後も編集が可能です。
     new:
       title: 訪れた場所の追加
     edit:
