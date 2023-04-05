@@ -41,6 +41,12 @@ class AdvrialsController < ApplicationController
   end
 
   def destroy
+    if @advrial.destroy
+      flash[:notice] = t('common.actions.destroy.deleted')
+      redirect_to user_advrials_path(current_user)
+    else
+      render :edit, status: 422
+    end
   end
 
   def completed

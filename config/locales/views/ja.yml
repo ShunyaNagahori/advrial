@@ -2,6 +2,8 @@ ja:
   common:
     actions:
       back: 戻る
+      delete: 削除
+      delete_confirm: 削除してよろしいですか？
       create:
         submit: 作成する
         back: 戻る
@@ -10,6 +12,8 @@ ja:
         update: 更新する
         cancel: キャンセル
         updated: 更新しました
+      destroy:
+        deleted: 削除しました
   time:
     formats:
       default: "%Y/%m/%d"

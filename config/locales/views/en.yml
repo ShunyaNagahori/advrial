@@ -4,9 +4,14 @@ en:
       create:
         submit: Create
         back: Back
+      delete: Delete
+      delete_confirm: Are you sure?
       edit:
         update: Update
         cancel: cancel
+        updated: Updated
+      destroy:
+        deleted: Deleted
   time:
     formats:
       default: "%Y/%m/%d"

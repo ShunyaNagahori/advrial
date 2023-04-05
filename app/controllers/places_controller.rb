@@ -32,6 +32,15 @@ class PlacesController < ApplicationController
   def show
   end
 
+  def destroy
+    if @place.destroy
+      flash[:notice] = t('common.actions.destroy.deleted')
+      redirect_to advrial_path(@advrial)
+    else
+      render :edit, status: 422
+    end
+  end
+
   private
 
     def place_params
@@ -53,5 +62,4 @@ class PlacesController < ApplicationController
     def set_place
       @place = Place.find(params[:id])
     end
-
 end
