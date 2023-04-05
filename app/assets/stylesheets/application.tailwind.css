@@ -37,6 +37,10 @@
   textarea {
     @apply rounded-md;
   }
+
+  a {
+    @apply hover:text-yellow-600 hover:border-yellow-600 hover:border-b
+  }
   
 }
 
