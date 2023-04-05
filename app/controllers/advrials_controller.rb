@@ -1,6 +1,6 @@
 class AdvrialsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_advrial, only: [:edit, :update, :show, :destroy]
+  before_action :set_advrial, only: [:edit, :update, :show, :destroy, :completed]
 
   def index
     @advrials = current_user.advrials
@@ -41,6 +41,16 @@ class AdvrialsController < ApplicationController
   end
 
   def destroy
+  end
+
+  def completed
+    if @advrial.update(completed_trip: true)
+      flash[:notice] = "帰宅しました"
+      redirect_to @advrial
+    else
+      flash[:alert] = "編集できません"
+      render :show, status: 422
+    end
   end
   
   private

@@ -36,11 +36,15 @@ en:
       description: ※ Editing is possible even after creation.
     index:
       title: List of Advrial Events
-      btn: Going out
+      create: ＋Going out
     show:
+      create: ＋Add Arrival Location
+      completed_trip: Going Home
       description: When you arrive at your destination, click the button below to record your arrival!
+      confirm: I will not be able to register my location on this Advrial, do you want to go home? (You can edit it)
   places:
     marker_description: Location information may shift slightly. The markers on the map can be moved manually.
+    description: ※ Editing is possible even after creation.
     new:
       title: Add the place you visited
     edit:

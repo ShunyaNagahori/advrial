@@ -2,7 +2,7 @@
   <h2><%=t('.title') %></h2>
 </div>
 
-<%= render 'form', url: advrial_place_path(@advrial, @place), text: t('common.actions.edit.update'), back: advrial_path(@advrial)  %>
+<%= render 'form', url: advrial_place_path(@advrial, @place), text: t('common.actions.edit.update'), descriptionIsTrue: false %>
 
 <script>
   function initMap() {

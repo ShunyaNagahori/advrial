@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     post 'advrials', to: 'advrials#create'
   end
   resources :advrials, only: [:edit, :update, :show, :destroy] do
+    post :completed, on: :member
     resources :places
   end
 

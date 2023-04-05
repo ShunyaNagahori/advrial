@@ -41,9 +41,13 @@
     <%= render 'shared/validation_error', f: f, column: :description %>
   </div>
 
+  <% if descriptionIsTrue %>
+    <p class="text-sm"><%= t('places.description') %></p>
+  <% end %>
+
   <div class="pt-8 pb-24 space-x-2">
     <%= f.submit text, class: "btn" %>
-    <%= link_to t('common.actions.create.back'), back, class: "backBtn" %>
+    <%= link_to t('common.actions.create.back'), advrial_path(@advrial), class: "backBtn" %>
   </div>
 <% end %>
 

@@ -2,7 +2,7 @@
   <h2><%=t('.title') %></h2>
 </div>
 
-<%= link_to '＋ New Advrial', user_advrials_new_path(current_user), class: "btn block text-center" %>
+<%= link_to(t('.create'), user_advrials_new_path(current_user), class: "btn block text-center") %>
 
 <div class="place-content-center">
   <% @advrials.each do |advrial| %>
