@@ -34,6 +34,10 @@
   </div>
 </div>
 
+<div class="pt-8 text-center">
+  <%= link_to t('common.actions.back'), advrial_path(@advrial), class: "backBtn" %>
+</div>
+
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['MAP_API_KEY'] %>&callback=initMap" async defer></script>
 <script>
   function initMap() {
