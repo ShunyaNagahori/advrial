@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
-
-
+  around_action :switch_locale
 
   private
     # ログアウト後のリダイレクト先
@@ -11,5 +10,10 @@ class ApplicationController < ActionController::Base
 
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up, keys:[:account_name])
+    end
+
+    def switch_locale(&action)
+      locale = params[:locale] || :ja
+      I18n.with_locale(locale, &action)
     end
 end

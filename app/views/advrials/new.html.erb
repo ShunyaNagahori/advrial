@@ -15,19 +15,19 @@
 
   <div class="field">
     <%= f.label :title, class: 'block' %>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, requre: true  %>
     <%= render 'shared/validation_error', f: f, column: :title %>
   </div>
 
   <div class="field">
     <%= f.label :start_date, class: 'block' %>
-    <%= f.date_field :start_date, value: Date.current %>
+    <%= f.date_field :start_date, value: Date.current, requre: true %>
     <%= render 'shared/validation_error', f: f, column: :start_date %>
   </div>
 
   <div class="field">
     <%= f.label :end_date, class: 'block' %>
-    <%= f.date_field :end_date %>
+    <%= f.date_field :end_date, require: true %>
     <%= render 'shared/validation_error', f: f, column: :end_date %>
   </div>
 
