@@ -12,8 +12,10 @@ class Place < ApplicationRecord
 
 
   def place_date_time_in_advrial
-    if self.date_time > (self.advrial.end_date + 1) || self.date_time < (self.advrial.start_date - 1)
-      errors.add(:date_time, :place_date_time_in_advrial)
+    if self.date_time.present?
+      if self.date_time > (self.advrial.end_date + 1) || self.date_time < (self.advrial.start_date - 1)
+        errors.add(:date_time, :place_date_time_in_advrial)
+      end
     end
   end
 
