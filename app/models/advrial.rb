@@ -12,8 +12,10 @@ class Advrial < ApplicationRecord
   
 
   def start_date_cannot_comes_after_end_date
-    if (end_date - start_date).negative?
-      errors.add :base, :comes_after_start_date
+    if self.start_date.present? && self.end_date.present?
+      if (end_date - start_date).negative?
+        errors.add :base, :comes_after_start_date
+      end
     end
   end
 
