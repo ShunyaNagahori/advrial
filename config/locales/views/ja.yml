@@ -20,7 +20,7 @@ ja:
       time: "%m/%d %H:%M"
   headers:
     logout: ログアウト
-    my_profile: プロフィール
+    my_page: マイページ
     my_advrials: アドリアル一覧
   page:
     index:

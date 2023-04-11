@@ -1,50 +1,54 @@
-<div>
-  <h2><%=t('.title') %></h2>
-</div>
-
-<div class="border p-2">
-  <div class="border-b text-center">
-    <dt class="block font-semibold w-max border-b"><%= User.human_attribute_name(:image) %></dt>
-    <dd class="my-2 inline-block"><%= @user.image.attached? ? image_tag(image_url_helper(@user.image.variant(resize_to_fill: [200, 200])), class: "w-24 h-24 rounded-full") : image_tag('no-user-image.png', size: '100x100', class: "w-24 h-24 rounded-full p-1 border") %></dd>
-  </div>
-
-  <div class="border-b">
-    <dt class="block font-semibold w-max border-b"><%= User.human_attribute_name(:account_name) %></dt>
-    <dd class="my-2"><%= @user.account_name %></dd>
-  </div>
-
-  <div class="border-b">
-    <dt class="block font-semibold w-max border-b"><%= User.human_attribute_name(:name) %></dt>
-    <dd class="my-2"><%= @user.name %></dd>
-  </div>
-
-  <div class="border-b">
-    <dt class="block font-semibold w-max border-b"><%= User.human_attribute_name(:email) %></dt>
-    <dd class="my-2"><%= @user.email %></dd>
-  </div>
-
-  <div class="border-b">
-    <dt class="block font-semibold w-max border-b"><%= User.human_attribute_name(:date_of_birth) %></dt>
-    <dd class="my-2"><%= l(@user.date_of_birth) if @user.date_of_birth.present? %></dd>
-  </div>
-
-  <div class="border-b">
-    <dt class="block font-semibold w-max border-b"><%= User.human_attribute_name(:gender) %></dt>
-    <dd class="my-2"><%= t("enums.user.gender.#{@user.gender}") %></dd>
-  </div>
-
-  <div class="border-b">
-    <dt class="block font-semibold w-max border-b"><%= User.human_attribute_name(:url) %></dt>
-    <dd class="my-2"><%= @user.url %></dd>
-  </div>
-
-  <div class="border-b">
-    <dt class="block font-semibold w-max border-b"><%= User.human_attribute_name(:introduce) %></dt>
-    <dd class="my-2"><%= simple_format(@user.introduce) %></dd>
-  </div>
-
-  <div class="pt-8 mb-4 space-x-2">
-    <%= link_to t('.edit'), edit_user_path(@user), class: "btn" %>
-    <%= link_to t('.top'), root_path, class: "backBtn" %>
+<div class="border-b p-2">
+  <span class="inline-block"><%= @user.image.attached? ? image_tag(image_url_helper(@user.image.variant(resize_to_fill: [200, 200])), class: "w-24 h-24 rounded-full") : image_tag('no-user-image.png', size: '100x100', class: "w-24 h-24 rounded-full p-1 border") %></span>
+  <p class="font-bold w-max border-b px-1"><%= @user.name %></p>
+  <div class="flex items-center justify-between">
+    <p class="px-1 text-sm"><%= @user.account_name %></p>
+    <i><%= link_to(image_tag('pencil.png', size: '16x16', class: "inline"), edit_user_path(@user)) %></i>
   </div>
 </div>
+
+<div class="border-b p-1 px-2">
+  <dt class="block font-semibold w-max border-b px-1"><%= User.human_attribute_name(:introduce) %></dt>
+  <dd class="my-1 px-1"><%= simple_format(@user.introduce, class: "text-sm") %></dd>
+</div>
+
+<div class="border-b p-1 px-2">
+  <dt class="block font-semibold w-max border-b px-1"><%= User.human_attribute_name(:url) %></dt>
+  <dd class="my-1 px-1 text-sm"><%= link_to(nil, @user.url, class: "") %></dd>
+</div>
+
+<div class="mt-4 mb-2 px-1">
+  <h2><%=t('headers.my_advrials') %></h2>
+</div>
+
+  <% if @user.advrials.present? %>
+    <div class="place-content-center">
+      <% @user.advrials.each do |advrial| %>
+        <div class="border my-2 mx-1 h-auto w-auto p-2">
+          <div class="grid grid-cols-2 gap-4">
+            <div class="flex items-center justify-center">
+              <% if advrial.main_visual.attached? %>
+                <%= link_to(image_tag(image_url_helper(advrial.main_visual.variant(resize_to_limit: [300,300])), class: "w-full"), advrial_path(advrial), 'data-turbo': false) %>
+              <% else %>
+                <%= link_to(image_tag('no-image.png', size: '3000x300', class: "w-full"), advrial_path(advrial), 'data-turbo': false) %>
+              <% end %>
+            </div>
+            <div class="flex flex-col">
+              <p class="text-xl text-bold border-b mb-1 px-2 overflow-hidden whitespace-nowrap text-ellipsis">
+                <%= advrial.title %>
+              </p>
+              <p class="border-b mb-2 px-2">
+                <%= l(advrial.start_date) %> 〜 <%= l(advrial.end_date) %>
+              </p>
+              <p class="border-b mb-2 px-2">
+                  <%= advrial.advrial_category.name_in_locales %>
+              </p>
+              <div class="flex-1 border border-slate-500 border-dotted py-1 px-2 w-full">
+                <%= simple_format(advrial.description, class: "break-all") %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>

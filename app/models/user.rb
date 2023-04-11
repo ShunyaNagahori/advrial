@@ -21,7 +21,6 @@ class User < ApplicationRecord
                            format: { with: VALID_ACCOUNT_NAME_REGEX },
                            on: :update # update時のみバリデーションを適用
 
-
   def to_param
     account_name
   end

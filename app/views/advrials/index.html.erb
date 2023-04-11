@@ -7,28 +7,28 @@
 <div class="place-content-center">
   <% @advrials.each do |advrial| %>
     <%= turbo_frame_tag advrial do %>
-      <div class="border my-2 mx-1 h-auto w-auto">
-        <div class="p-2">
-          <p class="text-2xl text-bold border-b mb-1 px-4">
-            <%= advrial.title %>
-            <i><%= link_to(image_tag('pencil.png', size: '16x16', class: "inline"), edit_advrial_path(advrial)) %></i>
-          </p>
-          <p class="border-b mb-2 px-4">
-            <%= l(advrial.start_date) %> 〜 <%= l(advrial.end_date) %>
-          </p>
-          <p class="border-b mb-2 px-4">
-              <%= advrial.advrial_category.name_in_locales %>
-          </p>
-          <div class="md:flex md:mb-2">
-            <div>
-              <% if advrial.main_visual.attached? %>
-                <%= link_to(image_tag(image_url_helper(advrial.main_visual.variant(resize_to_limit: [400,400])), class: "px-4 mb-2"), advrial_path(advrial), 'data-turbo': false) %>
-              <% else %>
-                <%= link_to(image_tag('no-image.png', size: '400x400', class: "px-4 mb-2"), advrial_path(advrial), 'data-turbo': false) %>
-              <% end %>
-            </div>
-            <div class="border border-slate-500 border-dotted py-1 px-2 w-full">
-              <%= simple_format(advrial.description, class: "overflow-x-scroll") %>
+      <div class="border my-2 mx-1 h-auto w-auto p-2">
+        <i><%= link_to(image_tag('pencil.png', size: '16x16', class: "float-right"), edit_advrial_path(advrial)) %></i>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="flex items-center justify-center">
+            <% if advrial.main_visual.attached? %>
+              <%= link_to(image_tag(image_url_helper(advrial.main_visual.variant(resize_to_limit: [300,300])), class: "w-full"), advrial_path(advrial), 'data-turbo': false) %>
+            <% else %>
+              <%= link_to(image_tag('no-image.png', size: '300x300', class: "w-full"), advrial_path(advrial), 'data-turbo': false) %>
+            <% end %>
+          </div>
+          <div class="flex flex-col">
+            <p class="text-xl text-bold border-b mb-1 px-2 overflow-hidden whitespace-nowrap text-ellipsis">
+              <%= advrial.title %>
+            </p>
+            <p class="border-b mb-2 px-2">
+              <%= l(advrial.start_date) %> 〜 <%= l(advrial.end_date) %>
+            </p>
+            <p class="border-b mb-2 px-2">
+                <%= advrial.advrial_category.name_in_locales %>
+            </p>
+            <div class="flex-1 border border-slate-500 border-dotted py-1 px-2 w-full">
+              <%= simple_format(advrial.description, class: "break-all") %>
             </div>
           </div>
         </div>

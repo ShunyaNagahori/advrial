@@ -18,7 +18,7 @@ en:
       time: "%m/%d %H:%M"
   headers:
     logout: Sign Out
-    my_profile: Profile
+    my_page: My Page
     my_advrials: My Advrials
   page:
     index:

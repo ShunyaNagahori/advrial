@@ -4,57 +4,59 @@
 
 <%= form_with model: @user do |f|%>
   <%= render "shared/error_messages", resource: @user %>
+  <div class="border p-2">
+    <div class="border-b">
+      <label>
+        <span class="block font-semibold border-b w-max"><%= t('activerecord.attributes.user.image') %></span>
+      <label>
+      <span class="my-2 inline-block"><%= @user.image.attached? ? image_tag(image_url_helper(@user.image.variant(resize_to_fill: [200, 200])), class: "w-24 h-24 rounded-full") : image_tag('no-user-image.png', size: '100x100', class: "w-24 h-24 rounded-full p-1 border") %></span>
+      <%= f.file_field :image, class: "mb-2" %>
+      <%= render 'shared/validation_error', f: f, column: :image %>
+    </div>
 
-  <div class="field">
-    <label>
-      <span class="block"><%= t('activerecord.attributes.user.image') %></span>
-    <label>
-    <%= f.file_field :image %>
-    <%= render 'shared/validation_error', f: f, column: :image %>
-  </div>
+    <div class="border-b">
+      <%= f.label :name, class: 'block font-semibold border-b w-max' %>
+      <%= f.text_field :name, class: "my-2 w-full" %>
+      <%= render 'shared/validation_error', f: f, column: :name %>
+    </div>
 
-  <div class="field">
-    <%= f.label :account_name, class: 'block' %>
-    <%= f.text_field :account_name %>
-    <%= render 'shared/validation_error', f: f, column: :account_name %>
-  </div>
+    <div class="border-b">
+      <%= f.label :account_name, class: 'block font-semibold border-b w-max' %>
+      <%= f.text_field :account_name, class: "my-2 w-full" %>
+      <%= render 'shared/validation_error', f: f, column: :account_name %>
+    </div>
 
-  <div class="field">
-    <%= f.label :name, class: 'block' %>
-    <%= f.text_field :name %>
-    <%= render 'shared/validation_error', f: f, column: :name %>
-  </div>
+    <div class="border-b">
+      <%= f.label :email, class: 'block font-semibold border-b w-max' %>
+      <%= f.email_field :email, class: "my-2 w-full" %>
+      <%= render 'shared/validation_error', f: f, column: :email %>
+    </div>
 
-  <div class="field">
-    <%= f.label :email, class: 'block' %>
-    <%= f.email_field :email %>
-    <%= render 'shared/validation_error', f: f, column: :email %>
-  </div>
+    <div class="border-b">
+      <%= f.label :date_of_birth, class: 'block font-semibold border-b w-max' %>
+      <%= f.date_field :date_of_birth, class: "my-2 w-full" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :date_of_birth, class: 'block' %>
-    <%= f.date_field :date_of_birth %>
-  </div>
+    <div class="border-b">
+      <%= f.label :gender, class: 'block font-semibold border-b w-max' %>
+      <%= f.select :gender, User.genders.keys.map { |key| [t("enums.user.gender.#{key}"), key] }, {}, class: "my-2 w-full" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :gender, class: 'block' %>
-    <%= f.select :gender, User.genders.keys.map { |key| [t("enums.user.gender.#{key}"), key] } %>
-  </div>
+    <div class="border-b">
+      <%= f.label :url, class: 'block font-semibold border-b w-max' %>
+      <%= f.url_field :url, class: "my-2 w-full" %>
+      <%= render 'shared/validation_error', f: f, column: :url %>
+    </div>
 
-  <div class="field">
-    <%= f.label :url, class: 'block' %>
-    <%= f.url_field :url %>
-    <%= render 'shared/validation_error', f: f, column: :url %>
-  </div>
+    <div class="border-b">
+      <%= f.label :introduce, class: 'block font-semibold border-b w-max' %>
+      <%= f.text_area :introduce, class: "my-2 w-full" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :introduce, class: 'block' %>
-    <%= f.text_area :introduce %>
-  </div>
-
-  <div class="pt-8 pb-24 space-x-2">
-    <%= f.submit t('.submit'), class: "btn" %>
-    <%= link_to t('.back'), user_path(@user), class: "backBtn" %>
+    <div class="pt-8 mb-4 space-x-2">
+      <%= f.submit t('.submit'), class: "btn" %>
+      <%= link_to t('.back'), user_path(@user), class: "backBtn" %>
+    </div>
   </div>
 <% end %>
 
