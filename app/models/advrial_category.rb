@@ -19,5 +19,4 @@ class AdvrialCategory < ApplicationRecord
   before_validation do
     self.display_order ||= (AdvrialCategory.maximum(:display_order) || -1) + 1 # まだ他のrecordが存在しない場合は0を返す
   end
-
 end
