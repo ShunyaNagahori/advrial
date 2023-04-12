@@ -20,17 +20,17 @@
       <div class="swiper-button-next absolute"></div>
   </div>
 
-  <p class="font-semibold py-2 px-1"><%= Place.human_attribute_name(:address) %></p>
+  <p class="font-semibold px-1 border-b w-max"><%= Place.human_attribute_name(:address) %></p>
   <div class="mb-2">
+    <p class="text-sm"><%= @place.address %></p>
     <div id="map" class="w-auto"></div>
     <p id="place_latitude" class="hidden"><%= @place.latitude %></p>
     <p id="place_longitude" class="hidden"><%= @place.longitude %></p>
-    <p class="text-sm"><%= @place.address %></p>
   </div>
 
-  <p class="font-semibold py-2 px-1"><%= Place.human_attribute_name(:description) %></p>
-  <div class="border border-slate-500 border-dotted py-1 px-2 mb-2">
-    <%= simple_format(@place.description, class: "overflow-x-scroll") %>
+  <p class="font-semibold px-1 border-b w-max"><%= Place.human_attribute_name(:description) %></p>
+  <div class="border border-slate-500 border-dotted px-2 my-2">
+    <%= simple_format(@place.description, class: "p-1 text-sm break-all overflow-y-scroll line-clamp-[20]") %>
   </div>
 </div>
 

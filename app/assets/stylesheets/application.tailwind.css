@@ -14,7 +14,7 @@
   }
 
   h2 {
-    @apply text-xl font-black my-1;
+    @apply text-xl font-black my-1 px-1;
   }
 
   .field {

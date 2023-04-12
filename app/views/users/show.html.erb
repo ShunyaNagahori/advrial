@@ -1,9 +1,17 @@
 <div class="border-b p-2">
   <span class="inline-block"><%= @user.image.attached? ? image_tag(image_url_helper(@user.image.variant(resize_to_fill: [200, 200])), class: "w-24 h-24 rounded-full") : image_tag('no-user-image.png', size: '100x100', class: "w-24 h-24 rounded-full p-1 border") %></span>
-  <p class="font-bold w-max border-b px-1"><%= @user.name %></p>
+  <p class="font-bold w-max border-b px-1"><%= @user.name.present? ? @user.name : "No Name" %></p>
   <div class="flex items-center justify-between">
     <p class="px-1 text-sm"><%= @user.account_name %></p>
-    <i><%= link_to(image_tag('pencil.png', size: '16x16', class: "inline"), edit_user_path(@user)) %></i>
+    <% if current_user == @user %>
+      <i><%= link_to(image_tag('pencil.png', size: '16x16', class: "inline"), edit_user_path(@user)) %></i>
+    <% else %>
+      <% if current_user.following.include?(@user) %>
+        <i><%= link_to(image_tag('follow.png', size: '35x35', class: "inline mx-2"), edit_user_path(@user)) %></i>
+      <% else %>
+        <i><%= link_to(image_tag('unfollow.png', size: '35x35', class: "inline mx-2"), edit_user_path(@user)) %></i>
+      <% end %>
+    <% end %>
   </div>
 </div>
 
@@ -44,11 +52,15 @@
                   <%= advrial.advrial_category.name_in_locales %>
               </p>
               <div class="flex-1 border border-slate-500 border-dotted py-1 px-2 w-full">
-                <%= simple_format(advrial.description, class: "break-all") %>
+                <%= simple_format(advrial.description, class: "sp-only text-xs break-all overflow-y-scroll line-clamp-[8]") %>
+                <%= simple_format(advrial.description, class: "pc-only text-sm break-all overflow-y-scroll line-clamp-[20]") %>
               </div>
+              <p class="text-xs text-gray-400">お気に入り機能実装予定</p>
             </div>
           </div>
         </div>
       <% end %>
     </div>
+  <% else %>
+    <p class="text-gray-400 text-center">No Advrials</p>
   <% end %>

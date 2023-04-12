@@ -2,8 +2,6 @@
   <h2><%=t('.title') %></h2>
 </div>
 
-<%= link_to(t('.create'), user_advrials_new_path(current_user), class: "btn block text-center") %>
-
 <div class="place-content-center">
   <% @advrials.each do |advrial| %>
     <%= turbo_frame_tag advrial do %>
@@ -28,8 +26,10 @@
                 <%= advrial.advrial_category.name_in_locales %>
             </p>
             <div class="flex-1 border border-slate-500 border-dotted py-1 px-2 w-full">
-              <%= simple_format(advrial.description, class: "break-all") %>
+              <%= simple_format(advrial.description, class: "sp-only text-xs break-all overflow-y-scroll line-clamp-[8]") %>
+              <%= simple_format(advrial.description, class: "pc-only text-sm break-all overflow-y-scroll line-clamp-[20]") %>
             </div>
+            <p class="text-xs text-gray-400">お気に入り機能実装予定</p>
           </div>
         </div>
       </div>
