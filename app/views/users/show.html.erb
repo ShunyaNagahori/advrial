@@ -18,8 +18,12 @@
         <p class="px-2 text-sm"><%= "@#{@user.account_name}" %></p>
       </div>
       <div class="flex">
-        <p><%= @user.following.count %><span class="text-gray-400 text-sm"><%= t('.followers') %></span></p>
-        <p class="ml-1"><%= @user.followers.count %><span class="text-gray-400 text-sm"><%= t('.following') %></span></p>
+        <%= link_to(user_following_path(@user)) do %>
+          <p><%= @user.following.count %><span class="text-gray-400 text-sm"><%= t('.following') %></span></p>
+        <% end %>
+        <%= link_to(user_followers_path(@user)) do %>
+          <p class="ml-1"><%= @user.followers.count %><span class="text-gray-400 text-sm"><%= t('.followers') %></span></p>
+        <% end %>
       </div>
     </div>
   </div>

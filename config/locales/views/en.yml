@@ -35,8 +35,8 @@ en:
       title: My Profile
       top: Home
       edit: Edit
-      followers: Followers
       following: Following
+      followers: Followers
     welcome:
       to_login: Click here for the login page!
   advrials:
@@ -45,7 +45,6 @@ en:
       description: ※ Editing is possible even after creation.
     index:
       title: List of Advrial Events
-      create: ＋Going out
     show:
       create: ＋Add Arrival Location
       completed_trip: Going Home
@@ -58,3 +57,6 @@ en:
       title: Add the place you visited
     edit:
       title: Edit the place you visited
+  relationships:
+    no_following: No following
+    no_followers: No followers

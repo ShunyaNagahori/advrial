@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   devise_for :users, only: [:confirmations]
   resources :users, except: [:index, :new], param: :account_name do
     resources :relationships, only: [:create, :destroy]
+    get 'followers', to: 'relationships#followers'
+    get 'following', to: 'relationships#following'
     resources :advrials, only: [:index, :new, :create]
   end
   resources :advrials, only: [:edit, :update, :show, :destroy] do
