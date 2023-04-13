@@ -12,7 +12,7 @@
               <div class="swiper-slide"><%= image_tag(image_url_helper(image.variant(resize_to_limit: [800,800])), class: "m-auto px-4") %></div>
             <% end %>
           <% else %>
-            <div class="swiper-slide"><%= image_tag('no-image.png') %></div>
+            <div class="mx-auto"><%= image_tag('no-image.png') %></div>
           <% end %>
       </div>
       <div class="swiper-pagination absolute"></div>
