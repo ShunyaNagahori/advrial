@@ -6,6 +6,8 @@ en:
         back: Back
       delete: Delete
       delete_confirm: Are you sure?
+      follow: Added Friend
+      unfollow: Unfriended
       edit:
         update: Update
         cancel: cancel

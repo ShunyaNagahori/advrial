@@ -4,6 +4,8 @@ ja:
       back: 戻る
       delete: 削除
       delete_confirm: 削除してよろしいですか？
+      follow: 友達追加しました
+      unfollow: 友達解除しました
       create:
         submit: 作成する
         back: 戻る

@@ -7,9 +7,9 @@
       <i><%= link_to(image_tag('pencil.png', size: '16x16', class: "inline"), edit_user_path(@user)) %></i>
     <% else %>
       <% if current_user.following.include?(@user) %>
-        <i><%= link_to(image_tag('follow.png', size: '35x35', class: "inline mx-2"), edit_user_path(@user)) %></i>
+        <i><%= link_to(image_tag('unfollow.png', size: '35x35', class: "inline mx-2"), user_relationship_path(@user, current_user), data: { turbo_method: :delete }) %></i>
       <% else %>
-        <i><%= link_to(image_tag('unfollow.png', size: '35x35', class: "inline mx-2"), edit_user_path(@user)) %></i>
+        <i><%= link_to(image_tag('follow.png', size: '35x35', class: "inline mx-2"), user_relationships_path(@user), data: { turbo_method: :post } ) %></i>
       <% end %>
     <% end %>
   </div>
