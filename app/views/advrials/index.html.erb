@@ -1,12 +1,24 @@
 <div>
   <h2><%=t('.title') %></h2>
 </div>
+<div class="flex items-center py-2 cursor-pointer">
+  <%= link_to(user_path(@user), class: "flex items-center") do %>
+    <% if @user.image.attached? %>
+      <%= image_tag(image_url_helper(@user.image.variant(resize_to_fill: [100,100])), class: "ml-1 w-10 h-10 rounded-full") %>
+    <% else %>
+      <%= image_tag('no-user-image.png', size: '40x40', class: "w-10 h-10 rounded-full border p-1 ml-1") %>
+    <% end %>
+    <p class="px-1"><%= @user.name.present? ? @user.name : "@#{@user.account_name}" %></p>
+  <% end %>
+</div>
 
 <div class="place-content-center">
   <% @advrials.each do |advrial| %>
     <%= turbo_frame_tag advrial do %>
       <div class="border my-2 mx-1 h-auto w-auto p-2">
-        <i><%= link_to(image_tag('pencil.png', size: '16x16', class: "float-right"), edit_advrial_path(advrial)) %></i>
+        <% if advrial.user == current_user %>
+          <i><%= link_to(image_tag('pencil.png', size: '16x16', class: "float-right"), edit_advrial_path(advrial)) %></i>
+        <% end %>
         <div class="grid grid-cols-2 gap-4">
           <div class="flex items-center justify-center">
             <% if advrial.main_visual.attached? %>

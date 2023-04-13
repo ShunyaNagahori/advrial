@@ -35,6 +35,8 @@ en:
       title: My Profile
       top: Home
       edit: Edit
+      followers: Followers
+      following: Following
     welcome:
       to_login: Click here for the login page!
   advrials:

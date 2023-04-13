@@ -1,9 +1,11 @@
 class AdvrialsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_user, except: [:show]
   before_action :set_advrial, only: [:edit, :update, :show, :destroy, :completed]
+  before_action :corrent_user, only: [:edit, :update, :destroy]
 
   def index
-    @advrials = current_user.advrials
+    @advrials = Advrial.all.where(user_id: @user.id)
   end
 
   def new
@@ -60,8 +62,9 @@ class AdvrialsController < ApplicationController
   end
   
   private
+
     def set_advrial
-      @advrial = current_user.advrials.find(params[:id])
+      @advrial = Advrial.find(params[:id])
     end
 
     def advrial_params
@@ -73,5 +76,16 @@ class AdvrialsController < ApplicationController
         :advrial_category_id,
         :main_visual,
       )
+    end
+
+    def set_user
+      @user = User.find_by(account_name: params[:user_account_name])
+    end
+
+    def corrent_user
+      unless @user == current_user
+      flash[:alert] = "他のユーザーのページにはアクセス出来ません。"
+      redirect_to root_path
+      end
     end
 end
