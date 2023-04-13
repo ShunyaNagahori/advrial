@@ -6,6 +6,8 @@ en:
         back: Back
       delete: Delete
       delete_confirm: Are you sure?
+      follow: Added Friend
+      unfollow: Unfriended
       edit:
         update: Update
         cancel: cancel
@@ -18,7 +20,7 @@ en:
       time: "%m/%d %H:%M"
   headers:
     logout: Sign Out
-    my_profile: Profile
+    my_page: My Page
     my_advrials: My Advrials
   page:
     index:
@@ -33,6 +35,8 @@ en:
       title: My Profile
       top: Home
       edit: Edit
+      following: Following
+      followers: Followers
     welcome:
       to_login: Click here for the login page!
   advrials:
@@ -41,7 +45,6 @@ en:
       description: ※ Editing is possible even after creation.
     index:
       title: List of Advrial Events
-      create: ＋Going out
     show:
       create: ＋Add Arrival Location
       completed_trip: Going Home
@@ -54,3 +57,6 @@ en:
       title: Add the place you visited
     edit:
       title: Edit the place you visited
+  relationships:
+    no_following: No following
+    no_followers: No followers

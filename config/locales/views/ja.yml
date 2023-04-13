@@ -4,6 +4,8 @@ ja:
       back: 戻る
       delete: 削除
       delete_confirm: 削除してよろしいですか？
+      follow: 友達追加しました
+      unfollow: 友達解除しました
       create:
         submit: 作成する
         back: 戻る
@@ -20,7 +22,7 @@ ja:
       time: "%m/%d %H:%M"
   headers:
     logout: ログアウト
-    my_profile: プロフィール
+    my_page: マイページ
     my_advrials: アドリアル一覧
   page:
     index:
@@ -35,6 +37,8 @@ ja:
       title: プロフィール
       top: トップへ戻る
       edit: 編集ページ
+      following: フォロー
+      followers: フォロワー
     welcome:
       to_login: ログインページはこちら
   advrials:
@@ -43,7 +47,6 @@ ja:
       description: ※ 作成後も編集が可能です。
     index:
       title: アドリアル一覧
-      create: ＋お出かけする
     show:
       create: ＋到着地の追加
       completed_trip: 帰宅する
@@ -56,3 +59,6 @@ ja:
       title: 訪れた場所の追加
     edit:
       title: 訪れた場所の編集
+  relationships:
+    no_following: 誰もフォローしていません
+    no_followers: フォロワーはいません

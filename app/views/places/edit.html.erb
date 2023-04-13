@@ -44,7 +44,7 @@
             let address = "";
             if (status == google.maps.GeocoderStatus.OK) {
               // 取得が成功した場合、住所を取得します。
-              address = results[0].formatted_address.replace(/^日本、/, '');
+              address = results[0].formatted_address.replace(/^日本、?(〒)?\d{3}-?\d{4}/, '');
             } else {
               alert('Error:' + status);
             }

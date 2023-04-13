@@ -15,9 +15,9 @@
           <p class="px-1 ml-2"><%= current_user.name.present? ? current_user.name : current_user.email %></p>
         </div>
         <div class="text-center hidden absolute right-0 px-4 border z-20 bg-white w-60" data-header-target="menu">
-          <div class="border-b py-2"><%= link_to t('headers.my_profile'), user_path(current_user), class: "normalLink" %></div>
+          <div class="border-b py-2"><%= link_to t('headers.my_page'), user_path(current_user), class: "normalLink" %></div>
           <div class="border-b py-2"><%= link_to t('headers.my_advrials'), user_advrials_path(current_user), class: "normalLink" %></div>
-          <div class="border-b py-2"><%= link_to t('headers.logout'), destroy_user_session_path, data: {turbo_method: :delete }, class: "normalLink" %></div>
+          <div class="border-b py-2"><%= link_to t('headers.logout'), destroy_user_session_path, data: { turbo_method: :delete }, class: "normalLink" %></div>
         </div>
       </div>
 
@@ -28,16 +28,17 @@
         </div>
         <div class="text-center hidden absolute right-0 px-4 border w-screen z-20 bg-white" data-header-target="menu">
           <div class="flex items-center justify-center border-b py-1">
-            <% if current_user.image.attached? %>
-              <%= image_tag(image_url_helper(current_user.image.variant(resize_to_fill: [100,100])), class: "w-12 h-12 rounded-full p-1") %>
-            <% else %>
-              <%= image_tag('no-user-image.png', size: '100x100', class: "w-12 h-12 rounded-full p-1 border") %>
+            <%= link_to(user_path(current_user), class: "flex items-center") do %>
+              <% if current_user.image.attached? %>
+                <%= image_tag(image_url_helper(current_user.image.variant(resize_to_fill: [100,100])), class: "w-12 h-12 rounded-full p-1") %>
+              <% else %>
+                <%= image_tag('no-user-image.png', size: '100x100', class: "w-12 h-12 rounded-full p-1 border") %>
+              <% end %>
+              <p class="ml-2"><%= current_user.name.present? ? current_user.name : current_user.email %></p>
             <% end %>
-            <p class="ml-2"><%= current_user.name.present? ? current_user.name : current_user.email %></p>
           </div>
-          <div class="border-b py-2"><%= link_to t('headers.my_profile'), user_path(current_user), class: "normalLink" %></div>
           <div class="border-b py-2"><%= link_to t('headers.my_advrials'), user_advrials_path(current_user), class: "normalLink" %></div>
-          <div class="border-b py-2"><%= link_to t('headers.logout'), destroy_user_session_path, data: {turbo_method: :delete }, class: "normalLink" %></div>
+          <div class="border-b py-2"><%= link_to t('headers.logout'), destroy_user_session_path, data: { turbo_method: :delete }, class: "normalLink" %></div>
         </div>
       </div>
     <% end %>

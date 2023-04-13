@@ -1,6 +1,7 @@
 class PlacesController < ApplicationController
   before_action :set_advrial
   before_action :set_place, only: [:show, :edit, :update, :destroy]
+  before_action :corrent_user, except: [:show]
 
   def new
     @place = @advrial.places.new
@@ -61,5 +62,12 @@ class PlacesController < ApplicationController
 
     def set_place
       @place = Place.find(params[:id])
+    end
+
+    def corrent_user
+      unless @advrial.user == current_user
+      flash[:alert] = "他のユーザーのページにはアクセス出来ません。"
+      redirect_to root_path
+      end
     end
 end
