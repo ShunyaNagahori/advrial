@@ -1,4 +1,7 @@
 class ApplicationController < ActionController::Base
+  include Pundit::Authorization
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
   before_action :configure_permitted_parameters, if: :devise_controller?
   around_action :switch_locale
 
@@ -15,5 +18,10 @@ class ApplicationController < ActionController::Base
     def switch_locale(&action)
       locale = params[:locale] || :ja
       I18n.with_locale(locale, &action)
+    end
+
+    def user_not_authorized
+      flash[:alert] = t('common.actions.policy_error')
+      redirect_to(request.referrer || root_path)
     end
 end

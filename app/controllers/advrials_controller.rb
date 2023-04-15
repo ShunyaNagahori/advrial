@@ -2,10 +2,10 @@ class AdvrialsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user, except: [:show]
   before_action :set_advrial, only: [:edit, :update, :show, :destroy, :completed]
-  before_action :corrent_user, only: [:edit, :update, :destroy]
+  before_action :authorize_record
 
   def index
-    @advrials = Advrial.all.where(user_id: @user.id)
+    @advrials = @user.advrials.all
   end
 
   def new
@@ -29,8 +29,10 @@ class AdvrialsController < ApplicationController
   end
 
   def update
+    # turbo_frameを使っている為、以下のインスタンス変数が必要
     @advrials = current_user.advrials
     @advrial_categories = AdvrialCategory.all
+    @user = current_user # params[:account_name]が取得できない為、current_userで設定
     if @advrial.update(advrial_params)
       render :index
     else
@@ -67,6 +69,10 @@ class AdvrialsController < ApplicationController
       @advrial = Advrial.find(params[:id])
     end
 
+    def authorize_record
+      authorize @advrial || Advrial
+    end
+
     def advrial_params
       params.require(:advrial).permit(
         :title,
@@ -80,12 +86,5 @@ class AdvrialsController < ApplicationController
 
     def set_user
       @user = User.find_by(account_name: params[:user_account_name])
-    end
-
-    def corrent_user
-      unless @user == current_user
-      flash[:alert] = "他のユーザーのページにはアクセス出来ません。"
-      redirect_to root_path
-      end
     end
 end

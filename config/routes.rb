@@ -22,9 +22,9 @@ Rails.application.routes.draw do
     resources :relationships, only: [:create, :destroy]
     get 'followers', to: 'relationships#followers'
     get 'following', to: 'relationships#following'
-    resources :advrials, only: [:index, :new, :create]
+    resources :advrials, only: [:index]
   end
-  resources :advrials, only: [:edit, :update, :show, :destroy] do
+  resources :advrials, except: [:index] do
     post :completed, on: :member
     resources :places
   end

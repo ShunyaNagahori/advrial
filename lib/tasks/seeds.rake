@@ -16,7 +16,7 @@ namespace :seeds do
         if is_new
           puts "#{advrial_category.name_ja} Created" 
         else
-          puts "#{advrial_category.name_en} Updated"
+          puts "#{advrial_category.name_ja} Updated"
         end
       end
     end

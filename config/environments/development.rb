@@ -37,7 +37,7 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.perform_caching = false
 
@@ -51,6 +51,7 @@ Rails.application.configure do
     user_name: Rails.application.credentials.google[:mail_address], #gmailアドレス
     password: Rails.application.credentials.google[:password], #gmailパスワード
     authentication: 'login',
+    openssl_verify_mode: 'none'
   }
 
   # Print deprecation notices to the Rails logger.

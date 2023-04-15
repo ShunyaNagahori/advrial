@@ -2,7 +2,7 @@
   <h2><%=t('.title') %></h2>
 </div>
 
-<%= form_with model: @advrial, url: user_advrials_path(current_user) do |f|%>
+<%= form_with model: @advrial, url: advrials_path do |f|%>
   <%= render "shared/error_messages", resource: @advrial %>
 
   <div class="field">

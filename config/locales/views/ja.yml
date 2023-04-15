@@ -16,6 +16,7 @@ ja:
         updated: 更新しました
       destroy:
         deleted: 削除しました
+      policy_error: 他のユーザーの記録を操作することはできません。
   time:
     formats:
       default: "%Y/%m/%d"

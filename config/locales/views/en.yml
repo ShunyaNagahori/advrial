@@ -14,6 +14,7 @@ en:
         updated: Updated
       destroy:
         deleted: Deleted
+      policy_error: You cannot manipulate the records of other users.
   time:
     formats:
       default: "%Y/%m/%d"
