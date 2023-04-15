@@ -1,6 +1,6 @@
 module ApplicationHelper
 
   def image_url_helper(image)
-    Rails.env.development? ? url_for(image) : image.url
+    Rails.env.development? ? url_for(image) : url_for(image.url)
   end
 end
