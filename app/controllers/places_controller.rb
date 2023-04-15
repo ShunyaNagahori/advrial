@@ -1,7 +1,7 @@
 class PlacesController < ApplicationController
   before_action :set_advrial
   before_action :set_place, only: [:show, :edit, :update, :destroy]
-  before_action :corrent_user, except: [:show]
+  before_action :authorize_record
 
   def new
     @place = @advrial.places.new
@@ -44,6 +44,18 @@ class PlacesController < ApplicationController
 
   private
 
+    def set_advrial
+      @advrial = Advrial.find(params[:advrial_id])
+    end
+
+    def set_place
+      @place = Place.find(params[:id])
+    end
+
+    def authorize_record
+      authorize @place || @advrial.places.new
+    end
+
     def place_params
       params.require(:place).permit(
         :place_name,
@@ -54,20 +66,5 @@ class PlacesController < ApplicationController
         :description,
         images: []
       )
-    end
-
-    def set_advrial
-      @advrial = Advrial.find(params[:advrial_id])
-    end
-
-    def set_place
-      @place = Place.find(params[:id])
-    end
-
-    def corrent_user
-      unless @advrial.user == current_user
-      flash[:alert] = "他のユーザーのページにはアクセス出来ません。"
-      redirect_to root_path
-      end
     end
 end
