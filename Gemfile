@@ -22,7 +22,7 @@ gem 'enum_help'
 gem 'mini_magick'
 gem 'image_processing', '~> 1.2'
 gem 'rmagick'
-gem 'aws-sdk-s3'
+gem 'aws-sdk-s3', require: false
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
