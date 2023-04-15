@@ -10,4 +10,8 @@ class UserPolicy < ApplicationPolicy
   def destroy?
     user == record
   end
+
+  def welcome?
+    true
+  end
 end
