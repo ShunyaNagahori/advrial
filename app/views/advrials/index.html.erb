@@ -6,7 +6,7 @@
     <% if @user.image.attached? %>
       <%= image_tag(image_url_helper(@user.image.variant(resize_to_fill: [100,100])), class: "ml-1 w-10 h-10 rounded-full") %>
     <% else %>
-      <%= image_tag('no-user-image.png', size: '40x40', class: "w-10 h-10 rounded-full border p-1 ml-1") %>
+      <%= image_tag('no-user-image.jpg', size: '40x40', class: "w-10 h-10 rounded-full border ml-1") %>
     <% end %>
     <p class="px-1"><%= @user.name.present? ? @user.name : "@#{@user.account_name}" %></p>
   <% end %>

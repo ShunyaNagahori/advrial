@@ -9,7 +9,7 @@
       <label>
         <span class="block font-semibold border-b w-max"><%= t('activerecord.attributes.user.image') %></span>
       <label>
-      <span class="my-2 inline-block"><%= @user.image.attached? ? image_tag(image_url_helper(@user.image.variant(resize_to_fill: [200, 200])), class: "w-24 h-24 rounded-full") : image_tag('no-user-image.png', size: '100x100', class: "w-24 h-24 rounded-full p-1 border") %></span>
+      <span class="my-2 inline-block"><%= @user.image.attached? ? image_tag(image_url_helper(@user.image.variant(resize_to_fill: [200, 200])), class: "w-24 h-24 rounded-full") : image_tag('no-user-image.jpg', size: '100x100', class: "w-24 h-24 rounded-full border") %></span>
       <%= f.file_field :image, class: "mb-2" %>
       <%= render 'shared/validation_error', f: f, column: :image %>
     </div>

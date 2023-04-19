@@ -46,7 +46,7 @@
   <% end %>
 
   <div class="mt-4 space-x-2">
-    <%= f.submit text, class: "btn" %>
+    <%= f.submit text, class: "btn", 'data-turbo': false %>
     <%= link_to(t('common.actions.create.back'), advrial_path(@advrial), class: "backBtn") %>
   </div>
 <% end %>

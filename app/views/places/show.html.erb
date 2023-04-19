@@ -1,23 +1,26 @@
-<div>
+<div class="flex items-center justify-between mx-1">
   <h2><%= @place.place_name %></h2>
+  <% if @advrial.user == current_user %>
+    <i><%= link_to(image_tag('pencil.png', size: '16x16', class: "float-right"), edit_advrial_place_path(@advrial, @place)) %></i>
+  <% end %>
 </div>
 
 <div class="border my-2 px-1">
   <div class="swiper-container m-4 relative">
-      <!-- Additional required wrapper -->
-      <div class="swiper-wrapper flex items-center">
-          <!-- Slides -->
-          <% if @place.images.attached? %>
-            <% @place.images.each do |image| %>
-              <div class="swiper-slide"><%= image_tag(image_url_helper(image.variant(resize_to_limit: [800,800])), class: "m-auto px-4") %></div>
-            <% end %>
-          <% else %>
-            <div class="mx-auto"><%= image_tag('no-image.png') %></div>
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper flex items-center">
+        <!-- Slides -->
+        <% if @place.images.attached? %>
+          <% @place.images.each do |image| %>
+            <div class="swiper-slide"><%= image_tag(image_url_helper(image.variant(resize_to_limit: [800,800])), class: "m-auto px-4") %></div>
           <% end %>
-      </div>
-      <div class="swiper-pagination absolute"></div>
-      <div class="swiper-button-prev absolute"></div>
-      <div class="swiper-button-next absolute"></div>
+        <% else %>
+          <div class="mx-auto"><%= image_tag('no-image.png') %></div>
+        <% end %>
+    </div>
+    <div class="swiper-pagination absolute"></div>
+    <div class="swiper-button-prev absolute"></div>
+    <div class="swiper-button-next absolute"></div>
   </div>
 
   <p class="font-semibold px-1 border-b w-max"><%= Place.human_attribute_name(:address) %></p>

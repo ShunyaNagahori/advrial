@@ -20,7 +20,8 @@ ja:
   time:
     formats:
       default: "%Y/%m/%d"
-      time: "%m/%d %H:%M"
+      time: "%H:%M"
+      day: "%m/%d"
   headers:
     logout: ログアウト
     my_page: マイページ
