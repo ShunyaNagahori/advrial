@@ -5,20 +5,32 @@
     <label>
       <span class="block"><%= t('activerecord.attributes.place.images') %></span>
     <label>
-    <%= f.file_field :images, multiple: true, accept: "image/jpeg,image/gif,image/png" %>
-    <%= render 'shared/validation_error', f: f, column: :images %>
+
+    <% if @place.images.attached? %>
+      <%= f.label :images do %>
+        <%= image_tag(image_url_helper(@place.images.first.variant(resize_to_limit: [800,800])), class: "w-full cursor-pointer") %>
+        <%= f.file_field :images, multiple: true, accept: "image/jpeg,image/gif,image/png", style: "display:none" %>
+        <%= render 'shared/validation_error', f: f, column: :images %>
+      <% end %>
+    <% else %>
+      <%= f.label :images do %>
+        <%= image_tag('no-image.png', size: '800x800', class: "w-full cursor-pointer") %>
+        <%= f.file_field :images, multiple: true, accept: "image/jpeg,image/gif,image/png", style: "display:none" %>
+        <%= render 'shared/validation_error', f: f, column: :images %>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="field">
     <%= f.label :place_name, class: 'block' %>
-    <%= f.text_field :place_name %>
+    <%= f.text_field :place_name, class: "w-full" %>
     <%= render 'shared/validation_error', f: f, column: :place_name %>
   </div>
 
   <div class="field">
     <%= f.label :address, class: 'block' %>
     <p id="text_address"><%= @place.address if action_name == 'edit' %></p>
-    <%= f.hidden_field :address %>
+    <%= f.hidden_field :address, class: "w-full" %>
     <%= render 'shared/validation_error', f: f, column: :address %>
   </div>
 
@@ -31,13 +43,13 @@
 
   <div class="field">
     <%= f.label :date_time, class: 'block' %>
-    <%= f.datetime_field :date_time, value: @place.date_time.present? ? @place.date_time.strftime('%Y-%m-%dT%T') : Time.current.strftime('%Y-%m-%dT%T') %>
+    <%= f.datetime_local_field :date_time, value: @place.date_time.present? ? @place.date_time.strftime('%Y-%m-%dT%H:%M') : Time.current.strftime('%Y-%m-%dT%H:%M'), class: "w-full" %>
     <%= render 'shared/validation_error', f: f, column: :date_time %>
   </div>
 
   <div class="field">
     <%= f.label :description, class: 'block' %>
-    <%= f.text_area :description %>
+    <%= f.text_area :description, class: "w-full" %>
     <%= render 'shared/validation_error', f: f, column: :description %>
   </div>
 
@@ -46,7 +58,7 @@
   <% end %>
 
   <div class="mt-4 space-x-2">
-    <%= f.submit text, class: "btn" %>
+    <%= f.submit text, class: "btn", 'data-turbo': false %>
     <%= link_to(t('common.actions.create.back'), advrial_path(@advrial), class: "backBtn") %>
   </div>
 <% end %>

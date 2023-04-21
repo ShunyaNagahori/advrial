@@ -1,21 +1,46 @@
-<div>
-  <h2><%= @advrial.title %></h2>
-  <% if @advrial.start_date == @advrial.end_date %>
-    <p><%= l(@advrial.end_date) %></p>
-  <% else %>
-    <p class="px-1"><%= l(@advrial.start_date) %> 〜 <%= l(@advrial.end_date) %></p>
-  <% end %>
-  <div class="flex items-center py-2 cursor-pointer">
-    <%= link_to(user_path(@advrial.user), class: "flex items-center") do %>
-      <% if @advrial.user.image.attached? %>
-        <%= image_tag(image_url_helper(@advrial.user.image.variant(resize_to_fill: [100,100])), class: "ml-1 w-10 h-10 rounded-full") %>
+<% if @advrial.main_visual.attached? %>
+  <div class="bg-cover bg-center h-64 flex flex-col justify-end" style="background-image: url('<%= url_for(@advrial.main_visual) %>')">
+    <div class="px-2">
+      <h2 class="text-white text-3xl"><%= @advrial.title %></h2>
+      <% if @advrial.start_date == @advrial.end_date %>
+        <p class="text-white font-semibold"><%= l(@advrial.end_date) %></p>
       <% else %>
-        <%= image_tag('no-user-image.png', size: '40x40', class: "w-10 h-10 rounded-full border p-1 ml-1") %>
+        <p class="px-1 text-white font-semibold"><%= l(@advrial.start_date) %> 〜 <%= l(@advrial.end_date) %></p>
       <% end %>
-      <p class="px-1"><%= @advrial.user.name.present? ? @advrial.user.name : @advrial.user.account_name %></p>
-    <% end %>
+      <div class="flex items-center py-2 cursor-pointer">
+        <%= link_to(user_path(@advrial.user), class: "flex items-center") do %>
+          <% if @advrial.user.image.attached? %>
+            <%= image_tag(image_url_helper(@advrial.user.image.variant(resize_to_fill: [100,100])), class: "ml-1 w-10 h-10 rounded-full") %>
+          <% else %>
+            <%= image_tag('no-user-image.jpg', size: '40x40', class: "w-10 h-10 rounded-full border ml-1") %>
+          <% end %>
+          <p class="px-1 text-white"><%= @advrial.user.name.present? ? @advrial.user.name : @advrial.user.account_name %></p>
+        <% end %>
+      </div>
+    </div>
   </div>
-</div>
+<% else %>
+  <div class="bg-gray-200 h-64 flex flex-col justify-end">
+    <div class="px-2">
+      <h2 class="font-bold"><%= @advrial.title %></h2>
+      <% if @advrial.start_date == @advrial.end_date %>
+        <p><%= l(@advrial.end_date) %></p>
+      <% else %>
+        <p class="px-1 font-semibold"><%= l(@advrial.start_date) %> 〜 <%= l(@advrial.end_date) %></p>
+      <% end %>
+      <div class="flex items-center py-2 cursor-pointer">
+        <%= link_to(user_path(@advrial.user), class: "flex items-center") do %>
+          <% if @advrial.user.image.attached? %>
+            <%= image_tag(image_url_helper(@advrial.user.image.variant(resize_to_fill: [100,100])), class: "ml-1 w-10 h-10 rounded-full") %>
+          <% else %>
+            <%= image_tag('no-user-image.jpg', size: '40x40', class: "w-10 h-10 rounded-full border ml-1") %>
+          <% end %>
+          <p class="px-1 font-semibold"><%= @advrial.user.name.present? ? @advrial.user.name : @advrial.user.account_name %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
 
 <% if @advrial.user == current_user %>
   <%= link_to(t('.create'), new_advrial_place_path(@advrial), class: "btn block text-center") if !@advrial.completed_trip %>
@@ -24,36 +49,37 @@
 
 <div class="place-content-center">
   <% @places.each do |place| %>
-    <div class="border my-2 mx-1 h-auto w-auto p-2">
-      <% if @advrial.user == current_user %>
-        <i><%= link_to(image_tag('pencil.png', size: '16x16', class: "float-right"), edit_advrial_place_path(@advrial, place)) %></i>
-      <% end %>
-      <div class="grid grid-cols-2 gap-4">
-        <div class="flex items-center justify-center">
-          <% if place.images.attached? %>
-            <%= link_to(image_tag(image_url_helper(place.images.first.variant(resize_to_limit: [300,300])), class: "w-full"), advrial_place_path(@advrial, place), 'data-turbo': false) %>
-          <% else %>
-            <%= link_to(image_tag('no-image.png', size: '300x300', class: "w-full"), advrial_place_path(@advrial, place), 'data-turbo': false) %>
-          <% end %>
-        </div>
-        <div class="flex flex-col">
-          <p class="text-xl text-bold border-b mb-1 px-2 overflow-hidden whitespace-nowrap text-ellipsis">
-            <%= place.place_name %>
-          </p>
-          <p class="text-sm border-b mb-1 px-2 overflow-hidden whitespace-nowrap text-ellipsis">
-            <%= place.address %>
-          </p>
-          <p class="border-b mb-2 px-2">
-            <%= l(place.date_time, format: :time) %>
-          </p>
-          <div class="flex-1 border border-slate-500 border-dotted py-1 px-2 w-full">
-            <%= simple_format(place.description, class: "sp-only text-xs break-all overflow-y-scroll line-clamp-[8]") %>
-            <%= simple_format(place.description, class: "pc-only text-sm break-all overflow-y-scroll line-clamp-[20]") %>
+    <%= link_to(advrial_place_path(@advrial, place),'data-turbo': false) do %>
+      <div class="border my-2 mx-1 h-auto w-auto p-2">
+        <div class="grid grid-cols-4 gap-4">
+          <div class="flex flex-col justify-center col-span-1">
+            <p class="border-b mb-1 px-2">
+              <%= l(place.date_time, format: :day) %>
+            </p>
+            <p class="text-xl text-bold border-b mb-1 px-2 overflow-hidden whitespace-nowrap text-ellipsis">
+              <%= l(place.date_time, format: :time) %>
+            </p>
+            <p class="text-xs text-bold border-b mb-1 px-2 overflow-hidden whitespace-nowrap text-ellipsis text-gray-400">お気に入り実装予定</p>
           </div>
-          <p class="text-xs text-gray-400">お気に入り機能実装予定</p>
+          <div class="flex flex-col justify-center col-span-2">
+            <p class="text-xl font-semibold mb-1 px-2 overflow-hidden whitespace-nowrap text-ellipsis">
+              <%= place.place_name %>
+            </p>
+            <p class="text-sm border-b mb-1 px-2 overflow-hidden whitespace-nowrap text-ellipsis">
+              <%= place.address %>
+            </p>
+          </div>
+          <div class="flex items-center justify-center col-span-1">
+            <% if place.images.attached? %>
+              <%= image_tag(image_url_helper(place.images.first.variant(resize_to_limit: [300,300])), class: "w-full") %>
+            <% else %>
+              <%= image_tag('no-image.png', size: '300x300', class: "w-full") %>
+            <% end %>
+          </div>
         </div>
       </div>
-    </div>
+
+    <% end %>
   <% end %>
 </div>
 

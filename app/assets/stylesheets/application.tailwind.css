@@ -29,7 +29,8 @@
   input[type="date"],
   input[type="url"],
   input[type="email"],
-  input[type="password"] {
+  input[type="password"],
+  input[type="datetime-local"] {
     @apply rounded-md h-9;
   }
 

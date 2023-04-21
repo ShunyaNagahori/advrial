@@ -24,9 +24,9 @@ class PlacesController < ApplicationController
   def update
     if @place.update(place_params)
       flash[:notice] = t('common.actions.edit.updated')
-      redirect_to advrial_path(@advrial)
+      redirect_to advrial_place_path(@advrial, @place)
     else
-      render :edit, status: 422
+      render :show, status: 422
     end
   end
 
