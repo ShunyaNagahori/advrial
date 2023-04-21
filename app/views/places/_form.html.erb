@@ -59,11 +59,15 @@
 
   <div class="mt-4 space-x-2">
     <%= f.submit text, class: "btn", 'data-turbo': false %>
-    <%= link_to(t('common.actions.create.back'), advrial_path(@advrial), class: "backBtn") %>
+    <% if isNew %>
+      <%= link_to(t('common.actions.create.back'), advrial_path(@advrial), class: "backBtn") %>
+    <% else %>
+      <%= link_to(t('common.actions.edit.cancel'), advrial_place_path(@advrial, @place), class: "backBtn", 'data-turbo': false ) %>
+    <% end %>
   </div>
 <% end %>
 
-<% if !isNew %>
+<% unless isNew %>
   <%= button_to(t('common.actions.delete'), advrial_place_path(@advrial, @place),class: "deleteBtn mt-6", data: { turbo_confirm: t('common.actions.delete_confirm') }, method: :delete) %>
 <% end %>
 
