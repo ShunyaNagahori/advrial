@@ -9,6 +9,7 @@ class Place < ApplicationRecord
   validates :latitude, presence: true
   validates :longitude, presence: true
   validate :place_date_time_in_advrial
+  validate :image_length
 
 
   def place_date_time_in_advrial
@@ -22,6 +23,14 @@ class Place < ApplicationRecord
   def set_id
     while self.id.blank? || Advrial.find_by(id: self.id).present?
       self.id = SecureRandom.urlsafe_base64
+    end
+  end
+
+  # FIXME: バリデーションは効くが、バリデーションエラーにならない(とりあえず、viewに説明を表示)
+  def image_length
+    if self.images.length > 5
+      images.purge
+      errors.add(:base, "test")
     end
   end
 end

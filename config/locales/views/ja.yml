@@ -61,6 +61,7 @@ ja:
       title: 訪れた場所の追加
     edit:
       title: 訪れた場所の編集
+      image_limit: ※アップロードできる画像は5枚までです。
   relationships:
     no_following: 誰もフォローしていません
     no_followers: フォロワーはいません

@@ -1,23 +1,26 @@
 <%= form_with model: @place, url: url do |f|%>
   <%= render "shared/error_messages", resource: @place %>
 
-  <div class="field">
-    <label>
-      <span class="block"><%= t('activerecord.attributes.place.images') %></span>
-    <label>
-
+  <div class="field"  data-controller="select-image">
+    <%= f.label :images, class: "block" %>
+      <%= f.file_field :images, multiple: true, accept: "image/jpeg,image/gif,image/png", data: { action: "change->select-image#filesChange" }, class: "w-full" %>
+      <%= render 'shared/validation_error', f: f, column: :images %>
+      <p class="text-xs w-full"><%= t('places.edit.image_limit') %></p>
+    <div id="preview_images" style="display:none" class="overflow-x-scroll mt-2">
+      <p id="preview"></p>
+    </div>
     <% if @place.images.attached? %>
-      <%= f.label :images do %>
-        <%= image_tag(image_url_helper(@place.images.first.variant(resize_to_limit: [800,800])), class: "w-full cursor-pointer") %>
-        <%= f.file_field :images, multiple: true, accept: "image/jpeg,image/gif,image/png", style: "display:none" %>
-        <%= render 'shared/validation_error', f: f, column: :images %>
+      <div class="flex mt-2">
+      <% @place.images.each do |image|%>
+        <div>
+          <%= image_tag(image_url_helper(image.variant(resize_to_fill: [200,200])), class: "p-1 w-24") %>
+          <span class="flex items-center px-1">
+            <%= f.check_box :image_ids, { multiple: true }, image.id, false %>
+            <p class="text-xs ml-2"><%= t('common.actions.delete') %></p>
+          </span>
+        </div>
       <% end %>
-    <% else %>
-      <%= f.label :images do %>
-        <%= image_tag('no-image.png', size: '800x800', class: "w-full cursor-pointer") %>
-        <%= f.file_field :images, multiple: true, accept: "image/jpeg,image/gif,image/png", style: "display:none" %>
-        <%= render 'shared/validation_error', f: f, column: :images %>
-      <% end %>
+      </div>
     <% end %>
   </div>
 
@@ -57,13 +60,17 @@
     <p class="text-sm"><%= t('places.description') %></p>
   <% end %>
 
-  <div class="mt-4 space-x-2">
-    <%= f.submit text, class: "btn", 'data-turbo': false %>
-    <%= link_to(t('common.actions.create.back'), advrial_path(@advrial), class: "backBtn") %>
+  <div class="mt-4">
+    <%= f.submit text, class: "btn w-full block", 'data-turbo': false %>
+    <% if isNew %>
+      <%= link_to(t('common.actions.create.back'), advrial_path(@advrial), class: "backBtn w-full block") %>
+    <% else %>
+      <%= link_to(t('common.actions.edit.cancel'), advrial_place_path(@advrial, @place), class: "backBtn w-full block", 'data-turbo': false ) %>
+    <% end %>
   </div>
 <% end %>
 
-<% if !isNew %>
+<% unless isNew %>
   <%= button_to(t('common.actions.delete'), advrial_place_path(@advrial, @place),class: "deleteBtn mt-6", data: { turbo_confirm: t('common.actions.delete_confirm') }, method: :delete) %>
 <% end %>
 

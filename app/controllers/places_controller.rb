@@ -9,7 +9,6 @@ class PlacesController < ApplicationController
 
   def create
     @place = @advrial.places.new(place_params)
-
     if @place.save
       flash[:notice] = t('common.actions.create.created')
       redirect_to advrial_path(@advrial)
@@ -22,6 +21,14 @@ class PlacesController < ApplicationController
   end
 
   def update
+    # image_idsがparamsに含まれている場合、チェックされているものを削除する。
+    if params[:place][:image_ids].present?
+      params[:place][:image_ids].each do |image_id|
+        image = @place.images.find(image_id)
+        image.purge
+      end
+    end
+
     if @place.update(place_params)
       flash[:notice] = t('common.actions.edit.updated')
       redirect_to advrial_place_path(@advrial, @place)
