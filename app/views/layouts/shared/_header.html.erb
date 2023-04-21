@@ -1,7 +1,10 @@
 <nav class="w-full border-b">
   <div class="flex justify-between mx-auto">
-    <div class="flex items-center sm:px-4 px-1">
-      <h1 class="text-xl font-bold p-2"><%= user_signed_in? ? link_to('Advrial', root_path) : link_to('Advrial', new_user_session_path) %></h1>
+    <div class="flex items-center sm:px-4 px-1 pc-only">
+      <h1 class="text-xl font-bold p-2"><%= user_signed_in? ? link_to(image_tag('logo.png', size: '125x125'), root_path) : link_to(image_tag('logo.png', size: '125x125'), new_user_session_path) %></h1>
+    </div>
+    <div class="flex items-center sm:px-4 px-1 sp-only">
+      <h1 class="text-xl font-bold p-2"><%= user_signed_in? ? link_to(image_tag('logo.png', size: '100x100'), root_path) : link_to(image_tag('logo.png', size: '125x125'), new_user_session_path) %></h1>
     </div>
     <!-- PC -->
     <% if user_signed_in? %>
@@ -24,7 +27,7 @@
       <!-- SP -->
       <div class="px-4 px-1 sp-only" data-controller="header">
         <div class="flex items-center py-2 cursor-pointer" data-action="click->header#dropDownMenu">
-          <%= image_tag('sp-menu.png', size: '100x100', class: "w-9 h-8 px-1") %>
+          <%= image_tag('sp-menu.png', size: '100x100', class: "w-9") %>
         </div>
         <div class="text-center hidden absolute right-0 px-4 border w-screen z-20 bg-white" data-header-target="menu">
           <div class="flex items-center justify-center border-b py-1">

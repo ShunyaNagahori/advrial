@@ -1,11 +1,11 @@
 <% if @advrial.main_visual.attached? %>
   <div class="bg-cover bg-center h-64 flex flex-col justify-end" style="background-image: url('<%= url_for(@advrial.main_visual) %>')">
     <div class="px-2">
-      <h2><%= @advrial.title %></h2>
+      <h2 class="text-white text-3xl"><%= @advrial.title %></h2>
       <% if @advrial.start_date == @advrial.end_date %>
-        <p><%= l(@advrial.end_date) %></p>
+        <p class="text-white font-semibold"><%= l(@advrial.end_date) %></p>
       <% else %>
-        <p class="px-1"><%= l(@advrial.start_date) %> 〜 <%= l(@advrial.end_date) %></p>
+        <p class="px-1 text-white font-semibold"><%= l(@advrial.start_date) %> 〜 <%= l(@advrial.end_date) %></p>
       <% end %>
       <div class="flex items-center py-2 cursor-pointer">
         <%= link_to(user_path(@advrial.user), class: "flex items-center") do %>
@@ -14,7 +14,7 @@
           <% else %>
             <%= image_tag('no-user-image.jpg', size: '40x40', class: "w-10 h-10 rounded-full border ml-1") %>
           <% end %>
-          <p class="px-1 text-fuchi"><%= @advrial.user.name.present? ? @advrial.user.name : @advrial.user.account_name %></p>
+          <p class="px-1 text-white"><%= @advrial.user.name.present? ? @advrial.user.name : @advrial.user.account_name %></p>
         <% end %>
       </div>
     </div>
