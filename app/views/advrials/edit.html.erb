@@ -3,20 +3,16 @@
     <%= render "shared/error_messages", resource: @advrial %>
     <div class="border my-2 mx-1 h-auto w-auto p-2">
       <div class="grid grid-cols-2 gap-4">
-        <div class="flex items-center justify-center">
-          <% if @advrial.main_visual.attached? %>
+        <div class="flex items-center justify-center" data-controller="select-image">
             <%= f.label :main_visual do %>
-              <%= image_tag(image_url_helper(@advrial.main_visual.variant(resize_to_limit: [300,300])), class: "w-full cursor-pointer") %>
-              <%= f.file_field :main_visual, accept: "image/jpeg,image/gif,image/png", style: "display:none" %>
+              <% if @advrial.main_visual.attached? %>
+                <%= image_tag(image_url_helper(@advrial.main_visual.variant(resize_to_limit: [300,300])), class: "w-full cursor-pointer", data: { select_image_target: "image" }) %>
+              <% else %>
+                <%= image_tag('no-image.png', size: "300x300", class: "w-full cursor-pointer", data: { select_image_target: "image" }) %>
+              <% end %>
+              <%= f.file_field :main_visual, accept: "image/jpeg,image/gif,image/png", class: "hidden", data: { action: "change->select-image#fileChange" } %>
               <%= render 'shared/validation_error', f: f, column: :main_visual %>
             <% end %>
-          <% else %>
-            <%= f.label :main_visual do %>
-              <%= image_tag('no-image.png', size: '300x300', class: "w-full cursor-pointer") %>
-              <%= f.file_field :main_visual, accept: "image/jpeg,image/gif,image/png", style: "display:none" %>
-              <%= render 'shared/validation_error', f: f, column: :main_visual %>
-            <% end %>
-          <% end %>
         </div>
         <div class="flex flex-col">
           <p class="text-xl text-bold border-b mb-1 px-4 overflow-hidden whitespace-nowrap text-ellipsis">

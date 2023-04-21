@@ -58,6 +58,7 @@ en:
       title: Add the place you visited
     edit:
       title: Edit the place you visited
+      image_limit: You can upload up to 5 images.
   relationships:
     no_following: No following
     no_followers: No followers
