@@ -47,8 +47,5 @@
       </div>
     <% end %>
   <% end %>
-</div>
-
-<div class="pt-8 text-center">
-  <%= link_to t('common.actions.back'), root_path, class: "backBtn" %>
+  <p class="text-right px-2"><%= t("common.count", count: @advrials.count) %></p>
 </div>

@@ -15,6 +15,7 @@ en:
       destroy:
         deleted: Deleted
       policy_error: You cannot manipulate the records of other users.
+    count: "%{count}items"
   time:
     formats:
       default: "%Y/%m/%d"

@@ -17,6 +17,7 @@ ja:
       destroy:
         deleted: 削除しました
       policy_error: 他のユーザーの記録を操作することはできません。
+    count: "%{count}件"
   time:
     formats:
       default: "%Y/%m/%d"
