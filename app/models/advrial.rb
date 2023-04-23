@@ -8,6 +8,7 @@ class Advrial < ApplicationRecord
   validates :title, presence: true
   validates :start_date, presence: true
   validates :end_date, presence: true
+  validates :returns_home_at, presence: true, if: proc{ |advrial| advrial.completed_trip? }
   validate :start_date_cannot_comes_after_end_date
   
 

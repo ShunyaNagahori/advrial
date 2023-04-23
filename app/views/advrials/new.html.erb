@@ -43,10 +43,15 @@
     <%= render 'shared/validation_error', f: f, column: :description%>
   </div>
 
+  <div class="field w-full flex items-center">
+    <%= f.check_box :public %>
+    <p class="text-sm ml-2"><%= t('.public') %></p>
+  </div>
+
   <p class="text-sm"><%= t('.description') %></p>
   
-  <div class="pt-8 pb-24 space-x-2">
-    <%= f.submit t('common.actions.create.submit'), class: "btn" %>
-    <%= link_to t('common.actions.create.back'), root_path, class: "backBtn" %>
+  <div class="pt-8">
+    <%= f.submit t('common.actions.create.submit'), class: "btn w-full block" %>
+    <%= link_to t('common.actions.create.back'), root_path, class: "backBtn w-full block" %>
   </div>
 <% end %>

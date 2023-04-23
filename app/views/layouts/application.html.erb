@@ -20,13 +20,14 @@
     <header>
       <%= render 'layouts/shared/header' %>
     </header>
-    <div class="container">
+    <div class="container mb-14">
       <div class="p-4">
         <p class="notice text-emerald-600"><%= notice %></p>
         <p class="alert text-rose-600"><%= alert %></p>
           <%= yield %>
       </div>
     </div>
+    <%= render 'layouts/shared/footer_menu' %>
     <!-- Swiper -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   </body>

@@ -15,6 +15,7 @@ en:
       destroy:
         deleted: Deleted
       policy_error: You cannot manipulate the records of other users.
+    count: "%{count}items"
   time:
     formats:
       default: "%Y/%m/%d"
@@ -43,12 +44,14 @@ en:
   advrials:
     new:
       title: Create Advrial
+      public: Public
       description: ※ Editing is possible even after creation.
     index:
       title: List of Advrial Events
     show:
       create: ＋Add Arrival Location
       completed_trip: Going Home
+      completed: The outing is now closed.
       description: When you arrive at your destination, click the button below to record your arrival!
       confirm: I will not be able to register my location on this Advrial, do you want to go home? (You can edit it)
   places:
