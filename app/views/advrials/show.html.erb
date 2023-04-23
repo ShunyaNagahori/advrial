@@ -7,8 +7,8 @@
       <% else %>
         <p class="px-1 text-white font-semibold"><%= l(@advrial.start_date) %> 〜 <%= l(@advrial.end_date) %></p>
       <% end %>
-      <div class="flex items-center py-2 cursor-pointer">
-        <%= link_to(user_path(@advrial.user), class: "flex items-center") do %>
+      <div class="flex items-center py-2">
+        <%= link_to(user_path(@advrial.user), class: "flex items-center w-max") do %>
           <% if @advrial.user.image.attached? %>
             <%= image_tag(image_url_helper(@advrial.user.image.variant(resize_to_fill: [100,100])), class: "ml-1 w-10 h-10 rounded-full") %>
           <% else %>
@@ -84,5 +84,5 @@
 </div>
 
 <div class="pt-8 text-center">
-  <%= link_to t('common.actions.back'), user_advrials_path(@advrial.user), class: "backBtn" %>
+  <%= link_to t('common.actions.back'), :back, class: "backBtn" %>
 </div>

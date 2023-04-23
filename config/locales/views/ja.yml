@@ -47,12 +47,14 @@ ja:
   advrials:
     new:
       title: アドリアル作成
+      public: 公開する
       description: ※ 作成後も編集が可能です。
     index:
       title: アドリアル一覧
     show:
       create: ＋到着地の追加
       completed_trip: 帰宅する
+      completed: お出かけを終了しました。
       description: 目的地に到着したら、下のボタンをクリックして、到着を記録してください。
       confirm: こちらのAdvrialに、場所の登録が出来なくなりますが、帰宅しますか？(編集は可能です)
   places:

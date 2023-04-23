@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_10_073849) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_22_153957) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -61,6 +61,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_10_073849) do
     t.string "advrial_category_id"
     t.boolean "completed_trip", default: false, null: false
     t.boolean "public", default: false, null: false
+    t.datetime "returns_home_at"
     t.index ["advrial_category_id"], name: "index_advrials_on_advrial_category_id"
     t.index ["user_id"], name: "index_advrials_on_user_id"
   end

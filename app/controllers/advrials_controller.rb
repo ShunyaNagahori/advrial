@@ -54,11 +54,12 @@ class AdvrialsController < ApplicationController
   end
 
   def completed
-    if @advrial.update(completed_trip: true)
-      flash[:notice] = "帰宅しました"
+    if @advrial.update(completed_trip: true, returns_home_at: Time.current)
+      flash[:notice] = t("advrials.show.completed")
       redirect_to @advrial
     else
-      flash[:alert] = "編集できません"
+      @places = @advrial.places.order(date_time: :desc)
+      flash[:alert] = @advrial.errors.full_messages.join(" ")
       render :show, status: 422
     end
   end
@@ -80,6 +81,7 @@ class AdvrialsController < ApplicationController
         :end_date,
         :description,
         :advrial_category_id,
+        :public,
         :main_visual,
       )
     end

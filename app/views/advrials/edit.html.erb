@@ -29,8 +29,12 @@
             <%= render 'shared/validation_error', f: f, column: :advrial_category_id %>
           </p>
           <div class="flex-1 border border-slate-500 border-dotted py-1 px-2 w-full">
-            <%= f.text_area :description, class: "px-4 w-full" %>
+            <%= f.text_area :description, class: "px-4 w-full h-full" %>
             <%= render 'shared/validation_error', f: f, column: :description %>
+          </div>
+          <div class="field w-full flex items-center justify-center mt-0.5 mb-0">
+            <%= f.check_box :public %>
+            <p class="text-sm ml-2"><%= t('advrials.new.public') %></p>
           </div>
         </div>
       </div>
@@ -40,3 +44,6 @@
   <% end %>
   <%= button_to(t('common.actions.delete'), advrial_path(@advrial),class: "deleteBtn w-full mt-4", data: { turbo_confirm: t('common.actions.delete_confirm'), turbo_frame: '_top' }, method: :delete) %>
 <% end %>
+<div class="pt-8 text-center">
+  <%= link_to t('common.actions.back'), :back, class: "backBtn" %>
+</div>

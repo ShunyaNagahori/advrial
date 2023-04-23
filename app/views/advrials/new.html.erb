@@ -43,6 +43,11 @@
     <%= render 'shared/validation_error', f: f, column: :description%>
   </div>
 
+  <div class="field w-full flex items-center">
+    <%= f.check_box :public %>
+    <p class="text-sm ml-2"><%= t('.public') %></p>
+  </div>
+
   <p class="text-sm"><%= t('.description') %></p>
   
   <div class="pt-8">
