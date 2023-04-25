@@ -32,6 +32,7 @@ ja:
         advrial_category: Advrial Category
         main_visual: Main Visual
         description: Description
+        returns_home_at: Time to Go Home
       place:
         place_name: Name
         address: Address

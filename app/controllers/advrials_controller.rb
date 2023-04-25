@@ -5,7 +5,7 @@ class AdvrialsController < ApplicationController
   before_action :authorize_record
 
   def index
-    @advrials = @user.advrials.all
+    @advrials = @user.advrials.all.order(created_at: :desc)
   end
 
   def new
@@ -56,7 +56,7 @@ class AdvrialsController < ApplicationController
   def completed
     if @advrial.update(completed_trip: true, returns_home_at: Time.current)
       flash[:notice] = t("advrials.show.completed")
-      redirect_to @advrial
+      redirect_to user_advrials_path(current_user)
     else
       @places = @advrial.places.order(date_time: :desc)
       flash[:alert] = @advrial.errors.full_messages.join(" ")

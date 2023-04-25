@@ -32,6 +32,7 @@ ja:
         advrial_category: カテゴリー
         main_visual: メイン画像
         description: 説明
+        returns_home_at: 帰宅時間
       place:
         place_name: 名前
         address: 住所

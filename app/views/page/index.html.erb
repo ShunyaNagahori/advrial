@@ -1,5 +1,6 @@
 <div class="flex justify-center">
-  <div class="border-y w-screen -mx-16">
+  <!--SP-->
+  <div class="border-y w-screen -mx-16 sp-only">
     <% @advrials.each do |advrial| %>
       <div class="border-b my-2 mx-1 h-auto w-auto">
         <div class="flex items-center px-1 cursor-pointer w-max mb-2">
@@ -15,7 +16,59 @@
             </div>
           <% end %>
         </div>
+        <div class="mb-2">
+          <div class="px-1 mb-2">
+            <%= link_to(advrial_path(advrial), 'data-turbo': false) do %>
+              <div class="flex justify-between border-b">
+                <p class="px-2 overflow-hidden whitespace-nowrap text-ellipsis">
+                  <%= advrial.title %>
+                </p>
+                <% if advrial.user == current_user %>
+                  <i><%= link_to(image_tag('pencil.png', size: '16x16'), edit_advrial_path(advrial)) %></i>
+                <% end %>
+              </div>
+            <% end %>
+            <div class="flex items-center mt-1">
+              <p class="px-2 text-xs text-gray-500">
+                <%= l(advrial.start_date) %> 〜 <%= l(advrial.end_date) %>
+              </p>
+              <p class="px-2 text-sm">
+                  <%= advrial.advrial_category.name_in_locales %>
+              </p>
+            </div>
+          </div>
+          <div class="flex items-center justify-center">
+            <% if advrial.main_visual.attached? %>
+              <%= link_to(image_tag(image_url_helper(advrial.main_visual.variant(resize_to_limit: [1000,1000])), class: "w-full mb-2"), advrial_path(advrial), 'data-turbo': false) %>
+            <% end %>
+          </div>
+          <div class="flex-1 border border-slate-500 border-dotted py-1 px-2 w-full">
+            <%= simple_format(advrial.description, class: "sp-only text-sm break-all overflow-y-scroll line-clamp-[8]") %>
+            <%= simple_format(advrial.description, class: "pc-only text-sm break-all overflow-y-scroll line-clamp-[20]") %>
+          </div>
+          <p class="text-xs text-gray-400 mt-2 text-center">お気に入り機能実装予定</p>
+        </div>
+      </div>
+    <% end %>
+  </div>
 
+  <!--PC-->
+  <div class="border-y w-1/2 pc-only">
+    <% @advrials.each do |advrial| %>
+      <div class="border-b my-2 mx-1 h-auto w-auto">
+        <div class="flex items-center px-1 cursor-pointer w-max mb-2">
+          <%= link_to(user_path(advrial.user), class: "flex items-center") do %>
+            <% if advrial.user.image.attached? %>
+              <%= image_tag(image_url_helper(advrial.user.image.variant(resize_to_fill: [100,100])), class: "ml-1 w-10 h-10 rounded-full") %>
+            <% else %>
+              <%= image_tag('no-user-image.jpg', size: '40x40', class: "w-10 h-10 rounded-full border ml-1") %>
+            <% end %>
+            <div>
+              <p class="px-1 text-sm"><%= advrial.user.name.present? ? advrial.user.name : "No Name" %></p>
+              <p class="px-1 text-xs text-gray-400"><%= "@#{advrial.user.account_name}" %>
+            </div>
+          <% end %>
+        </div>
         <div class="mb-2">
           <div class="px-1 mb-2">
             <%= link_to(advrial_path(advrial), 'data-turbo': false) do %>

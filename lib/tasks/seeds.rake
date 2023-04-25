@@ -1,6 +1,7 @@
 namespace :seeds do
   require 'csv'
 
+  # カテゴリーの作成と編集
   desc "create AdvrialCategory"
   task advrial_category_create: :environment do
     path = File.join(Rails.root, 'lib/assets/csv/AdvrialCategory_2023_04_09.csv')
@@ -18,6 +19,18 @@ namespace :seeds do
         else
           puts "#{advrial_category.name_ja} Updated"
         end
+      end
+    end
+  end
+
+  # returns_home_atがないものを、アップデート（いずれ消す）
+  desc "Edit returns_home_at"
+  task returns_home_update: :environment do
+    ActiveRecord::Base.transaction do
+      advrials = Advrial.where(completed_trip: true, returns_home_at: nil)
+      advrials.each do |advrial|
+        advrial.update!(returns_home_at: Time.current)
+        puts "#{advrial.title} update" 
       end
     end
   end
