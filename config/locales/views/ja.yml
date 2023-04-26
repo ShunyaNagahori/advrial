@@ -42,6 +42,9 @@ ja:
       edit: 編集ページ
       following: フォロー
       followers: フォロワー
+      public_advrial: 公開中のアドリアル
+      show_all: 全て表示
+      no_advrials: 公開中のアドリアルはありません
     welcome:
       to_login: ログインページはこちら
   advrials:

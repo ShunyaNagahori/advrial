@@ -1,3 +1,18 @@
+<%= 
+  render("layouts/shared/back",
+    prev_path:
+      if request.referer&.include?("new")
+        user_advrials_path(@advrial.user)
+      elsif request.referer&.include?("advrials") || request.referer&.include?("users")
+        "javascript:history.back()"
+      else
+        root_path
+      end,
+    title: @advrial.title
+  )
+%>
+
+
 <% if @advrial.main_visual.attached? %>
   <div class="bg-cover bg-center h-64 flex flex-col justify-end" style="background-image: url('<%= url_for(@advrial.main_visual) %>')">
     <div class="px-2">
@@ -78,11 +93,6 @@
           </div>
         </div>
       </div>
-
     <% end %>
   <% end %>
-</div>
-
-<div class="pt-8 text-center">
-  <%= link_to t('common.actions.back'), :back, class: "backBtn" %>
 </div>

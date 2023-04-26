@@ -39,6 +39,9 @@ en:
       edit: Edit
       following: Following
       followers: Followers
+      public_advrial: Public Advrials
+      show_all: Show All
+      no_advrials: No Advrial available to the public.
     welcome:
       to_login: Click here for the login page!
   advrials:

@@ -1,3 +1,10 @@
+<%= 
+  render("layouts/shared/back",
+    prev_path: "javascript:history.back()",
+    title: @user.name.present? ? "#{@user.name} / @#{@user.account_name}" : "No Name / @#{@user.account_name}"
+  )
+%>
+
 <div class="p-2 d-flex justify-content-center align-items-center">
   <div class="text-center">
     <span class="inline-block"><%= @user.image.attached? ? image_tag(image_url_helper(@user.image.variant(resize_to_fill: [200, 200])), class: "w-20 h-20 rounded-full") : image_tag('no-user-image.jpg', size: '100x100', class: "w-20 h-20 rounded-full border") %></span>
