@@ -28,6 +28,9 @@ en:
     index:
       info: Information
       go_out: Going out now!
+  search:
+    not_found: No search results
+    user: Name or AccontID
   users:
     edit:
       title: Profile Edit

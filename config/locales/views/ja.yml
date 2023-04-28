@@ -31,6 +31,10 @@ ja:
     index:
       info: お知らせ
       go_out: お出かけする
+  search:
+    not_found: 検索結果はありません
+    user: 名前、アカウントID
+    advrial: タイトル、キーワード
   users:
     edit:
       title: プロフィール編集

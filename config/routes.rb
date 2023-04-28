@@ -28,6 +28,12 @@ Rails.application.routes.draw do
     post :completed, on: :member
     resources :places
   end
+  
+  get "search/users", to: "search#user"
+  get "results/users", to: "search#result_users"
+  get "search/advrials", to: "search#advrial"
+  get "results/advrials", to: "search#result_advrials"
+  
 
   get 'welcome', to: 'users#welcome'
 end

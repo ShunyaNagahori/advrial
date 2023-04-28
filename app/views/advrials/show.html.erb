@@ -62,7 +62,7 @@
   <%= button_to(t('.completed_trip'), completed_advrial_path(@advrial), class: "backBtn text-center w-full", data: { turbo_confirm: t('.confirm') }, method: :post) if !@advrial.completed_trip %>
 <% end %>
 
-<div class="place-content-center">
+<div>
   <% @places.each do |place| %>
     <%= link_to(advrial_place_path(@advrial, place),'data-turbo': false) do %>
       <div class="border my-2 mx-1 h-auto w-auto p-2">

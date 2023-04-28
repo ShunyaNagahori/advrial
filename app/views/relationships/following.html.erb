@@ -26,7 +26,10 @@
           <% else %>
             <%= image_tag('no-user-image.jpg', size: '40x40', class: "w-10 h-10 rounded-full border ml-1") %>
           <% end %>
-          <p class="px-1"><%= user.name.present? ? user.name : "@#{user.account_name}" %></p>
+          <div>
+            <p class="px-2 text-sm"><%= user.name.present? ? user.name : "No Name" %></p>
+            <p class="px-2 text-xs text-gray-400"><%= "@#{user.account_name}" %>
+          </div>
         <% end %>
       </div>
       <div>

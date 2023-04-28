@@ -59,7 +59,7 @@
 </div>
 
   <% if @user.advrials.where(completed_trip: true, public: true).present? %>
-    <div class="place-content-center">
+    <div>
       <% @user.advrials.where(completed_trip: true, public: true).sort_by(&:returns_home_at).reverse.first(3).each do |advrial| %>
         <div class="border my-2 mx-1 h-auto w-auto p-2">
           <div class="grid grid-cols-2 gap-4">

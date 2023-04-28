@@ -1,0 +1,52 @@
+<div class="flex w-full mb-2">
+  <p class="py-1 w-1/2 text-center font-bold border-b border-green-600">
+    <%= t("activerecord.models.user") %>
+  </p>
+  <p class="py-1 w-1/2 text-center font-bold text-gray-400 border-b">
+    <%= link_to(t("activerecord.models.advrial"), search_advrials_path) %>
+  </p>
+</div>
+
+<div class="w-full flex items-center mb-2">
+  <%= search_form_for(@q, url: results_users_path, html: { class: "flex w-full" }) do |f| %>
+    <div class="w-full mr-2">
+      <%= f.search_field :account_name_or_name_cont, placeholder: t("search.user"), class: "w-full my-2", required: true %>
+    </div>
+    <div>
+      <%= f.submit class: "btn" %>
+    </div>
+  <% end %>
+</div>
+
+<div>
+  <% if @results.present? %>
+    <% @results.each do |user| %>
+      <div class="flex items-center justify-between border-b">
+        <div class="flex items-center p-2 cursor-pointer">
+          <%= link_to(user_path(user), class: "flex items-center") do %>
+            <% if user.image.attached? %>
+              <%= image_tag(image_url_helper(user.image.variant(resize_to_fill: [100,100])), class: "ml-1 w-10 h-10 rounded-full") %>
+            <% else %>
+              <%= image_tag('no-user-image.jpg', size: '40x40', class: "w-10 h-10 rounded-full border ml-1") %>
+            <% end %>
+            <div>
+              <p class="px-2 text-sm"><%= user.name.present? ? user.name : "No Name" %></p>
+              <p class="px-2 text-xs text-gray-400"><%= "@#{user.account_name}" %>
+            </div>
+          <% end %>
+        </div>
+        <div>
+          <% if user != current_user %>
+            <% if current_user.following.include?(user) %>
+              <i><%= link_to(image_tag('unfollow.png', size: '30x30', class: "inline mx-2"), user_relationship_path(user, current_user), data: { turbo_method: :delete }) %></i>
+            <% else %>
+              <i><%= link_to(image_tag('follow.png', size: '30x30', class: "inline mx-2"), user_relationships_path(user), data: { turbo_method: :post } ) %></i>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <p class="text-gray-400 text-center"><%= t("search.not_found") %></p>
+  <% end %>
+</div>
