@@ -20,6 +20,8 @@ ja:
               blank: が取得できません。位置情報をオンにしてください。
             longitude:
               blank: が取得できません。位置情報をオンにしてください。
+        user:
+          at_mark_ban: に「@」は使用できません
     models:
       advrial: アドリアル
       place: 場所
@@ -41,4 +43,5 @@ ja:
         longitude: 経度
         description: 説明
         images: 画像
+
         

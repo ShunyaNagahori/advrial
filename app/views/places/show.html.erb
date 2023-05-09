@@ -1,3 +1,15 @@
+<%= 
+  render("layouts/shared/back",
+    prev_path:
+      if request.referer&.include?("edit")
+        advrial_path(@advrial)
+      else
+        "javascript:history.back()"
+      end,
+    title: @place.place_name
+  )
+%>
+
 <div class="flex items-center justify-between mx-1">
   <h2><%= @place.place_name %></h2>
   <% if @advrial.user == current_user %>
@@ -19,8 +31,8 @@
         <% end %>
     </div>
     <div class="swiper-pagination absolute"></div>
-    <div class="swiper-button-prev absolute"></div>
-    <div class="swiper-button-next absolute"></div>
+    <div class="swiper-button-prev absolute pc-only"></div>
+    <div class="swiper-button-next absolute pc-only"></div>
   </div>
 
   <p class="font-semibold px-1 border-b w-max"><%= Place.human_attribute_name(:address) %></p>
@@ -35,10 +47,6 @@
   <div class="border border-slate-500 border-dotted px-2 my-2">
     <%= simple_format(@place.description, class: "p-1 text-sm break-all overflow-y-scroll line-clamp-[20]") %>
   </div>
-</div>
-
-<div class="pt-8 text-center">
-  <%= link_to t('common.actions.back'), advrial_path(@advrial), class: "backBtn" %>
 </div>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.google[:api_key] %>&callback=initMap" async defer></script>

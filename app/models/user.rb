@@ -20,9 +20,20 @@ class User < ApplicationRecord
                            length: { minimum: 6, maximum: 20 },
                            format: { with: VALID_ACCOUNT_NAME_REGEX },
                            on: :update # update時のみバリデーションを適用
+                           
+  validates :name, format: { with: /\A[^@]*\z/, multiline: true, message: :at_mark_ban }
+
 
   def to_param
     account_name
+  end
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["account_name", "name"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["active_relationships", "advrials", "followers", "following", "image_attachment", "image_blob", "passive_relationships"]
   end
 
   private

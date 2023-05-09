@@ -28,6 +28,16 @@ en:
     index:
       info: Information
       go_out: Going out now!
+      no_advrials: No Advrials.
+      no_public_advrials: No advrial available to the public.
+      first: Create a new advrial and going out now!
+      second: Set up your existing advrials as public and follow your friends!
+      create: Create a new Advrial
+      edit: Edit Advrial
+      find: Find Friends
+  search:
+    not_found: No search results
+    user: Name or AccontID
   users:
     edit:
       title: Profile Edit
@@ -39,6 +49,9 @@ en:
       edit: Edit
       following: Following
       followers: Followers
+      public_advrial: Public Advrials
+      show_all: Show All
+      no_advrials: No Advrial available to the public.
     welcome:
       to_login: Click here for the login page!
   advrials:
@@ -49,10 +62,11 @@ en:
     index:
       title: List of Advrial Events
     show:
-      create: ＋Add Arrival Location
+      create: ＋ Add Arrival Location
       completed_trip: Going Home
       completed: The outing is now closed.
       description: When you arrive at your destination, click the button below to record your arrival!
+      public: If the checkbox for Public is checked on, the information will be published when you return home.
       confirm: I will not be able to register my location on this Advrial, do you want to go home? (You can edit it)
   places:
     marker_description: Location information may shift slightly. The markers on the map can be moved manually.

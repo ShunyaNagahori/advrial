@@ -1,3 +1,10 @@
+<%= 
+  render("layouts/shared/back",
+    prev_path: "javascript:history.back()",
+    title: @user.name.present? ? "#{@user.name} / @#{@user.account_name}" : "No Name / @#{@user.account_name}"
+  )
+%>
+
 <div class="p-2 d-flex justify-content-center align-items-center">
   <div class="text-center">
     <span class="inline-block"><%= @user.image.attached? ? image_tag(image_url_helper(@user.image.variant(resize_to_fill: [200, 200])), class: "w-20 h-20 rounded-full") : image_tag('no-user-image.jpg', size: '100x100', class: "w-20 h-20 rounded-full border") %></span>
@@ -20,7 +27,10 @@
           <% else %>
             <%= image_tag('no-user-image.jpg', size: '40x40', class: "w-10 h-10 rounded-full border ml-1") %>
           <% end %>
-          <p class="px-1"><%= user.name.present? ? user.name : "@#{user.account_name}" %></p>
+          <div>
+            <p class="px-2 text-sm"><%= user.name.present? ? user.name : "No Name" %></p>
+            <p class="px-2 text-xs text-gray-400"><%= "@#{user.account_name}" %>
+          </div>
         <% end %>
       </div>
       <div>

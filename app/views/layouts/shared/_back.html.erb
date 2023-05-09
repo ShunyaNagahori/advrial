@@ -1,0 +1,14 @@
+<div class="bg-white h-14 w-10/12 absolute left-0 top-0 z-50 flex items-center sp-only">
+  <div class="grid grid-cols-7 gap-4 w-full">
+    <div class="col-span-1 flex justify-start ml-0.5">
+      <%= link_to(prev_path) do %>
+        <div class="flex-shrink-0 w-9 h-9 flex items-center">
+          <i><%= image_tag('back-btn.png', size: "25x25", class: "text-gray-400 ml-1") %></i>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-span-6 flex justify-center items-center">
+      <p class="text-center font-bold overflow-hidden whitespace-nowrap text-ellipsis"><%= title %></p>
+    </div>
+  </div>
+</div>

@@ -20,6 +20,14 @@ class Advrial < ApplicationRecord
     end
   end
 
+  def self.ransackable_attributes(auth_object = nil)
+    ["advrial_category_id", "completed_trip", "created_at", "description", "end_date", "id", "public", "returns_home_at", "start_date", "title", "updated_at", "user_id"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["advrial_category", "main_visual_attachment", "main_visual_blob", "places", "user"]
+  end
+
   def set_id
     while self.id.blank? || Advrial.find_by(id: self.id).present?
       self.id = SecureRandom.urlsafe_base64

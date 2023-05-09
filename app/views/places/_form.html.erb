@@ -12,13 +12,15 @@
     <% if @place.images.attached? %>
       <div class="flex mt-2">
       <% @place.images.each do |image|%>
-        <div>
-          <%= image_tag(image_url_helper(image.variant(resize_to_fill: [200,200])), class: "p-1 w-24") %>
-          <span class="flex items-center px-1">
-            <%= f.check_box :image_ids, { multiple: true }, image.id, false %>
-            <p class="text-xs ml-2"><%= t('common.actions.delete') %></p>
-          </span>
-        </div>
+        <% if image.persisted? %>
+          <div>
+            <%= image_tag(image_url_helper(image.variant(resize_to_fill: [200,200])), class: "p-1 w-24") %>
+            <span class="flex items-center px-1">
+              <%= f.check_box :image_ids, { multiple: true }, image.id, false %>
+              <p class="text-xs ml-2"><%= t('common.actions.delete') %></p>
+            </span>
+          </div>
+        <% end %>
       <% end %>
       </div>
     <% end %>
@@ -26,7 +28,7 @@
 
   <div class="field">
     <%= f.label :place_name, class: 'block' %>
-    <%= f.text_field :place_name, class: "w-full" %>
+    <%= f.text_field :place_name, required: true, class: "w-full" %>
     <%= render 'shared/validation_error', f: f, column: :place_name %>
   </div>
 
@@ -71,7 +73,9 @@
 <% end %>
 
 <% unless isNew %>
-  <%= button_to(t('common.actions.delete'), advrial_place_path(@advrial, @place),class: "deleteBtn mt-6", data: { turbo_confirm: t('common.actions.delete_confirm') }, method: :delete) %>
+  <div class="flex justify-center items-center mt-6">
+    <%= button_to(t('common.actions.delete'), advrial_place_path(@advrial, @place),class: "deleteBtn", data: { turbo_confirm: t('common.actions.delete_confirm') }, method: :delete) %>
+  </div>
 <% end %>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.google[:api_key] %>&callback=initMap" async defer></script>

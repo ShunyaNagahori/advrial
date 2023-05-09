@@ -1,0 +1,19 @@
+<div class="flex w-full mb-2">
+  <p class="py-1 w-1/2 text-center font-bold text-gray-400 border-b">
+    <%= link_to(t("activerecord.models.user"), search_users_path) %>
+  </p>
+  <p class="py-1 w-1/2 text-center font-bold border-b border-green-600">
+    <%= t("activerecord.models.advrial")%>
+  </p>
+</div>
+
+<div class="w-full flex items-center mb-2">
+  <%= search_form_for(@q, url: results_advrials_path, html: { class: "flex w-full" }) do |f| %>
+    <div class="w-full mr-2">
+      <%= f.search_field :title_or_description_cont, placeholder: t("search.advrial"), class: "w-full my-2", required: true %>
+    </div>
+    <div>
+      <%= f.submit class: "btn" %>
+    </div>
+  <% end %>
+</div>

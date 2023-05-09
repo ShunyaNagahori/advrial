@@ -5,7 +5,11 @@ class AdvrialsController < ApplicationController
   before_action :authorize_record
 
   def index
-    @advrials = @user.advrials.all.order(created_at: :desc)
+    if @user == current_user
+      @advrials = @user.advrials.all.order(created_at: :desc)
+    else
+      @advrials = @user.advrials.where(public: true, completed_trip: true).order(returns_home_at: :desc)
+    end
   end
 
   def new
@@ -34,6 +38,7 @@ class AdvrialsController < ApplicationController
     @advrial_categories = AdvrialCategory.all
     @user = current_user # params[:account_name]が取得できない為、current_userで設定
     if @advrial.update(advrial_params)
+      flash[:notice] = t("common.actions.edit.updated")
       render :index
     else
       render :edit, status: 422

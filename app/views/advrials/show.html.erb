@@ -1,3 +1,18 @@
+<%= 
+  render("layouts/shared/back",
+    prev_path:
+      if request.referer&.include?("new")
+        user_advrials_path(@advrial.user)
+      elsif request.referer&.include?("advrials") || request.referer&.include?("users")
+        "javascript:history.back()"
+      else
+        root_path
+      end,
+    title: @advrial.title
+  )
+%>
+
+
 <% if @advrial.main_visual.attached? %>
   <div class="bg-cover bg-center h-64 flex flex-col justify-end" style="background-image: url('<%= url_for(@advrial.main_visual) %>')">
     <div class="px-2">
@@ -42,12 +57,17 @@
   </div>
 <% end %>
 
-<% if @advrial.user == current_user %>
-  <%= link_to(t('.create'), new_advrial_place_path(@advrial), class: "btn block text-center") if !@advrial.completed_trip %>
-  <%= button_to(t('.completed_trip'), completed_advrial_path(@advrial), class: "backBtn text-center w-full", data: { turbo_confirm: t('.confirm') }, method: :post) if !@advrial.completed_trip %>
+<% if @advrial.user == current_user && !@advrial.completed_trip%>
+  <%= link_to(new_advrial_place_path(@advrial)) do %>
+    <div class="border border-dashed py-12 my-4 mx-1 border-gray-400 text-center rounded-lg">
+      <p class="text-gray-500 text-lg"><%= t('.create') %></p>
+    </div>
+  <% end %>
+  <%= button_to(t('.completed_trip'), completed_advrial_path(@advrial), class: "backBtn text-center w-full", data: { turbo_confirm: t('.confirm') }, method: :post) %>
+  <p class="text-xs text-gray-400 text-center mb-5"><%= t(".public") %></p>
 <% end %>
 
-<div class="place-content-center">
+<div>
   <% @places.each do |place| %>
     <%= link_to(advrial_place_path(@advrial, place),'data-turbo': false) do %>
       <div class="border my-2 mx-1 h-auto w-auto p-2">
@@ -78,11 +98,6 @@
           </div>
         </div>
       </div>
-
     <% end %>
   <% end %>
-</div>
-
-<div class="pt-8 text-center">
-  <%= link_to t('common.actions.back'), :back, class: "backBtn" %>
 </div>

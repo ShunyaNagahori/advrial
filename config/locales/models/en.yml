@@ -20,6 +20,8 @@ ja:
               blank: cannot be acquired. Please turn on location information.
             longitude:
               blank: cannot be acquired. Please turn on location information.
+        user:
+          at_mark_ban: cannot use "@"
     models:
       advrial: Advrial
       place: Place
