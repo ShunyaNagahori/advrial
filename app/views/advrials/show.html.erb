@@ -57,9 +57,14 @@
   </div>
 <% end %>
 
-<% if @advrial.user == current_user %>
-  <%= link_to(t('.create'), new_advrial_place_path(@advrial), class: "btn block text-center") if !@advrial.completed_trip %>
-  <%= button_to(t('.completed_trip'), completed_advrial_path(@advrial), class: "backBtn text-center w-full", data: { turbo_confirm: t('.confirm') }, method: :post) if !@advrial.completed_trip %>
+<% if @advrial.user == current_user && !@advrial.completed_trip%>
+  <%= link_to(new_advrial_place_path(@advrial)) do %>
+    <div class="border border-dashed py-12 my-4 mx-1 border-gray-400 text-center rounded-lg">
+      <p class="text-gray-500 text-lg"><%= t('.create') %></p>
+    </div>
+  <% end %>
+  <%= button_to(t('.completed_trip'), completed_advrial_path(@advrial), class: "backBtn text-center w-full", data: { turbo_confirm: t('.confirm') }, method: :post) %>
+  <p class="text-xs text-gray-400 text-center mb-5"><%= t(".public") %></p>
 <% end %>
 
 <div>

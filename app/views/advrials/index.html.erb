@@ -1,12 +1,16 @@
 <%= 
   render("layouts/shared/back",
     prev_path: user_path(@user),
-    title: t('.title')
+    title: @user == current_user ? t("headers.my_advrials") : t('.title')
   )
 %>
 
 <div class="pc-only">
-  <h2><%=t('.title') %></h2>
+  <% if @user == current_user %>
+     <h2><%= t("headers.my_advrials") %></h2>
+  <% else %>
+    <h2><%= t('.title') %></h2>
+  <% end %>
 </div>
 
 <div class="flex items-center cursor-pointer w-max mt-2">
