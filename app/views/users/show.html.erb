@@ -49,48 +49,128 @@
 
   <div class="border-b p-1">
     <dt class="block font-semibold w-max border-b"><%= User.human_attribute_name(:url) %></dt>
-    <dd class="my-1 text-sm"><%= link_to(nil, @user.url, class: "") %></dd>
+    <dd class="my-1 text-sm"><%= link_to(nil, @user.url, class: "text-green-700") %></dd>
   </div>
 </div>
 
-<div class="mt-4 mb-2 px-1 flex items-center justify-between">
-  <h2 class="text-base border-b w-max"><%=t(".public_advrial") %></h2>
-  <p class="px-2"><%= t("common.count", count: @user.advrials.where(completed_trip: true, public: true).count) %></p>
-</div>
+<turbo-frame id="advrials">
+  <% if params[:place].present? %>
+    <div class="mt-4 mb-2 px-1 flex items-center justify-between">
+      <h2 class="text-base border-b w-max"><%=t(".public_places") %></h2>
+      <p class="px-2"><%= t("common.count", count: @user.places.where(public: true).count) %></p>
+    </div>
 
-  <% if @user.advrials.where(completed_trip: true, public: true).present? %>
-    <div>
-      <% @user.advrials.where(completed_trip: true, public: true).sort_by(&:returns_home_at).reverse.first(3).each do |advrial| %>
-        <div class="border my-2 mx-1 h-auto w-auto p-2">
-          <div class="grid grid-cols-2 gap-4">
-            <div class="flex items-center justify-center">
-              <% if advrial.main_visual.attached? %>
-                <%= link_to(image_tag(image_url_helper(advrial.main_visual.variant(resize_to_limit: [300,300])), class: "w-full"), advrial_path(advrial), 'data-turbo': false) %>
-              <% else %>
-                <%= link_to(image_tag('no-image.png', size: '3000x300', class: "w-full"), advrial_path(advrial), 'data-turbo': false) %>
-              <% end %>
-            </div>
-            <div class="flex flex-col">
-              <p class="text-xl text-bold border-b mb-1 px-2 overflow-hidden whitespace-nowrap text-ellipsis">
-                <%= advrial.title %>
-              </p>
-              <p class="border-b mb-2 px-2">
-                <%= l(advrial.start_date) %> 〜 <%= l(advrial.end_date) %>
-              </p>
-              <p class="border-b mb-2 px-2">
-                  <%= advrial.advrial_category.name_in_locales %>
-              </p>
-              <div class="flex-1 border border-slate-500 border-dotted py-1 px-2 w-full">
-                <%= simple_format(advrial.description, class: "sp-only text-xs break-all overflow-y-scroll line-clamp-[8]") %>
-                <%= simple_format(advrial.description, class: "pc-only text-sm break-all overflow-y-scroll line-clamp-[20]") %>
+    <div class="flex w-full mb-2">
+      <p class="py-1 w-1/2 text-center font-bold border-b border-green-600">
+        <%= Place.model_name.human %>
+      </p>
+      <p class="py-1 w-1/2 text-center font-bold text-gray-400 border-b">
+        <%= link_to(Advrial.model_name.human, action: :show, "data-turbo-frame": "user_info") %>
+      </p>
+    </div>
+
+    <% if @user.places.where(public: true).present? %>
+      <div>
+        <% @user.places.where(public: true).sort_by(&:created_at).reverse.first(3).each do |place| %>
+          <div class="border my-2 mx-1 h-auto w-auto p-2">
+            <div class="grid grid-cols-2 gap-4">
+              <div class="flex items-center justify-center">
+                <% if place.images.attached? %>
+                  <%= link_to(image_tag(image_url_helper(place.images.first.variant(resize_to_limit: [300,300])), class: "w-full"), user_place_path(@user, place), 'data-turbo': false) %>
+                <% else %>
+                  <%= link_to(image_tag('no-image.png', size: '300x300', class: "w-full"), user_place_path(@user, place), 'data-turbo': false) %>
+                <% end %>
               </div>
-              <p class="text-xs text-gray-400">お気に入り機能実装予定</p>
+              <div class="flex flex-col">
+                <div>
+                  <p class="text-bold border-b mb-1 px-2 overflow-hidden whitespace-nowrap text-ellipsis">
+                    <%= place.place_name %>
+                  </p>
+                  <p class="text-sm border-b mb-1 px-2 overflow-hidden whitespace-nowrap text-ellipsis">
+                    <% if place.advrial.present? %>
+                      <%= link_to(place.advrial.title, advrial_path(place.advrial), class: "text-green-700", 'data-turbo': false) %>
+                    <% else %>
+                      <span class="text-gray-400 text-xs"><%= t(".no_list") %></span>
+                    <% end %>
+                  </p>
+                </div>
+                <p class="border-b mb-2 px-2 text-sm text-gray-500">
+                  <%= l(place.date_time) %> 
+                </p>
+                <p class="border-b mb-2 px-2 text-sm">
+                    <%= place.address %>
+                </p>
+                <div class="flex-1 border border-slate-500 border-dotted py-1 px-2 w-full">
+                  <%= simple_format(place.description, class: "sp-only text-xs break-all overflow-y-scroll line-clamp-[8]") %>
+                  <%= simple_format(place.description, class: "pc-only text-sm break-all overflow-y-scroll line-clamp-[20]") %>
+                </div>
+                <p class="text-xs text-gray-400">お気に入り機能実装予定</p>
+              </div>
             </div>
           </div>
-        </div>
-      <% end %>
-      <%= link_to(t(".show_all"), user_advrials_path(@user), class: "backBtn w-full block") %>
-    </div>
+        <% end %>
+        <%= link_to(t(".show_all"), user_places_path(@user), class: "backBtn w-full block", 'data-turbo': false) %>
+      </div>
+    <% else %>
+      <p class="text-gray-400 text-center"><%= t(".no_places") %></p>
+    <% end %>
   <% else %>
-    <p class="text-gray-400 text-center"><%= t(".no_advrials") %></p>
+  <div class="mt-4 mb-2 px-1 flex items-center justify-between">
+    <h2 class="text-base border-b w-max"><%=t(".public_advrials") %></h2>
+    <p class="px-2"><%= t("common.count", count: @user.advrials.where(public: true).count) %></p>
+  </div>
+    <div class="flex w-full mb-2">
+      <p class="py-1 w-1/2 text-center font-bold text-gray-400 border-b">
+        <%= link_to(Place.model_name.human, { action: :show, place: 1 }, class: "text-gray-400", "data-turbo-frame": "advrials") %>
+      </p>
+      <p class="py-1 w-1/2 text-center font-bold border-b border-green-600">
+        <%= t("activerecord.models.advrial")%>
+      </p>
+    </div>
+
+    <% if @user.advrials.where(public: true).present? %>
+      <div>
+        <% @user.advrials.where(public: true).sort_by(&:created_at).reverse.first(3).each do |advrial| %>
+          <div class="border my-2 mx-1 h-auto w-auto p-2">
+            <div class="grid grid-cols-2 gap-4">
+              <div class="flex items-center justify-center">
+                <% if advrial.main_visual.attached? %>
+                  <%= link_to(image_tag(image_url_helper(advrial.main_visual.variant(resize_to_limit: [300,300])), class: "w-full"), advrial_path(advrial), 'data-turbo': false) %>
+                <% else %>
+                  <%= link_to(image_tag('no-image.png', size: '300x300', class: "w-full"), advrial_path(advrial), 'data-turbo': false) %>
+                <% end %>
+              </div>
+              <div class="flex flex-col">
+                <p class="text-bold border-b mb-1 px-2 overflow-hidden whitespace-nowrap text-ellipsis">
+                  <%= advrial.title %>
+                </p>       
+                <p class="border-b mb-2 px-2 text-sm">
+                    <%= advrial.advrial_category.name_in_locales %>
+                </p>
+                <% if advrial.start_date.present? && advrial.end_date.present? %>
+                  <% if advrial.start_date == advrial.end_date %>
+                    <p class="border-b mb-2 px-2 text-sm text-gray-500"><%= l(advrial.end_date) %></p>
+                  <% else %>
+                    <p class="border-b mb-2 px-2 text-sm text-gray-500">
+                      <%= l(advrial.start_date) %> 〜 <%= l(advrial.end_date) %>
+                    </p>
+                  <% end %>
+                <% elsif advrial.start_date.present? || advrial.end_date.present? %>
+                  <p class="border-b mb-2 px-2 text-sm text-gray-500"><%= l(advrial.start_date) if advrial.start_date.present? %> 〜 <%= l(advrial.end_date) if advrial.end_date.present? %></p>
+                <% end %> 
+                <div class="flex-1 border border-slate-500 border-dotted py-1 px-2 w-full">
+                  <%= simple_format(advrial.description, class: "sp-only text-xs break-all overflow-y-scroll line-clamp-[8]") %>
+                  <%= simple_format(advrial.description, class: "pc-only text-sm break-all overflow-y-scroll line-clamp-[20]") %>
+                </div>
+                <p class="text-xs text-gray-400">お気に入り機能実装予定</p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <%= link_to(t(".show_all"), user_advrials_path(@user), class: "backBtn w-full block", 'data-turbo': false) %>
+      </div>
+    <% else %>
+      <p class="text-gray-400 text-center"><%= t(".no_advrials") %></p>
+    <% end %>
   <% end %>
+</turbo-frame>

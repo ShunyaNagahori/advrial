@@ -1,16 +1,12 @@
 <%= 
   render("layouts/shared/back",
-    prev_path: user_path(@user),
-    title: @user == current_user ? t("headers.my_advrials") : t('.title')
+    prev_path: "javascript:history.back()",
+    title: t('.title')
   )
 %>
 
 <div class="pc-only">
-  <% if @user == current_user %>
-     <h2><%= t("headers.my_advrials") %></h2>
-  <% else %>
-    <h2><%= t('.title') %></h2>
-  <% end %>
+  <h2><%= t('.title') %></h2>
 </div>
 
 <div class="flex items-center cursor-pointer w-max mt-2">
@@ -26,6 +22,21 @@
     </div>
   <% end %>
 </div>
+
+<div class="flex w-full mb-2">
+  <p class="py-1 w-1/2 text-center font-bold text-gray-400 border-b">
+    <%= link_to(Place.model_name.human, user_places_path(@user)) %>
+  </p>
+  <p class="py-1 w-1/2 text-center font-bold border-b border-green-600">
+    <%= t("activerecord.models.advrial")%>
+  </p>
+</div>
+
+<% if @user== current_user %>
+  <div class="btn text-center w-full">
+    <%= link_to(t('.create'), new_advrial_path) %>
+  </div>
+<% end %>
 
 <div>
   <% @advrials.each do |advrial| %>
@@ -45,13 +56,21 @@
           <div class="flex flex-col">
             <p class="text-bold border-b mb-1 px-2 overflow-hidden whitespace-nowrap text-ellipsis">
               <%= advrial.title %>
-            </p>
-            <p class="border-b mb-2 px-2 text-sm text-gray-500">
-              <%= l(advrial.start_date) %> 〜 <%= l(advrial.end_date) %>
-            </p>
+            </p>       
             <p class="border-b mb-2 px-2 text-sm">
                 <%= advrial.advrial_category.name_in_locales %>
             </p>
+            <% if advrial.start_date.present? && advrial.end_date.present? %>
+              <% if advrial.start_date == advrial.end_date %>
+                <p class="border-b mb-2 px-2 text-sm text-gray-500"><%= l(advrial.end_date) %></p>
+              <% else %>
+                <p class="border-b mb-2 px-2 text-sm text-gray-500">
+                  <%= l(advrial.start_date) %> 〜 <%= l(advrial.end_date) %>
+                </p>
+              <% end %>
+            <% elsif advrial.start_date.present? || advrial.end_date.present? %>
+              <p class="border-b mb-2 px-2 text-sm text-gray-500"><%= l(advrial.start_date) if advrial.start_date.present? %> 〜 <%= l(advrial.end_date) if advrial.end_date.present? %></p>
+            <% end %> 
             <div class="flex-1 border border-slate-500 border-dotted py-1 px-2 w-full">
               <%= simple_format(advrial.description, class: "sp-only text-xs break-all overflow-y-scroll line-clamp-[8]") %>
               <%= simple_format(advrial.description, class: "pc-only text-sm break-all overflow-y-scroll line-clamp-[20]") %>

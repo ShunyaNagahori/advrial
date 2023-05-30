@@ -35,4 +35,14 @@ namespace :seeds do
     end
   end
 
+  desc "place user references"
+  task place_in_user_id: :environment do
+    ActiveRecord::Base.transaction do
+      Place.unscoped.all.each do |place|
+        user_id = place.advrial.user.id
+        place.update!(user_id: user_id)
+        p "Update #{place.id}"
+      end
+    end
+  end
 end

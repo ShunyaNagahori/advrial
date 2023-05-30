@@ -26,17 +26,23 @@
           </div>
           <div class="mb-2">
             <div class="px-1 mb-2">
-              <%= link_to(advrial_path(advrial), 'data-turbo': false, class: "normalLink") do %>
-                <div class="flex flex-col border-b w-auto">
-                  <p class="px-2 overflow-hidden whitespace-nowrap text-ellipsis">
-                    <%= advrial.title %>
-                  </p>
-                </div>
-              <% end %>
-              <div class="flex items-center mt-1">
-                <p class="px-2 text-xs text-gray-500">
-                  <%= l(advrial.start_date) %> 〜 <%= l(advrial.end_date) %>
+              <div class="flex flex-col border-b w-auto">
+                <p class="px-2 overflow-hidden whitespace-nowrap text-ellipsis">
+                  <%= advrial.title %>
                 </p>
+              </div>
+              <div class="flex items-center mt-1">
+                <% if advrial.start_date.present? && advrial.end_date.present? %>
+                  <% if advrial.start_date == advrial.end_date %>
+                    <p class="text-white font-semibold"><%= l(advrial.end_date) %></p>
+                  <% else %>
+                    <p class="px-2 text-xs text-gray-500">
+                      <%= l(advrial.start_date) %> 〜 <%= l(advrial.end_date) %>
+                    </p>
+                  <% end %>
+                <% elsif advrial.start_date.present? || advrial.end_date.present? %>
+                  <p class="px-1 text-white font-semibold"><%= l(advrial.start_date) if advrial.start_date.present? %> 〜 <%= l(advrial.end_date) if advrial.end_date.present? %></p>
+                <% end %>
                 <p class="px-2 text-sm">
                     <%= advrial.advrial_category.name_in_locales %>
                 </p>
@@ -83,13 +89,11 @@
           </div>
           <div class="mb-2">
             <div class="px-1 mb-2">
-              <%= link_to(advrial_path(advrial), 'data-turbo': false, class: "normalLink") do %>
-                <div class="flex flex-col border-b w-auto">
-                  <p class="px-2 overflow-hidden whitespace-nowrap text-ellipsis">
-                    <%= advrial.title %>
-                  </p>
-                </div>
-              <% end %>
+              <div class="flex flex-col border-b w-auto">
+                <p class="px-2 overflow-hidden whitespace-nowrap text-ellipsis">
+                  <%= advrial.title %>
+                </p>
+              </div>
               <div class="flex items-center mt-1">
                 <p class="px-2 text-xs text-gray-500">
                   <%= l(advrial.start_date) %> 〜 <%= l(advrial.end_date) %>

@@ -2,7 +2,7 @@
   <h2><%=t('.title') %></h2>
 </div>
 
-<%= render 'form', url: advrial_places_path(@advrial), text: t('common.actions.create.submit'), isNew: true %>
+<%= render 'form', url: user_places_path(current_user), text: t('common.actions.create.submit'), isNew: true %>
 
 <script>
   function initMap() {

@@ -1,6 +1,9 @@
-<div>
-  <h2><%=t('.title') %></h2>
-</div>
+<%= 
+  render("layouts/shared/back",
+    prev_path: "javascript:history.back()",
+    title: t('.title')
+  )
+%>
 
 <%= form_with model: @advrial, url: advrials_path do |f|%>
   <%= render "shared/error_messages", resource: @advrial %>

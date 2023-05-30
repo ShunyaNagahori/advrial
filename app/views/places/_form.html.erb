@@ -58,6 +58,11 @@
     <%= render 'shared/validation_error', f: f, column: :description %>
   </div>
 
+  <div class="field w-full flex items-center">
+    <%= f.check_box :public %>
+    <p class="text-sm ml-2"><%= t('advrials.new.public') %></p>
+  </div>
+
   <% if isNew %>
     <p class="text-sm"><%= t('places.description') %></p>
   <% end %>
@@ -65,16 +70,16 @@
   <div class="mt-4">
     <%= f.submit text, class: "btn w-full block", 'data-turbo': false %>
     <% if isNew %>
-      <%= link_to(t('common.actions.create.back'), advrial_path(@advrial), class: "backBtn w-full block") %>
+      <%= link_to(t('common.actions.create.back'), user_places_path(current_user), class: "backBtn w-full block") %>
     <% else %>
-      <%= link_to(t('common.actions.edit.cancel'), advrial_place_path(@advrial, @place), class: "backBtn w-full block", 'data-turbo': false ) %>
+      <%= link_to(t('common.actions.edit.cancel'), user_place_path(current_user, @place), class: "backBtn w-full block", 'data-turbo': false ) %>
     <% end %>
   </div>
 <% end %>
 
 <% unless isNew %>
   <div class="flex justify-center items-center mt-6">
-    <%= button_to(t('common.actions.delete'), advrial_place_path(@advrial, @place),class: "deleteBtn", data: { turbo_confirm: t('common.actions.delete_confirm') }, method: :delete) %>
+    <%= button_to(t('common.actions.delete'), user_place_path(current_user, @place),class: "deleteBtn", data: { turbo_confirm: t('common.actions.delete_confirm') }, method: :delete) %>
   </div>
 <% end %>
 

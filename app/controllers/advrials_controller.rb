@@ -8,7 +8,7 @@ class AdvrialsController < ApplicationController
     if @user == current_user
       @advrials = @user.advrials.all.order(created_at: :desc)
     else
-      @advrials = @user.advrials.where(public: true, completed_trip: true).order(returns_home_at: :desc)
+      @advrials = @user.advrials.where(public: true).order(created_at: :desc)
     end
   end
 
@@ -46,7 +46,11 @@ class AdvrialsController < ApplicationController
   end
 
   def show
-    @places = @advrial.places.order(date_time: :desc)
+    if @advrial.user == current_user
+      @places = @advrial.places.order(date_time: :desc)
+    else 
+      @places = @advrial.places.where(public: false).order(date_time: :desc)
+    end
   end
 
   def destroy
