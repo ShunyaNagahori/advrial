@@ -2,11 +2,11 @@
   <nav class="sp-only fixed w-full bottom-0 bg-white h-14 z-40 border-t flex justify-center items-center">
     <ul class="flex justify-between w-3/4">
       <li>
-        <%= link_to(image_tag(image_url_helper('home.png'), size: "45x45", class: "p-2"), root_path) %>
+        <%= link_to(image_tag(image_url_helper('list.png'), size: "45x45", class: "p-1"), user_advrials_path(current_user)) %>
       </li>
       <li class="flex">
         <div class="bg-green-700 rounded-full ml-4">
-          <%= link_to(image_tag(image_url_helper('create.png'), size: "45x45", class: "p-1"), new_advrial_path) %>
+          <%= link_to(image_tag(image_url_helper('create.png'), size: "45x45", class: "p-1"), new_user_place_path(current_user)) %>
         </div>
         <p class="text-green-700 font-bold text-xl">＋</p>
       </li>

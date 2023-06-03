@@ -27,13 +27,13 @@
             <%= render 'shared/validation_error', f: f, column: :title %>
           </p>
           <p class="border-b mb-2 px-4">
+            <%= f.select :advrial_category_id, @advrial_categories.map{ |advrial_category| [advrial_category.name_in_locales, advrial_category.id] }, {}, class: "w-full" %>
+            <%= render 'shared/validation_error', f: f, column: :advrial_category_id %>
+          </p>
+          <p class="border-b mb-2 px-4">
             <%= f.date_field :start_date, class: "w-full text-sm" %><br/><%= f.date_field :end_date, class: "w-full text-sm" %>
             <%= render 'shared/validation_error', f: f, column: :start_date %>
             <%= render 'shared/validation_error', f: f, column: :end_date %>
-          </p>
-          <p class="border-b mb-2 px-4">
-            <%= f.select :advrial_category_id, @advrial_categories.map{ |advrial_category| [advrial_category.name_in_locales, advrial_category.id] }, {}, class: "w-full" %>
-            <%= render 'shared/validation_error', f: f, column: :advrial_category_id %>
           </p>
           <div class="flex-1 border border-slate-500 border-dotted py-1 px-2 w-full">
             <%= f.text_area :description, class: "px-4 w-full h-full text-xs" %>

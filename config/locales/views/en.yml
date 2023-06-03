@@ -23,7 +23,6 @@ en:
   headers:
     logout: Sign Out
     my_page: My Page
-    my_advrials: My Advrials
   page:
     index:
       info: Information
@@ -49,28 +48,29 @@ en:
       edit: Edit
       following: Following
       followers: Followers
-      public_advrial: Public Advrials
+      public_advrials: Public Lists
+      public_places: Public Places
       show_all: Show All
-      no_advrials: No Advrial available to the public.
+      no_advrials: No Lists available to the public.
+      no_places: No Places available to the public.
     welcome:
       to_login: Click here for the login page!
   advrials:
     new:
-      title: Create Advrial
+      title: Create List
       public: Public
       description: ※ Editing is possible even after creation.
     index:
       title: List of Advrial Events
     show:
-      create: ＋ Add Arrival Location
-      completed_trip: Going Home
-      completed: The outing is now closed.
-      description: When you arrive at your destination, click the button below to record your arrival!
-      public: If the checkbox for Public is checked on, the information will be published when you return home.
-      confirm: I will not be able to register my location on this Advrial, do you want to go home? (You can edit it)
+      public: Only the public location will be shown to other users.
   places:
     marker_description: Location information may shift slightly. The markers on the map can be moved manually.
     description: ※ Editing is possible even after creation.
+    index:
+      title: List of places visited
+      create: Add the place you visited
+      no_list: Does not belong to the list
     new:
       title: Add the place you visited
     edit:

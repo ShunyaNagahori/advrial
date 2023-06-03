@@ -23,11 +23,9 @@ Rails.application.routes.draw do
     get 'followers', to: 'relationships#followers'
     get 'following', to: 'relationships#following'
     resources :advrials, only: [:index]
-  end
-  resources :advrials, except: [:index] do
-    post :completed, on: :member
     resources :places
   end
+  resources :advrials, except: [:index]
   
   get "search/users", to: "search#user"
   get "results/users", to: "search#result_users"

@@ -6,6 +6,12 @@ class ApplicationController < ActionController::Base
   around_action :switch_locale
 
   private
+
+  # ログイン後のリダイレクト先
+  def after_sign_in_path_for(resource)
+    user_advrials_path(resource)
+  end
+
     # ログアウト後のリダイレクト先
     def after_sign_out_path_for(resource_or_scope)
       new_user_session_path

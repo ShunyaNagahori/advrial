@@ -4,7 +4,7 @@ class PlacePolicy < ApplicationPolicy
   end
 
   def create?
-    user == record.advrial.user
+    user == record.user
   end
 
   def edit?
@@ -12,10 +12,10 @@ class PlacePolicy < ApplicationPolicy
   end
 
   def update?
-    user == record.advrial.user
+    user == record.user
   end
 
   def destroy?
-    user == record.advrial.user
+    user == record.user
   end
 end

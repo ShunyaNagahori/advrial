@@ -25,8 +25,10 @@ ja:
       day: "%m/%d"
   headers:
     logout: ログアウト
+    create: 場所の登録
+    list: リスト
+    search: 検索
     my_page: マイページ
-    my_advrials: マイアドリアル
   page:
     index:
       info: お知らせ
@@ -53,28 +55,30 @@ ja:
       edit: 編集ページ
       following: フォロー
       followers: フォロワー
-      public_advrial: 公開中のアドリアル
+      public_advrials: 公開中のリスト
+      public_places: 公開中の訪れた場所
       show_all: 全て表示
-      no_advrials: 公開中のアドリアルはありません
+      no_advrials: 公開中のリストはありません
+      no_places: 公開中の訪れた場所はありません
     welcome:
       to_login: ログインページはこちら
   advrials:
     new:
-      title: アドリアル作成
+      title: リストの作成
       public: 公開する
       description: ※ 作成後も編集が可能です。
     index:
-      title: アドリアル一覧
+      title: リスト
+      create: リストを作成する
     show:
-      create: ＋ 到着地の追加
-      completed_trip: 帰宅する
-      completed: お出かけを終了しました。
-      description: 目的地に到着したら、下のボタンから、到着地を登録してください。
-      public: ※公開のチェックがオンのアドリアルは、帰宅後公開されます。
-      confirm: こちらのアドリアルに、到着地の追加が出来なくなります。帰宅しますか？(編集は可能です)
+      public: ※他のユーザーには公開された場所しか表示されません
   places:
     marker_description: 位置情報が多少ずれる場合があります。地図のマーカーを手動で移動できます。
     description: ※ 作成後も編集が可能です。
+    index:
+      title: 訪れた場所の一覧
+      create: 訪れた場所の追加
+      no_list: リストに属していません
     new:
       title: 訪れた場所の追加
     edit:

@@ -1,8 +1,8 @@
 <%= 
   render("layouts/shared/back",
     prev_path:
-      if request.referer&.include?("edit")
-        advrial_path(@advrial)
+      if request.referer&.include?("edit") || request.referer&.include?("new")
+        user_places_path(current_user)
       else
         "javascript:history.back()"
       end,
@@ -12,8 +12,8 @@
 
 <div class="flex items-center justify-between mx-1">
   <h2><%= @place.place_name %></h2>
-  <% if @advrial.user == current_user %>
-    <i><%= link_to(image_tag('pencil.png', size: '16x16', class: "float-right"), edit_advrial_place_path(@advrial, @place)) %></i>
+  <% if @place.user == current_user %>
+    <i><%= link_to(image_tag('pencil.png', size: '16x16', class: "float-right"), edit_user_place_path(current_user, @place)) %></i>
   <% end %>
 </div>
 

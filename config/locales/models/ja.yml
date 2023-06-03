@@ -23,8 +23,8 @@ ja:
         user:
           at_mark_ban: に「@」は使用できません
     models:
-      advrial: アドリアル
-      place: 場所
+      advrial: リスト
+      place: 訪れた場所
       user: ユーザー
     attributes:
       advrial:
@@ -34,7 +34,7 @@ ja:
         advrial_category: カテゴリー
         main_visual: メイン画像
         description: 説明
-        returns_home_at: 帰宅時間
+        public: 公開
       place:
         place_name: 名前
         address: 住所
@@ -43,5 +43,6 @@ ja:
         longitude: 経度
         description: 説明
         images: 画像
+        public: 公開
 
         

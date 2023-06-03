@@ -1,0 +1,77 @@
+<%= 
+  render("layouts/shared/back",
+    prev_path: "javascript:history.back()",
+    title: t('.title')
+  )
+%>
+
+<div class="flex items-center cursor-pointer w-max mt-2">
+  <%= link_to(user_path(@user), class: "flex items-center") do %>
+    <% if @user.image.attached? %>
+      <%= image_tag(image_url_helper(@user.image.variant(resize_to_fill: [100,100])), class: "ml-1 w-10 h-10 rounded-full") %>
+    <% else %>
+      <%= image_tag('no-user-image.jpg', size: '40x40', class: "w-10 h-10 rounded-full border ml-1") %>
+    <% end %>
+    <div>
+      <p class="px-1 text-sm"><%= @user.name.present? ? @user.name : "No Name" %></p>
+      <p class="px-1 text-xs text-gray-400"><%= "@#{@user.account_name}" %>
+    </div>
+  <% end %>
+</div>
+
+<div class="flex w-full mb-2">
+  <p class="py-1 w-1/2 text-center font-bold border-b border-green-600">
+    <%= Place.model_name.human %>
+  </p>
+  <p class="py-1 w-1/2 text-center font-bold text-gray-400 border-b">
+    <%= link_to(t("activerecord.models.advrial"), user_advrials_path(@user)) %>
+  </p>
+</div>
+
+<% if @user== current_user %>
+  <div class="btn text-center w-full">
+    <%= link_to(t('.create'), new_user_place_path(current_user)) %>
+  </div>
+<% end %>
+
+<div>
+  <% @places.each do |place| %>
+    <div class="border my-2 mx-1 h-auto w-auto p-2">
+      <div class="grid grid-cols-2 gap-4">
+        <div class="flex items-center justify-center">
+          <% if place.images.attached? %>
+            <%= link_to(image_tag(image_url_helper(place.images.first.variant(resize_to_limit: [300,300])), class: "w-full"), user_place_path(@user, place)) %>
+          <% else %>
+            <%= link_to(image_tag('no-image.png', size: '300x300', class: "w-full"), user_place_path(@user, place)) %>
+          <% end %>
+        </div>
+        <div class="flex flex-col">
+          <div>
+            <p class="text-bold border-b mb-1 px-2 overflow-hidden whitespace-nowrap text-ellipsis">
+              <%= place.place_name %>
+            </p>
+            <p class="text-sm border-b mb-1 px-2 overflow-hidden whitespace-nowrap text-ellipsis">
+              <% if place.advrial.present? %>
+                <%= link_to(place.advrial.title, advrial_path(place.advrial), class: "text-green-700") %>
+              <% else %>
+                <span class="text-gray-400 text-xs"><%= t(".no_list") %></span>
+              <% end %>
+            </p>
+          </div>
+          <p class="border-b mb-2 px-2 text-sm text-gray-500">
+            <%= l(place.date_time) %> 
+          </p>
+          <p class="border-b mb-2 px-2 text-sm">
+              <%= place.address %>
+          </p>
+          <div class="flex-1 border border-slate-500 border-dotted py-1 px-2 w-full">
+            <%= simple_format(place.description, class: "sp-only text-xs break-all overflow-y-scroll line-clamp-[8]") %>
+            <%= simple_format(place.description, class: "pc-only text-sm break-all overflow-y-scroll line-clamp-[20]") %>
+          </div>
+          <p class="text-xs text-gray-400">お気に入り機能実装予定</p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <p class="text-right px-2"><%= t("common.count", count: @places.count) %></p>
+</div>

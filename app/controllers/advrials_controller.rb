@@ -8,7 +8,7 @@ class AdvrialsController < ApplicationController
     if @user == current_user
       @advrials = @user.advrials.all.order(created_at: :desc)
     else
-      @advrials = @user.advrials.where(public: true, completed_trip: true).order(returns_home_at: :desc)
+      @advrials = @user.advrials.where(public: true).order(created_at: :desc)
     end
   end
 
@@ -21,7 +21,7 @@ class AdvrialsController < ApplicationController
     @advrial = current_user.advrials.new(advrial_params)
     @advrial_categories = AdvrialCategory.all
     if @advrial.save
-      flash[:notice] = t('advrials.show.description')
+      flash[:notice] = t('common.actions.create.created')
       redirect_to advrial_path(@advrial)
     else
       render :new, status: 422
@@ -46,7 +46,11 @@ class AdvrialsController < ApplicationController
   end
 
   def show
-    @places = @advrial.places.order(date_time: :desc)
+    if @advrial.user == current_user
+      @places = @advrial.places.order(date_time: :desc)
+    else 
+      @places = @advrial.places.where(public: false).order(date_time: :desc)
+    end
   end
 
   def destroy
@@ -58,7 +62,11 @@ class AdvrialsController < ApplicationController
     end
   end
 
-  def completed
+  def lists
+    @places = current_user.places
+  end
+
+  def list_update
     if @advrial.update(completed_trip: true, returns_home_at: Time.current)
       flash[:notice] = t("advrials.show.completed")
       redirect_to user_advrials_path(current_user)
@@ -68,6 +76,8 @@ class AdvrialsController < ApplicationController
       render :show, status: 422
     end
   end
+
+
   
   private
 

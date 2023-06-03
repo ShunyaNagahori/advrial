@@ -23,7 +23,7 @@ ja:
         user:
           at_mark_ban: cannot use "@"
     models:
-      advrial: Advrial
+      advrial: List
       place: Place
       user: User
     attributes:
@@ -31,10 +31,10 @@ ja:
         title: Title
         start_date: Start Date
         end_date: End Date
-        advrial_category: Advrial Category
+        advrial_category: List Category
         main_visual: Main Visual
         description: Description
-        returns_home_at: Time to Go Home
+        public: Public
       place:
         place_name: Name
         address: Address
@@ -43,3 +43,4 @@ ja:
         longitude: Longitude
         description: Description
         images: Images
+        public: Public
