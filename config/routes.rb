@@ -25,9 +25,7 @@ Rails.application.routes.draw do
     resources :advrials, only: [:index]
     resources :places
   end
-  resources :advrials, except: [:index] do
-    post :completed, on: :member
-  end
+  resources :advrials, except: [:index]
   
   get "search/users", to: "search#user"
   get "results/users", to: "search#result_users"

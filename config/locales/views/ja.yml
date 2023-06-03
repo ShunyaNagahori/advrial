@@ -25,6 +25,9 @@ ja:
       day: "%m/%d"
   headers:
     logout: ログアウト
+    create: 場所の登録
+    list: リスト
+    search: 検索
     my_page: マイページ
   page:
     index:
@@ -65,7 +68,7 @@ ja:
       public: 公開する
       description: ※ 作成後も編集が可能です。
     index:
-      title: アドリアルリスト
+      title: リスト
       create: リストを作成する
     show:
       public: ※他のユーザーには公開された場所しか表示されません

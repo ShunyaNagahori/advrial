@@ -15,7 +15,10 @@
           <p class="px-1 ml-2"><%= current_user.name.present? ? current_user.name : current_user.email %></p>
         </div>
         <div class="text-center hidden absolute right-0 px-4 border z-20 bg-white w-60" data-header-target="menu">
+          <div class="border-b py-2"><%= link_to t('headers.create'), new_user_place_path(current_user), class: "normalLink text-green-700" %></div>
           <div class="border-b py-2"><%= link_to t('headers.my_page'), user_path(current_user), class: "normalLink" %></div>
+          <div class="border-b py-2"><%= link_to t('headers.list'), user_advrials_path(current_user), class: "normalLink" %></div>
+          <div class="border-b py-2"><%= link_to t('headers.search'), search_users_path, class: "normalLink" %></div>
           <div class="border-b py-2"><%= link_to t('headers.logout'), destroy_user_session_path, data: { turbo_method: :delete }, class: "normalLink" %></div>
         </div>
       </div>
