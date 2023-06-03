@@ -63,6 +63,12 @@
   </div>
 <% end %>
 
+<% if @advrial.user == current_user %>
+  <div class="btn text-center w-full">
+    <%= link_to(t('.create'), edit_advrial_advrial_places_path(@advrial)) %>
+  </div>
+<% end %>
+
 <div>
   <% @places.each do |place| %>
     <%= link_to(user_place_path(@advrial.user, place),'data-turbo': false) do %>

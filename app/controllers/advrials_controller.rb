@@ -61,23 +61,6 @@ class AdvrialsController < ApplicationController
       render :edit, status: 422
     end
   end
-
-  def lists
-    @places = current_user.places
-  end
-
-  def list_update
-    if @advrial.update(completed_trip: true, returns_home_at: Time.current)
-      flash[:notice] = t("advrials.show.completed")
-      redirect_to user_advrials_path(current_user)
-    else
-      @places = @advrial.places.order(date_time: :desc)
-      flash[:alert] = @advrial.errors.full_messages.join(" ")
-      render :show, status: 422
-    end
-  end
-
-
   
   private
 

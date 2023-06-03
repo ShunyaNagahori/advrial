@@ -1,0 +1,16 @@
+ <%= form_with model: @advrial, url: advrial_advrial_places_path(@advrial) do |f| %>
+
+  <div>
+      <div>
+        <% @places.each do |place| %>
+          <span>
+            <%= f.check_box :place_ids, { multiple: true }, place.id, [] %>
+            <%= place.place_name %>
+          <span>
+        <% end %>
+      </div>
+  </div>
+
+  <%= f.submit "Go", class: 'btn w-full block' %>
+
+<% end %>

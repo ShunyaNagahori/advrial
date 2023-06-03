@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_30_052143) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_03_144354) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -50,6 +50,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_30_052143) do
     t.integer "display_order", default: 0, null: false
   end
 
+  create_table "advrial_places", force: :cascade do |t|
+    t.string "advrial_id", null: false
+    t.string "place_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["advrial_id", "place_id"], name: "index_advrial_places_on_advrial_id_and_place_id", unique: true
+    t.index ["advrial_id"], name: "index_advrial_places_on_advrial_id"
+    t.index ["place_id"], name: "index_advrial_places_on_place_id"
+  end
+
   create_table "advrials", id: :string, force: :cascade do |t|
     t.string "title", null: false
     t.date "start_date"
@@ -72,12 +82,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_30_052143) do
     t.float "latitude"
     t.float "longitude"
     t.string "description"
-    t.string "advrial_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.boolean "public", default: false
-    t.index ["advrial_id"], name: "index_places_on_advrial_id"
     t.index ["user_id"], name: "index_places_on_user_id"
   end
 
@@ -115,8 +123,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_30_052143) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "advrial_places", "advrials"
+  add_foreign_key "advrial_places", "places"
   add_foreign_key "advrials", "advrial_categories"
   add_foreign_key "advrials", "users"
-  add_foreign_key "places", "advrials"
   add_foreign_key "places", "users"
 end
