@@ -1,7 +1,9 @@
 class Place < ApplicationRecord
   before_create :set_id
-  belongs_to :advrial, optional: true
+  
   belongs_to :user
+  has_many :advrial_places
+  has_many :advrials, through: :advrial_places
   has_many_attached :images
 
   validates :place_name, presence: true

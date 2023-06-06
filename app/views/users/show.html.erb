@@ -49,7 +49,7 @@
 
   <div class="border-b p-1">
     <dt class="block font-semibold w-max border-b"><%= User.human_attribute_name(:url) %></dt>
-    <dd class="my-1 text-sm"><%= link_to(nil, @user.url, class: "text-green-700") %></dd>
+    <dd class="my-1 text-sm"><%= link_to(nil, @user.url, class: "text-green-700") if @user.url.present? %></dd>
   </div>
 </div>
 
@@ -87,8 +87,10 @@
                     <%= place.place_name %>
                   </p>
                   <p class="text-sm border-b mb-1 px-2 overflow-hidden whitespace-nowrap text-ellipsis">
-                    <% if place.advrial.present? %>
-                      <%= link_to(place.advrial.title, advrial_path(place.advrial), class: "text-green-700", 'data-turbo': false) %>
+                    <% if place.advrials.present? %>
+                      <% place.advrials.each do |advrial| %>
+                        <%= link_to(advrial.title, advrial_path(advrial), class: "text-green-700", 'data-turbo': false) %>
+                      <% end %>
                     <% else %>
                       <span class="text-gray-400 text-xs"><%= t(".no_list") %></span>
                     <% end %>

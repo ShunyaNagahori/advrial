@@ -64,6 +64,7 @@ en:
       title: List of Advrial Events
     show:
       public: Only the public location will be shown to other users.
+      add: Add location to list
   places:
     marker_description: Location information may shift slightly. The markers on the map can be moved manually.
     description: ※ Editing is possible even after creation.
@@ -79,3 +80,6 @@ en:
   relationships:
     no_following: No following
     no_followers: No followers
+  advrial_places:
+    edit:
+      add: Add

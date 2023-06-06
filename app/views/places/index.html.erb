@@ -1,10 +1,3 @@
-<%= 
-  render("layouts/shared/back",
-    prev_path: "javascript:history.back()",
-    title: t('.title')
-  )
-%>
-
 <div class="flex items-center cursor-pointer w-max mt-2">
   <%= link_to(user_path(@user), class: "flex items-center") do %>
     <% if @user.image.attached? %>
@@ -37,6 +30,9 @@
 <div>
   <% @places.each do |place| %>
     <div class="border my-2 mx-1 h-auto w-auto p-2">
+      <% if place.user == current_user %>
+        <i><%= link_to(image_tag('pencil.png', size: '16x16', class: "float-right"), edit_user_place_path(current_user, place)) %></i>
+      <% end %>
       <div class="grid grid-cols-2 gap-4">
         <div class="flex items-center justify-center">
           <% if place.images.attached? %>
@@ -50,19 +46,21 @@
             <p class="text-bold border-b mb-1 px-2 overflow-hidden whitespace-nowrap text-ellipsis">
               <%= place.place_name %>
             </p>
-            <p class="text-sm border-b mb-1 px-2 overflow-hidden whitespace-nowrap text-ellipsis">
-              <% if place.advrial.present? %>
-                <%= link_to(place.advrial.title, advrial_path(place.advrial), class: "text-green-700") %>
-              <% else %>
-                <span class="text-gray-400 text-xs"><%= t(".no_list") %></span>
-              <% end %>
-            </p>
+            <% if place.advrials.present? %>
+              <ul class="list-disc text-sm ml-4">
+                <% place.advrials.each do |advrial| %>
+                  <li class="mb-1 border-b border-dashed"><%= link_to(advrial.title, advrial_path(advrial), class: "text-green-700 block overflow-hidden whitespace-nowrap text-ellipsis") %></li>
+                <% end %>
+              </ul>
+            <% else %>
+              <p class="text-gray-400 text-xs border-b mb-1 px-2 overflow-hidden whitespace-nowrap text-ellipsis"><%= t(".no_list") %></p>
+            <% end %>
           </div>
           <p class="border-b mb-2 px-2 text-sm text-gray-500">
             <%= l(place.date_time) %> 
           </p>
           <p class="border-b mb-2 px-2 text-sm">
-              <%= place.address %>
+            <%= place.address %>
           </p>
           <div class="flex-1 border border-slate-500 border-dotted py-1 px-2 w-full">
             <%= simple_format(place.description, class: "sp-only text-xs break-all overflow-y-scroll line-clamp-[8]") %>

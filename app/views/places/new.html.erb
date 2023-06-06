@@ -1,6 +1,9 @@
-<div>
-  <h2><%=t('.title') %></h2>
-</div>
+<%= 
+  render("layouts/shared/back",
+    prev_path: "javascript:history.back()",
+    title: t('.title')
+  )
+%>
 
 <%= render 'form', url: user_places_path(current_user), text: t('common.actions.create.submit'), isNew: true %>
 

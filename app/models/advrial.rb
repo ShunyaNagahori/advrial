@@ -1,9 +1,11 @@
 class Advrial < ApplicationRecord
   before_create :set_id
+  
   belongs_to :user
   belongs_to :advrial_category
+  has_many :advrial_places
+  has_many :places, through: :advrial_places
   has_one_attached :main_visual
-  has_many :places, dependent: :destroy
 
   validates :title, presence: true
   validate :start_date_cannot_comes_after_end_date
