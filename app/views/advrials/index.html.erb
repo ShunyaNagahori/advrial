@@ -1,10 +1,3 @@
-<%= 
-  render("layouts/shared/back",
-    prev_path: "javascript:history.back()",
-    title: t('.title')
-  )
-%>
-
 <div class="flex items-center cursor-pointer w-max mt-2">
   <%= link_to(user_path(@user), class: "flex items-center") do %>
     <% if @user.image.attached? %>

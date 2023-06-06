@@ -1,6 +1,9 @@
-<div>
-  <h2><%=t('.title') %></h2>
-</div>
+<%= 
+  render("layouts/shared/back",
+    prev_path: user_place_path(current_user, @place),
+    title: t('.title')
+  )
+%>
 
 <%= render 'form', url: user_place_path(current_user, @place), text: t('common.actions.edit.update'), isNew: false %>
 

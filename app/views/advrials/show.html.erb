@@ -1,7 +1,7 @@
 <%= 
   render("layouts/shared/back",
     prev_path:
-      if request.referer&.include?("new")
+      if request.referer&.include?("new") || request.referer&.include?("edit")
         user_advrials_path(@advrial.user)
       else
         "javascript:history.back()"
@@ -64,9 +64,7 @@
 <% end %>
 
 <% if @advrial.user == current_user %>
-  <div class="btn text-center w-full">
-    <%= link_to(t('.create'), edit_advrial_advrial_places_path(@advrial)) %>
-  </div>
+  <%= link_to(t('.add'), edit_advrial_advrial_places_path(@advrial), class: "btn block w-full text-center") %>
 <% end %>
 
 <div>

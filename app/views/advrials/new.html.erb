@@ -55,6 +55,6 @@
   
   <div class="pt-8">
     <%= f.submit t('common.actions.create.submit'), class: "btn w-full block" %>
-    <%= link_to t('common.actions.create.back'), root_path, class: "backBtn w-full block" %>
+    <%= link_to(t('common.actions.create.back'), :back, class: "backBtn w-full block pc-only") %>
   </div>
 <% end %>

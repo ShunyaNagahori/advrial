@@ -72,6 +72,7 @@ ja:
       create: リストを作成する
     show:
       public: ※他のユーザーには公開された場所しか表示されません
+      add: 登録した場所をリストに追加
   places:
     marker_description: 位置情報が多少ずれる場合があります。地図のマーカーを手動で移動できます。
     description: ※ 作成後も編集が可能です。
@@ -87,3 +88,6 @@ ja:
   relationships:
     no_following: 誰もフォローしていません
     no_followers: フォロワーはいません
+  advrial_places:
+    edit:
+      add: 追加
